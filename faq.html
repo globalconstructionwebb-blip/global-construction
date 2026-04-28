@@ -1,0 +1,747 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanliga Frågor (FAQ) – Global Construction</title>
+    <meta name="description"
+        content="Svar på vanliga frågor om byggkonstruktion, skyddsrumscertifiering, hållfasthetsberäkningar och mer. Hitta rätt svar, sorterat på tjänst.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.globalconstruction.se/faq.html">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ===================================================
+           FAQ LANDING PAGE – BESPOKE STYLES
+           =================================================== */
+
+        .faq-landing-hero {
+            background: var(--dark-navy);
+            padding: 12rem 2rem 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-landing-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 0%, rgba(59, 130, 246, 0.12) 0%, transparent 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(16, 185, 129, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .faq-landing-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .faq-landing-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .faq-landing-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .faq-landing-hero p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* --- Filter Tabs --- */
+        .faq-filter-bar {
+            background: #fff;
+            border-bottom: 1px solid rgba(27, 38, 59, 0.08);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            padding: 0 2rem;
+        }
+
+        .faq-filter-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .faq-filter-btn {
+            position: relative;
+            background: none;
+            border: none;
+            padding: 1.25rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(27, 38, 59, 0.45);
+            cursor: pointer;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .faq-filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--dark-navy);
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .faq-filter-btn.active {
+            color: var(--dark-navy);
+        }
+
+        .faq-filter-btn.active::after {
+            transform: scaleX(1);
+        }
+
+        .faq-filter-btn:hover {
+            color: var(--dark-navy);
+        }
+
+        /* --- Main FAQ Content --- */
+        .faq-landing-main {
+            background: #fafafa;
+            min-height: 60vh;
+            padding: 6rem 2rem 10rem;
+        }
+
+        .faq-landing-grid {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category-block {
+            display: none;
+        }
+
+        .faq-category-block.visible {
+            display: block;
+        }
+
+        .faq-category-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-category-label-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .faq-category-label-pill.konstruktion {
+            background: rgba(27, 38, 59, 0.07);
+            color: var(--dark-navy);
+        }
+
+        .faq-category-label-pill.skyddsrum {
+            background: rgba(16, 163, 127, 0.08);
+            color: #0d9488;
+        }
+
+        .faq-category-line {
+            flex: 1;
+            height: 1px;
+            background: rgba(27, 38, 59, 0.1);
+        }
+
+        /* Override base faq-item for landing page */
+        .faq-landing-main .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            border: 1px solid rgba(27, 38, 59, 0.08);
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .faq-landing-main .faq-item:hover {
+            box-shadow: 0 4px 24px rgba(27, 38, 59, 0.07);
+            border-color: rgba(27, 38, 59, 0.14);
+        }
+
+        .faq-landing-main .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.5rem 1.75rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-navy);
+            line-height: 1.4;
+        }
+
+        .faq-landing-main .faq-question svg {
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+            color: rgba(27, 38, 59, 0.4);
+            transition: transform 0.3s ease, color 0.2s ease;
+        }
+
+        .faq-landing-main .faq-item.open .faq-question svg {
+            transform: rotate(180deg);
+            color: var(--dark-navy);
+        }
+
+        .faq-landing-main .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            display: block !important; /* Force block to avoid conflicts with global grid-fr accordion logic */
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-landing-main .faq-answer-inner {
+            padding: 0 1.75rem 1.5rem;
+            border-top: 1px solid rgba(27, 38, 59, 0.07);
+            padding-top: 1.25rem;
+        }
+
+        .faq-landing-main .faq-answer-inner p {
+            font-size: 0.97rem;
+            color: #1b263b !important; /* Force dark color for visibility on light background */
+            line-height: 1.75;
+            margin: 0;
+            white-space: normal !important; /* Force text to wrap */
+            opacity: 0.8;
+        }
+
+        /* --- CTA strip at the bottom --- */
+        .faq-cta-strip {
+            background: var(--dark-navy);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .faq-cta-strip h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .faq-cta-strip p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-cta-strip a {
+            display: inline-block;
+            background: #fff;
+            color: var(--dark-navy);
+            font-weight: 700;
+            font-size: 0.82rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .faq-cta-strip a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Count badge on filter buttons */
+        .faq-filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(27, 38, 59, 0.08);
+            color: var(--dark-navy);
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 100px;
+            padding: 0.1rem 0.5rem;
+            margin-left: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .faq-filter-btn.active .faq-filter-count {
+            background: var(--dark-navy);
+            color: #fff;
+        }
+
+        @media (max-width: 640px) {
+            .faq-landing-hero {
+                padding: 10rem 1.5rem 5rem;
+            }
+
+            .faq-landing-main {
+                padding: 4rem 1.25rem 7rem;
+            }
+
+            .faq-filter-btn {
+                padding: 1rem 1.25rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Hur lång tid tar det att få kompletta bygglovsritningar?", "acceptedAnswer": { "@type": "Answer", "text": "Beroende på projektets omfattning och komplexitet kan vi normalt sett få fram fackmannamässiga A- och K-ritningar inom 2 till 4 veckor från startmöte." } },
+            { "@type": "Question", "name": "Gör ni hållfasthetsberäkningar för äldre fastigheter?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, absolut. Vi arbetar ofta med äldre och kulturmärkta fastigheter och gör utredningar gällande nya bärande balksystem och avväxlingar vid större renoveringar." } },
+            { "@type": "Question", "name": "Hur lång tid tar en typisk skyddsrumscertifiering?", "acceptedAnswer": { "@type": "Answer", "text": "Tidsåtgången varierar beroende på skyddsrummets storlek och skick. En statuskontroll tar vanligtvis 1–3 veckor, medan en fullständig renovering och certifiering kan ta 2–6 månader." } },
+            { "@type": "Question", "name": "Vad händer om ett skyddsrum inte godkänns vid MSB-inspektion?", "acceptedAnswer": { "@type": "Answer", "text": "Om skyddsrummet inte godkänns identifierar vi tillsammans med MSB vilka åtgärder som krävs. Vi upprättar en åtgärdsplan och genomför nödvändiga reparationer eller uppgraderingar." } }
+        ]
+    }
+    </script>
+</head>
+
+<body>
+    <a href="#main-content" class="sr-only sr-only-focusable">Hoppa till huvudinnehåll</a>
+
+        <header id="main-header" role="banner">
+        <nav class="navbar" aria-label="Huvudnavigering">
+            <a href="index.html" class="logo-link" aria-label="Global Construction – Till startsidan">
+                <img src="logo.png" alt="Global Construction logotyp" id="logo-img" width="165" loading="eager">
+            </a>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">HEM</a></li>
+                <li class="nav-item dropdown" role="none">
+                    <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">TJÄNSTER</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="none"><a href="konstruktion.html" role="menuitem">Konstruktion</a></li>
+                        <li role="none"><a href="skyddsrum.html" role="menuitem">Skyddsrum</a></li>
+                    </ul>
+                </li>
+                <li role="none"><a href="projekt.html" role="menuitem">PROJEKT</a></li>
+                <li role="none"><a href="blogg.html" role="menuitem">KUNSKAPSBANK</a></li>
+                <li role="none"><a href="om-oss.html" role="menuitem">OM OSS</a></li>
+                <li role="none"><a href="faq.html" role="menuitem">FAQ</a></li>
+            </ul>
+            <div class="header-cta">
+                <a href="kontakt.html" class="btn btn-ghost">KONTAKT</a>
+            </div>
+            <button class="menu-toggle" aria-label="Öppna meny" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="faq-landing-hero">
+            <div class="faq-landing-hero-inner">
+                <span class="faq-landing-hero-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Vanliga frågor
+                </span>
+                <h1>Allt du vill veta –<br>samlat på ett ställe.</h1>
+                <p>Svar på de vanligaste frågorna om våra tjänster inom byggkonstruktion och skyddsrumscertifiering. Sortera efter kategori nedan.</p>
+            </div>
+        </section>
+
+        <!-- Filter bar -->
+        <div class="faq-filter-bar" role="tablist" aria-label="Filtrera FAQ-frågor">
+            <div class="faq-filter-inner">
+                <button class="faq-filter-btn active" role="tab" aria-selected="true" data-filter="alla" id="tab-alla" aria-controls="panel-alla">
+                    Alla <span class="faq-filter-count">20</span>
+                </button>
+                <button class="faq-filter-btn" role="tab" aria-selected="false" data-filter="konstruktion" id="tab-konstruktion" aria-controls="panel-konstruktion">
+                    Konstruktion <span class="faq-filter-count">10</span>
+                </button>
+                <button class="faq-filter-btn" role="tab" aria-selected="false" data-filter="skyddsrum" id="tab-skyddsrum" aria-controls="panel-skyddsrum">
+                    Skyddsrum <span class="faq-filter-count">10</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- FAQ Content -->
+        <section class="faq-landing-main" aria-label="FAQ-frågor och svar">
+            <div class="faq-landing-grid">
+
+                <!-- ===== ALL (default view) ===== -->
+                <div class="faq-category-block visible" id="panel-alla" role="tabpanel" aria-labelledby="tab-alla">
+                    
+                    <!-- Konstruktion -->
+                    <div class="faq-category-label">
+                        <span class="faq-category-label-pill konstruktion">Konstruktion</span>
+                        <div class="faq-category-line"></div>
+                    </div>
+                    <div class="faq-list" style="margin-bottom: 4rem;">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur lång tid tar det att få kompletta bygglovsritningar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Beroende på projektets omfattning och komplexitet kan vi normalt sett få fram fackmannamässiga A- och K-ritningar inom 2 till 4 veckor från startmöte.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Gör ni hållfasthetsberäkningar för äldre fastigheter? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja, absolut. Vi arbetar ofta med äldre och kulturmärkta fastigheter och gör utredningar gällande nya bärande balksystem och avväxlingar vid större renoveringar.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vilka materialtyper projekterar ni i? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Våra konstruktörer är specialister på både stål, platsgjuten och prefabricerad betong samt trä (inklusive avancerade limträ-konstruktioner).</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Kan ni hjälpa till med geotekniska markundersökningar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vid behov samarbetar vi rullande med oberoende geotekniker, vilket innebär att vi kan erbjuda exakta pålningsplaner och grundläggningskalkyler utifrån lokala markförhållanden.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur säkerställer ni miljö- och hållbarhetskrav? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vi integrerar alltid strategiska miljöval genom hela projekteringsfasen, optimerar stål- och betongåtgång för att minimera CO2-avtrycket och uppfyller alltid ISO-kraven för hållbart byggande.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Utför ni besiktning och kontrollansvariga (KA) tjänster? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Självklart. Vi har behöriga kontrollansvariga som erbjuder oberoende övervakning genom hela entreprenaden för att säkerställa att branschkraven efterlevs punktligt.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Kan ni hjälpa till med konstruktionsritningar för komplexa industrilokaler? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja, vi har gedigen erfarenhet av industrilokaler med komplexa krav på spännvidder, laster och installationer. Vi tar fram kompletta bygg- och konstruktionshandlingar anpassade för er specifika verksamhet.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Arbetar ni med totalentreprenader eller enbart projektering? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vi fokuserar primärt på teknisk projektering och konstruktionshandlingar, men samarbetar nära med entreprenörer och byggherrar för att säkerställa att projekten genomförs enligt våra handlingar. Vi kan agera i rollen som teknisk konsult genom hela byggskedet.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur hanterar ni ändringar under projekteringsfasen? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vi arbetar agilt och välkomnar iterativa ändringar. Alla revisioner dokumenteras noggrant med revisionsbeteckningar och datumstämpling. Vi använder moderna CAD-verktyg som säkerställer spårbarhet och snabb leverans av uppdaterade handlingar.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vilka certifieringar och kvalitetsstandarder följer ni? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Alla våra konstruktioner uppfyller Eurokoderna (SS-EN) och Boverkets byggregler (BBR). Vi arbetar enligt ISO 9001-certifierade processer och säkerställer att varje projekt granskas av oberoende sakkunniga innan handlingarna levereras.</p></div></div>
+                        </div>
+                    </div>
+
+                    <!-- Skyddsrum -->
+                    <div class="faq-category-label">
+                        <span class="faq-category-label-pill skyddsrum">Skyddsrum</span>
+                        <div class="faq-category-line"></div>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vad innebär det att ett skyddsrum är "aktiverat"? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ett aktiverat skyddsrum innebär att det godkänts av MSB och uppfyller alla tekniska krav gällande stompåverkan, täthet, ventilation och utrymningssäkerhet. Det är redo att användas vid höjd beredskap.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Är fastighetsägaren skyldig att ha ett fungerande skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja. Enligt lagen om skyddsrum är fastighetsägare skyldiga att hålla skyddsrum i godkänt och funktionsdugligt skick. MSB genomför regelbundna kontroller, och brister kan leda till förelägganden och böter.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur lång tid tar en typisk skyddsrumscertifiering? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Tidsåtgången varierar beroende på skyddsrummets storlek och skick. En statuskontroll tar vanligtvis 1–3 veckor, medan en fullständig renovering och certifiering kan ta 2–6 månader. Vi ger alltid en tydlig tidplan i offertfasen.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vad händer om ett skyddsrum inte godkänns vid MSB-inspektion? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Om skyddsrummet inte godkänns identifierar vi tillsammans med MSB vilka åtgärder som krävs. Vi upprättar en åtgärdsplan och genomför nödvändiga reparationer eller uppgraderingar, varefter en ny inspektion begärs. Vi stöttar er hela vägen till godkänt betyg.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Erbjuder ni service och underhållsavtal för skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja. Vi erbjuder löpande serviceavtal som inkluderar regelbundna statuskontroller, filter- och ventilationsbyten samt dokumentation av åtgärder. Ett serviceavtal säkerställer att ert skyddsrum alltid är redo och uppfyller MSB:s krav vid nästa kontroll.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Kan ett källarförråd eller garage byggas om till skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Det är möjligt, men kräver en noggrann teknisk utredning. Lokalen måste uppfylla MSB:s krav på stomstyrka, täthet, ventilation och nödutgångar. Vi genomför en förstudie och ger ett tydligt besked om lokalens förutsättningar och vad en ombyggnad skulle kräva.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vilka tekniska krav ställer MSB på ett skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>MSB kräver att skyddsrum uppfyller specifika krav avseende stomkonstruktion (tål trycklastvågor), lufttäthet, filter- och ventilationssystem (NBC-skydd), nödbelysning, nödkraft, kommunikationsutrustning och minst en nödutgång utöver huvudentrén.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur ofta måste ett skyddsrum kontrolleras? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>MSB genomför tillsyn av skyddsrum löpande. Fastighetsägare rekommenderas att göra en egen statuskontroll minst vart annat år för att säkerställa att utrustning och konstruktion är intakt. Vi erbjuder kostnadsfri inledande bedömning.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vad kostar en skyddsrumsrenovering? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Kostnaden varierar kraftigt beroende på skyddsrummets storlek, aktuellt skick och vilka åtgärder som krävs. En enklare statusåtgärd kan starta från 50 000 kr, medan en fullständig renovering av ett större skyddsrum kan uppgå till flera miljoner kronor. Vi skickar alltid en kostnadsfri offert efter besiktning.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Arbetar ni med bostadsrättsföreningar och kommuner? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja. Vi har lång erfarenhet av att arbeta med bostadsrättsföreningar, kommunala fastighetsbolag och privata fastighetsägare. Vi anpassar vår process och kommunikation till kundens organisation och behov.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== KONSTRUKTION only ===== -->
+                <div class="faq-category-block" id="panel-konstruktion" role="tabpanel" aria-labelledby="tab-konstruktion">
+                    <div class="faq-category-label">
+                        <span class="faq-category-label-pill konstruktion">Konstruktion</span>
+                        <div class="faq-category-line"></div>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur lång tid tar det att få kompletta bygglovsritningar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Beroende på projektets omfattning och komplexitet kan vi normalt sett få fram fackmannamässiga A- och K-ritningar inom 2 till 4 veckor från startmöte.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Gör ni hållfasthetsberäkningar för äldre fastigheter? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja, absolut. Vi arbetar ofta med äldre och kulturmärkta fastigheter och gör utredningar gällande nya bärande balksystem och avväxlingar vid större renoveringar.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vilka materialtyper projekterar ni i? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Våra konstruktörer är specialister på både stål, platsgjuten och prefabricerad betong samt trä (inklusive avancerade limträ-konstruktioner).</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Kan ni hjälpa till med geotekniska markundersökningar? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vid behov samarbetar vi rullande med oberoende geotekniker, vilket innebär att vi kan erbjuda exakta pålningsplaner och grundläggningskalkyler utifrån lokala markförhållanden.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur säkerställer ni miljö- och hållbarhetskrav? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vi integrerar alltid strategiska miljöval genom hela projekteringsfasen, optimerar stål- och betongåtgång för att minimera CO2-avtrycket och uppfyller alltid ISO-kraven för hållbart byggande.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Utför ni besiktning och kontrollansvariga (KA) tjänster? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Självklart. Vi har behöriga kontrollansvariga som erbjuder oberoende övervakning genom hela entreprenaden för att säkerställa att branschkraven efterlevs punktligt.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Kan ni hjälpa till med konstruktionsritningar för komplexa industrilokaler? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja, vi har gedigen erfarenhet av industrilokaler med komplexa krav på spännvidder, laster och installationer. Vi tar fram kompletta bygg- och konstruktionshandlingar anpassade för er specifika verksamhet.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Arbetar ni med totalentreprenader eller enbart projektering? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vi fokuserar primärt på teknisk projektering och konstruktionshandlingar, men samarbetar nära med entreprenörer och byggherrar för att säkerställa att projekten genomförs enligt våra handlingar. Vi kan agera i rollen som teknisk konsult genom hela byggskedet.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur hanterar ni ändringar under projekteringsfasen? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Vi arbetar agilt och välkomnar iterativa ändringar. Alla revisioner dokumenteras noggrant med revisionsbeteckningar och datumstämpling. Vi använder moderna CAD-verktyg som säkerställer spårbarhet och snabb leverans av uppdaterade handlingar.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vilka certifieringar och kvalitetsstandarder följer ni? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Alla våra konstruktioner uppfyller Eurokoderna (SS-EN) och Boverkets byggregler (BBR). Vi arbetar enligt ISO 9001-certifierade processer och säkerställer att varje projekt granskas av oberoende sakkunniga innan handlingarna levereras.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SKYDDSRUM only ===== -->
+                <div class="faq-category-block" id="panel-skyddsrum" role="tabpanel" aria-labelledby="tab-skyddsrum">
+                    <div class="faq-category-label">
+                        <span class="faq-category-label-pill skyddsrum">Skyddsrum</span>
+                        <div class="faq-category-line"></div>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vad innebär det att ett skyddsrum är "aktiverat"? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ett aktiverat skyddsrum innebär att det godkänts av MSB och uppfyller alla tekniska krav gällande stompåverkan, täthet, ventilation och utrymningssäkerhet. Det är redo att användas vid höjd beredskap.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Är fastighetsägaren skyldig att ha ett fungerande skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja. Enligt lagen om skyddsrum är fastighetsägare skyldiga att hålla skyddsrum i godkänt och funktionsdugligt skick. MSB genomför regelbundna kontroller, och brister kan leda till förelägganden och böter.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur lång tid tar en typisk skyddsrumscertifiering? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Tidsåtgången varierar beroende på skyddsrummets storlek och skick. En statuskontroll tar vanligtvis 1–3 veckor, medan en fullständig renovering och certifiering kan ta 2–6 månader. Vi ger alltid en tydlig tidplan i offertfasen.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vad händer om ett skyddsrum inte godkänns vid MSB-inspektion? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Om skyddsrummet inte godkänns identifierar vi tillsammans med MSB vilka åtgärder som krävs. Vi upprättar en åtgärdsplan och genomför nödvändiga reparationer eller uppgraderingar, varefter en ny inspektion begärs. Vi stöttar er hela vägen till godkänt betyg.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Erbjuder ni service och underhållsavtal för skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja. Vi erbjuder löpande serviceavtal som inkluderar regelbundna statuskontroller, filter- och ventilationsbyten samt dokumentation av åtgärder. Ett serviceavtal säkerställer att ert skyddsrum alltid är redo och uppfyller MSB:s krav vid nästa kontroll.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Kan ett källarförråd eller garage byggas om till skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Det är möjligt, men kräver en noggrann teknisk utredning. Lokalen måste uppfylla MSB:s krav på stomstyrka, täthet, ventilation och nödutgångar. Vi genomför en förstudie och ger ett tydligt besked om lokalens förutsättningar och vad en ombyggnad skulle kräva.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vilka tekniska krav ställer MSB på ett skyddsrum? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>MSB kräver att skyddsrum uppfyller specifika krav avseende stomkonstruktion (tål trycklastvågor), lufttäthet, filter- och ventilationssystem (NBC-skydd), nödbelysning, nödkraft, kommunikationsutrustning och minst en nödutgång utöver huvudentrén.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Hur ofta måste ett skyddsrum kontrolleras? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>MSB genomför tillsyn av skyddsrum löpande. Fastighetsägare rekommenderas att göra en egen statuskontroll minst vart annat år för att säkerställa att utrustning och konstruktion är intakt. Vi erbjuder kostnadsfri inledande bedömning.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Vad kostar en skyddsrumsrenovering? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Kostnaden varierar kraftigt beroende på skyddsrummets storlek, aktuellt skick och vilka åtgärder som krävs. En enklare statusåtgärd kan starta från 50 000 kr, medan en fullständig renovering av ett större skyddsrum kan uppgå till flera miljoner kronor. Vi skickar alltid en kostnadsfri offert efter besiktning.</p></div></div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" aria-expanded="false">Arbetar ni med bostadsrättsföreningar och kommuner? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
+                            <div class="faq-answer"><div class="faq-answer-inner"><p>Ja. Vi har lång erfarenhet av att arbeta med bostadsrättsföreningar, kommunala fastighetsbolag och privata fastighetsägare. Vi anpassar vår process och kommunikation till kundens organisation och behov.</p></div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="faq-cta-strip" aria-labelledby="faq-cta-heading">
+            <h2 id="faq-cta-heading">Hittade du inte svaret du sökte?</h2>
+            <p>Kontakta oss direkt – vi återkommer inom 24 timmar.</p>
+            <a href="kontakt.html">KOM I KONTAKT</a>
+        </section>
+    </main>
+
+        <footer class="complex-footer" role="contentinfo">
+        <div class="footer-grid container">
+            <div class="footer-brand">
+                <a href="index.html" aria-label="Global Construction – Till startsidan">
+                    <img src="logo.png" alt="Global Construction logotyp" width="165" style="height: auto;" loading="lazy">
+                </a>
+                <p>Global Construction bygger säkra och optimerade lösningar för framtidens samhällen. Sveriges ledande partner inom certifierad totalentreprenad sedan starten.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Besök oss på Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg></a>
+                    <a href="#" aria-label="Besök oss på LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                    <a href="#" aria-label="Besök oss på Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                </div>
+            </div>
+
+            <nav class="footer-links-col" aria-label="Snabblänkar">
+                <h3>Snabblänkar</h3>
+                <ul>
+                    <li><a href="index.html">Hem</a></li>
+                    <li><a href="konstruktion.html">Konstruktion</a></li>
+                    <li><a href="skyddsrum.html">Skyddsrum</a></li>
+                    <li><a href="projekt.html">Projekt</a></li>
+                    <li><a href="blogg.html">Kunskapsbank</a></li>
+                    <li><a href="om-oss.html">Om Oss</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="jobba-hos-oss.html">Jobba hos oss</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-links-col" aria-label="Tjänster">
+                <h3>Våra Tjänster</h3>
+                <ul>
+                    <li><a href="konstruktion.html">Bygglovsritningar</a></li>
+                    <li><a href="konstruktion.html">Hållfasthetsberäkningar</a></li>
+                    <li><a href="konstruktion.html">Produktionshandlingar</a></li>
+                    <li><a href="konstruktion.html">Grundläggning</a></li>
+                    <li><a href="skyddsrum.html">Skyddsrumscertifiering</a></li>
+                </ul>
+            </nav>
+
+            <address class="footer-contact-col">
+                <h3>Kontakta Oss</h3>
+                <ul class="contact-info">
+                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Byggvägen 22, 100 01 Stockholm</li>
+                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <a href="mailto:info@globalconstruction.se">info@globalconstruction.se</a></li>
+                    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <a href="tel:+4681234567">08 - 123 45 67</a></li>
+                </ul>
+            </address>
+        </div>
+
+        <div class="footer-bottom-bar container">
+            <p class="copyright">© 2026 Global Construction. Alla rättigheter reserverade.</p>
+            <nav class="footer-legal" aria-label="Juridisk information">
+                <a href="kopvillkor.html">Köpvillkor</a>
+                <a href="integritetspolicy.html">Integritetspolicy</a>
+                <a href="cookies.html">Cookies</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="main.js" defer></script>
+    <script>
+        // --- FAQ Landing Page Logic ---
+
+        // Filter tabs
+        const filterBtns = document.querySelectorAll('.faq-filter-btn');
+        const panels = document.querySelectorAll('.faq-category-block');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.filter;
+
+                filterBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                panels.forEach(panel => {
+                    panel.classList.remove('visible');
+                });
+                document.getElementById('panel-' + target).classList.add('visible');
+            });
+        });
+
+        // Accordion behaviour for landing page
+        document.querySelectorAll('.faq-landing-main .faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const answer = item.querySelector('.faq-answer');
+                const isOpen = item.classList.contains('open');
+
+                // Close all siblings
+                item.closest('.faq-list').querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    item.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Check URL param to auto-select tab (e.g. faq.html?kategori=skyddsrum)
+        const params = new URLSearchParams(window.location.search);
+        const kat = params.get('kategori');
+        if (kat === 'skyddsrum' || kat === 'konstruktion') {
+            document.querySelector(`[data-filter="${kat}"]`)?.click();
+        }
+    </script>
+</body>
+
+</html>
+
