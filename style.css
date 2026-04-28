@@ -2725,9 +2725,9 @@ figure {
 }
 
 .projects-container {
-    max-width: 1400px;
+    max-width: 1800px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 4rem;
 }
 
 .projects-content-section {
@@ -3986,8 +3986,8 @@ footer address,
 /* --- Refined High-Fidelity Project Cards (Template Logic) --- */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row as requested */
-    gap: 10rem;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row, but wider container */
+    gap: 3rem; /* Reduced gap to allow more card width */
     margin-top: 5rem;
 }
 

@@ -13,163 +13,282 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* Specific Notion-style Overrides */
-        body.notion-careers-mode {
+        /* ===================================================
+           PREMIUM CAREERS PAGE – TECH-PREMIUM OVERHAUL
+           =================================================== */
+        
+        body.premium-careers-page {
             background-color: #fff !important;
-            color: #121212 !important;
+            color: var(--dark-navy) !important;
         }
 
-        /* Ensure header links are dark on white background */
-        body.notion-careers-mode #main-header:not(.sticky) .nav-links a {
-            color: #121212 !important;
-        }
-        body.notion-careers-mode #main-header:not(.sticky) .btn-ghost {
-            color: #121212 !important;
-            border-color: #121212 !important;
-        }
-        body.notion-careers-mode #main-header:not(.sticky) .menu-toggle span {
-            background-color: #121212 !important;
-        }
-        body.notion-careers-mode #main-header:not(.sticky) #logo-img {
-            filter: brightness(0);
+        /* --- Hero Section --- */
+        .careers-hero-premium {
+            background: var(--dark-navy);
+            padding: 12rem 2rem 10rem;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
         }
 
-        .notion-careers-hero {
-            padding: 160px 0 80px;
+        .careers-hero-premium::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .careers-hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .careers-hero-content h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #fff 60%, rgba(255,255,255,0.6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .careers-hero-content p {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3.5rem;
+            max-width: 540px;
+        }
+
+        .careers-hero-image-wrapper {
+            position: relative;
+        }
+
+        .careers-hero-img {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.4);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .careers-hero-image-wrapper:hover .careers-hero-img {
+            transform: perspective(1000px) rotateY(0) rotateX(0);
+        }
+
+        /* --- Stats Section --- */
+        .careers-stats-bar {
+            background: #fff;
+            padding: 6rem 2rem;
+            border-bottom: 1px solid rgba(27, 38, 59, 0.05);
+        }
+
+        .stats-grid {
             max-width: 1200px;
             margin: 0 auto;
-        }
-
-        .notion-hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             gap: 4rem;
-            align-items: center;
-            padding: 0 2rem;
+            text-align: center;
         }
 
-        .notion-hero-text h1 {
-            font-size: clamp(3rem, 6vw, 4.5rem);
+        .stat-item h3 {
+            font-size: 3.5rem;
             font-weight: 800;
-            letter-spacing: -0.04em;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- Values Section --- */
+        .careers-values {
+            padding: 10rem 2rem;
+            background: #f8fafc;
+        }
+
+        .section-header-center {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 6rem;
+        }
+
+        .section-header-center h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--dark-navy);
             margin-bottom: 1.5rem;
-            color: #121212;
         }
 
-        .notion-hero-text p {
-            font-size: 1.25rem;
-            line-height: 1.6;
-            color: #444;
-            margin-bottom: 2rem;
-            max-width: 500px;
+        .values-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
         }
 
-        .notion-browse-link {
-            display: inline-flex;
-            align-items: center;
-            color: #ff6b6b; /* Accent color for the link */
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            gap: 0.5rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
+        .value-card {
+            background: #fff;
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(27, 38, 59, 0.03);
+            border: 1px solid rgba(27, 38, 59, 0.05);
+            transition: all 0.4s ease;
         }
 
-        .notion-browse-link:hover {
-            border-bottom-color: #ff6b6b;
-            gap: 0.8rem;
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(27, 38, 59, 0.08);
+            border-color: rgba(59, 130, 246, 0.2);
         }
 
-        .notion-video-section {
-            max-width: 1200px;
-            margin: 0 auto 100px;
-            padding: 0 2rem;
-        }
-
-        .notion-video-player {
-            position: relative;
-            width: 100%;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            background: #f8f9fa;
-        }
-
-        .notion-video-player video {
-            width: 100%;
-            display: block;
-            min-height: 400px;
-            object-fit: cover;
-        }
-
-        .video-overlay-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(59, 130, 246, 0.06);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2;
-            pointer-events: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin-bottom: 2.5rem;
+            color: var(--primary-blue);
         }
 
-        .notion-story-section {
-            max-width: 1200px;
-            margin: 0 auto 120px;
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 6rem;
-            align-items: center;
-            padding: 0 2rem;
+        .value-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: var(--dark-navy);
         }
 
-        .notion-story-content h2 {
-            font-size: 3rem;
-            font-weight: 800;
+        .value-card p {
+            color: #475569;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* --- Job Listings --- */
+        .jobs-section {
+            padding: 10rem 2rem;
+        }
+
+        .jobs-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .job-card-premium {
+            background: #fff;
+            border: 1px solid rgba(27, 38, 59, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
             margin-bottom: 2rem;
-            letter-spacing: -0.02em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
         }
 
-        .notion-story-content p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 1.5rem;
+        .job-card-premium:hover {
+            border-color: var(--primary-blue);
+            background: #f8fafc;
+            transform: scale(1.01);
+        }
+
+        .job-main-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #64748b;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-apply-job {
+            padding: 0.8rem 2rem;
+            background: var(--dark-navy);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .job-card-premium:hover .btn-apply-job {
+            background: var(--primary-blue);
+            transform: translateX(5px);
         }
 
         @media (max-width: 1024px) {
-            .notion-hero-grid, .notion-story-section {
+            .careers-hero-container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 4rem;
+            }
+            .careers-hero-content p {
+                margin: 0 auto 3rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
                 gap: 3rem;
             }
-            .notion-hero-text p, .notion-story-content p {
-                margin-left: auto;
-                margin-right: auto;
+            .values-grid {
+                grid-template-columns: 1fr;
             }
-            .notion-hero-illustration, .notion-story-illustration {
-                order: -1;
+            .job-card-premium {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 3rem 2rem;
             }
         }
+
     </style>
 </head>
-<body class="about-page notion-careers-mode">
+<body class="premium-careers-page">
     <a href="#main-content" class="sr-only sr-only-focusable">Hoppa till huvudinnehåll</a>
 
     <header id="main-header" role="banner">
         <nav class="navbar" aria-label="Huvudnavigering">
-            <a href="/" class="logo-link" aria-label="Global Construction – Till startsidan">
+            <a href="index.html" class="logo-link" aria-label="Global Construction – Till startsidan">
                 <img src="logo.png" alt="Global Construction logotyp" id="logo-img" width="165" loading="eager">
             </a>
             <ul class="nav-links" role="menubar">
-                <li role="none"><a href="/" role="menuitem">HEM</a></li>
+                <li role="none"><a href="index.html" role="menuitem">HEM</a></li>
                 <li class="nav-item dropdown" role="none">
                     <a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">TJÄNSTER</a>
                     <ul class="dropdown-menu" role="menu">
@@ -194,77 +313,128 @@
     </header>
 
     <main id="main-content">
-        <!-- Notion Style Hero -->
-        <section class="notion-careers-hero">
-            <div class="notion-hero-grid">
-                <div class="notion-hero-text fade-in-left">
-                    <h1>Careers at Global Construction</h1>
-                    <p>Vi tror på att om varje ingenjör och projektledare får rätt verktyg och stöd, kan vi tillsammans bygga en säkrare och mer hållbar värld. Vår mission är att göra den visionen till verklighet.</p>
-                    <a href="#lediga-tjanster" class="notion-browse-link">Se lediga tjänster &darr;</a>
+        <!-- Premium Hero -->
+        <section class="careers-hero-premium">
+            <div class="careers-hero-container">
+                <div class="careers-hero-content fade-in-left">
+                    <h1>Var med och rita framtidens säkraste miljöer</h1>
+                    <p>Vi söker passionerade ingenjörer, visionära projektledare och kreativa hjärnor som vill vara med och revolutionera hur vi bygger för en tryggare värld.</p>
+                    <div class="hero-actions">
+                        <a href="#lediga-tjanster" class="btn-nested-pill">
+                            <span class="btn-inner-pill">SE LEDIGA TJÄNSTER</span>
+                            <span class="btn-pill-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
                 </div>
-                <div class="notion-hero-illustration fade-in-right">
-                    <img src="img/iso-team.png" alt="Engineering Team Isometric" class="iso-floating" style="width: 100%; max-width: 600px; height: auto;">
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Section -->
-        <section class="notion-video-section fade-in-up">
-            <div class="notion-video-player">
-                <video autoplay loop muted playsinline poster="blog-hero.png">
-                    <source src="konstruktion..mp4" type="video/mp4">
-                    Din webbläsare stöder inte videoformatet.
-                </video>
-                <div class="video-overlay-play">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <div class="careers-hero-image-wrapper fade-in-right">
+                    <img src="img/careers_hero_joyful.png" alt="Global Construction Team collaborating happily" class="careers-hero-img">
                 </div>
             </div>
         </section>
 
-        <!-- Our Story Section -->
-        <section class="notion-story-section">
-            <div class="notion-story-content fade-in-left">
-                <h2>Vår resa</h2>
-                <p>Global Construction började med en enkel idé: att förena teknisk briljans med ett genuint mänskligt fokus. Vi såg en byggbransch som ofta var stel och opersonlig, och bestämde oss för att bygga något annat.</p>
-                <p>Idag är vi en samlingsplats för individer som brinner för problemlösning, från avancerade hållfasthetsberäkningar till innovativ skyddsrumsteknik. Vi betraktar vårt arbete som att bygga med klossar – varje del måste passa perfekt för att helheten ska bli stabil och trygg.</p>
-                <p>Vi växer snabbare än någonsin i Stockholm och letar ständigt efter nya kollegor som delar vår passion för kvalitet och glädje i arbetet.</p>
+        <!-- Stats Bar -->
+        <section class="careers-stats-bar">
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="stat-item fade-in">
+                    <h3 class="counter" data-target="100" data-suffix="+">0</h3>
+                    <p>Genomförda projekt</p>
+                </div>
+                <div class="stat-item fade-in" style="animation-delay: 0.1s;">
+                    <h3 class="counter" data-target="100" data-suffix="%">0</h3>
+                    <p>Säkerhetsfokus</p>
+                </div>
+                <div class="stat-item fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="counter" data-target="25" data-suffix="+">0</h3>
+                    <p>Specialister</p>
+                </div>
             </div>
-            <div class="notion-story-illustration fade-in-right">
-                <img src="img/iso-ecosystem.png" alt="Construction Ecosystem Isometric" class="iso-floating-delayed" style="width: 100%; max-width: 500px; height: auto; margin: 0 auto; display: block;">
+        </section>
+
+        <!-- Culture Highlight Section -->
+        <section class="notion-story-section" style="padding: 10rem 2rem; background: #fff;">
+            <div class="careers-hero-container" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: center;">
+                <div class="fade-in-left">
+                    <img src="img/careers_team_culture.png" alt="Our Team Culture" style="width: 100%; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.1);">
+                </div>
+                <div class="fade-in-right">
+                    <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--dark-navy);">En kultur som bygger framgång</h2>
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: #475569; margin-bottom: 1.5rem;">Vi tror på att gemenskap och personlig utveckling är grundstenarna för att kunna leverera teknisk excellens. Hos oss får du inte bara kollegor, utan en familj av experter som brinner för att lösa komplexa problem.</p>
+                    <p style="font-size: 1.15rem; line-height: 1.8; color: #475569;">Vårt kontor i Stockholm är hjärtat i vår verksamhet, där vi kombinerar modern teknik med en avslappnad och inbjudande arbetsmiljö.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="careers-values">
+            <div class="section-header-center fade-in">
+                <h2>Varför välja oss?</h2>
+                <p>Vi tror på att om våra medarbetare mår bra och har rätt verktyg, så bygger vi de bästa lösningarna. Hos oss är innovation och personlig utveckling en självklarhet.</p>
+            </div>
+            <div class="values-grid">
+                <article class="value-card fade-in">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Teknisk Spets</h3>
+                    <p>Vi ligger i framkant när det gäller modern byggteknik och avancerad mjukvara för konstruktion och simulering.</p>
+                </article>
+                <article class="value-card fade-in" style="animation-delay: 0.1s;">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h3>Gemenskap</h3>
+                    <p>Vårt team är vår största tillgång. Vi stöttar varandra, delar kunskap och har roligt på vägen mot målet.</p>
+                </article>
+                <article class="value-card fade-in" style="animation-delay: 0.2s;">
+                    <div class="value-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <h3>Work-Life Balance</h3>
+                    <p>Vi förstår att livet händer. Flexibla arbetstider och ett hållbart arbetstempo är nyckeln till vår gemensamma framgång.</p>
+                </article>
             </div>
         </section>
 
         <!-- Current Openings -->
-        <section id="lediga-tjanster" class="careers-section" style="background: #fbfbfb; padding: 120px 0; border-top: 1px solid #eee;">
-            <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 2rem;">
-                <header style="text-align: center; margin-bottom: 6rem;" class="fade-in">
-                    <h2 style="font-size: 3.5rem; color: #121212; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.5rem;">Lediga tjänster</h2>
-                    <p style="color: #666; font-size: 1.25rem; max-width: 700px; margin: 0 auto;">Hitta din nästa utmaning hos oss.</p>
-                </header>
+        <section id="lediga-tjanster" class="jobs-section">
+            <div class="section-header-center fade-in">
+                <h2>Lediga tjänster</h2>
+                <p>Hitta din nästa utmaning och bli en del av Stockholms mest spännande ingenjörsteam.</p>
+            </div>
+            <div class="jobs-container">
+                <a href="kontakt.html" class="job-card-premium fade-in">
+                    <div class="job-main-info">
+                        <h3>Senior Konstruktionsingenjör</h3>
+                        <div class="job-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Stockholm</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Heltid</span>
+                        </div>
+                    </div>
+                    <span class="btn-apply-job">ANSÖK NU</span>
+                </a>
 
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <div class="job-card fade-in">
-                        <div class="job-info">
-                            <h3>Senior Konstruktionsingenjör</h3>
-                            <p>Heltid | Stockholm</p>
+                <a href="kontakt.html" class="job-card-premium fade-in">
+                    <div class="job-main-info">
+                        <h3>BIM-specialist / Konstruktör</h3>
+                        <div class="job-meta">
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Stockholm</span>
+                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Heltid</span>
                         </div>
-                        <a href="kontakt.html" class="btn btn-ghost" style="border-radius: 8px; font-weight: 600;">ANSÖK NU</a>
                     </div>
-                    <div class="job-card fade-in">
-                        <div class="job-info">
-                            <h3>BIM-specialist</h3>
-                            <p>Heltid | Stockholm</p>
-                        </div>
-                        <a href="kontakt.html" class="btn btn-ghost" style="border-radius: 8px; font-weight: 600;">ANSÖK NU</a>
+                    <span class="btn-apply-job">ANSÖK NU</span>
+                </a>
+
+                <a href="kontakt.html" class="job-card-premium fade-in" style="background: #f1f5f9; border-style: dashed; border-color: #cbd5e1;">
+                    <div class="job-main-info">
+                        <h3>Spontanansökan</h3>
+                        <p style="color: #64748b; margin-top: 0.25rem;">Vi är alltid intresserade av att träffa drivna talanger.</p>
                     </div>
-                    <div class="job-card fade-in">
-                        <div class="job-info">
-                            <h3>Spontanansökan</h3>
-                            <p>Vi vill alltid höra från duktiga talanger.</p>
-                        </div>
-                        <a href="kontakt.html" class="btn btn-ghost" style="border-radius: 8px; font-weight: 600;">KONTAKTA OSS</a>
-                    </div>
-                </div>
+                    <span class="btn-apply-job" style="background: #64748b;">SKICKA ANSÖKAN</span>
+                </a>
             </div>
         </section>
 
@@ -272,8 +442,8 @@
         <section class="premium-final-cta fade-in-up">
             <div class="cta-overlay-patterns"></div>
             <div class="premium-cta-content">
-                <h2>Vill du veta mer?</h2>
-                <p>Vi berättar gärna mer om hur det är att arbeta hos oss och vilka möjligheter som finns just nu.</p>
+                <h2>Nyfiken på att veta mer?</h2>
+                <p>Vi berättar gärna mer om vår vision och hur vi arbetar. Hör av dig för en förutsättningslös kaffe!</p>
                 <div class="premium-cta-actions">
                     <a href="kontakt.html" class="btn-premium-light">KOM I KONTAKT</a>
                 </div>
@@ -342,5 +512,49 @@
     </footer>
 
     <script src="main.js" defer></script>
+    <script>
+        // --- Counter Animation Script ---
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix') || '';
+                let count = 0;
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); 
+
+                const updateCount = () => {
+                    count += increment;
+                    if (count < target) {
+                        counter.innerText = Math.floor(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target + suffix;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Trigger animation when section is visible
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        animateCounters();
+                    }, 400); // Small delay for visual effect
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const statsSection = document.querySelector('.careers-stats-bar');
+        if (statsSection) observer.observe(statsSection);
+    </script>
 </body>
 </html>
