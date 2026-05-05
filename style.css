@@ -4452,7 +4452,7 @@ footer address,
         margin-bottom: 8rem;
     }
     .service-row-reverse {
-        flex-direction: column;
+        flex-direction: column-reverse; /* Reverses order so image appears ABOVE text on mobile */
     }
     .service-features {
         justify-content: center;
@@ -7929,7 +7929,13 @@ body.blog-post-page {
         gap: 3rem;
     }
     .testimonial-premium-card {
-        padding: 3rem;
+        padding: 2rem 1.5rem; /* Reduced padding to prevent horizontal overflow */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem) !important; /* Shrunk hero title to prevent clipping */
     }
 }
 
