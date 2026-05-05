@@ -2051,8 +2051,11 @@ figure {
         align-items: flex-start;
         gap: 0.6rem !important; /* Force tight gap for both lists */
         list-style: none;
-        word-break: break-word; /* Allows extremely long words like 'Hållfasthetsberäkningar' to wrap if needed */
-        white-space: normal !important;
+        white-space: nowrap !important; /* Forces long words to stay on one line */
+    }
+
+    .footer-links-col ul li a {
+        font-size: 0.85rem !important; /* Shrunk slightly to ensure 'Hållfasthetsberäkningar' fits on one line */
     }
 
     .contact-info li,
@@ -2144,6 +2147,21 @@ figure {
         padding: 0.6rem 1rem;
         font-size: 0.85rem;
         justify-content: center;
+    }
+
+    /* Mobile overrides for nested pill buttons */
+    .btn-nested-pill {
+        width: 100%;
+        max-width: 320px;
+        justify-content: space-between;
+        padding-right: 16px;
+        gap: 8px;
+    }
+
+    .btn-inner-pill {
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 0.8rem;
     }
 }
 
