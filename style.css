@@ -28,6 +28,7 @@ h1, h2, h3 {
 html {
     /* Fluid base font size: 14px on 1024px -> 16px on 1600px */
     font-size: clamp(14px, 0.8vw + 8px, 16px);
+    overflow-x: hidden; /* CRITICAL: Prevents horizontal scroll/blue edge strip on iOS Safari */
 }
 
 @media (min-width: 2000px) {
@@ -2050,6 +2051,8 @@ figure {
         align-items: flex-start;
         gap: 0.6rem !important; /* Force tight gap for both lists */
         list-style: none;
+        word-break: break-word; /* Allows extremely long words like 'Hållfasthetsberäkningar' to wrap if needed */
+        white-space: normal !important;
     }
 
     .contact-info li,
