@@ -2089,6 +2089,11 @@ figure {
         gap: 0.75rem;
     }
 
+    .footer-bottom-left p {
+        font-size: 0.7rem !important; /* Shrunk to guarantee it fits on one line */
+        white-space: nowrap !important;
+    }
+
     .footer-legal {
         justify-content: center;
         flex-wrap: wrap;
