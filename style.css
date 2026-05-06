@@ -3584,10 +3584,14 @@ body.blog-page #main-header:not(.sticky) .btn-ghost {
 
 @media (max-width: 900px) {
     .premium-final-cta {
-        padding: 6rem 1.5rem;
+        padding: 4rem 1.5rem;
     }
     .premium-final-cta h2 {
-        font-size: 2.5rem !important;
+        font-size: 1.75rem !important; /* Substantially reduced for mobile */
+    }
+    .premium-final-cta p {
+        font-size: 0.95rem !important; /* Reduced body text */
+        margin-bottom: 2rem !important;
     }
 }
 
@@ -7952,15 +7956,22 @@ body.blog-post-page {
         max-height: 45px !important;
     }
 
-    /* Mobile Service Pop-up Animation */
+    /* Mobile Service Soft Fade Animation */
     .mobile-pop-standby {
         opacity: 0;
-        transform: translateY(50px) scale(0.9);
-        transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;
     }
     .mobile-pop-standby.mobile-pop-active {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
+    }
+    
+    /* Fix testimonial footer overflow */
+    .testimonial-premium-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
     }
 }
 
