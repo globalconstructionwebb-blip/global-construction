@@ -1570,7 +1570,8 @@ figure {
 }
 
 .project-item {
-    min-width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
     background: #f8f9fa;
     border-radius: 8px;
     overflow: hidden;
@@ -1705,8 +1706,11 @@ figure {
 }
 
 @media (max-width: 768px) {
+    .projects-section {
+        padding: 4rem 1rem;
+    }
     .project-item {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
     .project-item img {
         min-height: 220px;
