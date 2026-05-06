@@ -7924,11 +7924,23 @@ body.blog-post-page {
 }
 
 @media (max-width: 1024px) {
+    .mission-redesign {
+        padding: 5rem 1rem !important; /* Reduced massive desktop padding for mobile */
+    }
     .mission-redesign-container {
-        grid-template-columns: 1fr;
-        gap: 5rem;
-        padding: 0 1.5rem; /* Adds required breathing room on sides */
-        box-sizing: border-box; /* Forces padding inward to prevent overflow */
+        grid-template-columns: minmax(0, 1fr); /* Crucial: Prevents long words from blowing out the grid width */
+        gap: 4rem;
+        padding: 0 0.5rem; 
+        box-sizing: border-box; 
+    }
+    .mission-redesign-content h2 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem) !important; /* Reduced from 2.5rem min */
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+    .quote-text-premium {
+        font-size: 1.15rem !important; /* Scaled down for mobile */
+        margin-bottom: 2rem !important;
     }
     .mission-features-grid {
         grid-template-columns: 1fr;
