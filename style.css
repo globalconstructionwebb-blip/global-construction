@@ -1713,6 +1713,12 @@ figure {
     }
     .project-content {
         padding: 2rem 1.5rem;
+        box-sizing: border-box;
+        width: 100%;
+    }
+    .project-content p {
+        word-wrap: break-word;
+        hyphens: auto;
     }
 }
 
@@ -3587,7 +3593,9 @@ body.blog-page #main-header:not(.sticky) .btn-ghost {
         padding: 4rem 1.5rem;
     }
     .premium-final-cta h2 {
-        font-size: 1.75rem !important; /* Substantially reduced for mobile */
+        font-size: 1.45rem !important; /* Extremely reduced to fit long words */
+        word-wrap: break-word;
+        hyphens: auto;
     }
     .premium-final-cta p {
         font-size: 0.95rem !important; /* Reduced body text */
@@ -8030,4 +8038,21 @@ body.blog-post-page {
 @media (max-width: 1024px) {
     .rebar-start-element { width: 120px; right: 5%; top: 40px; }
     .rebar-end-element { width: 160px; left: 5%; bottom: 20px; }
+}
+
+/* ===================================================
+   MOBILE OVERRIDES (GLOBAL MENU & NAVBAR FIXES)
+   =================================================== */
+@media (max-width: 1024px) {
+    /* Force dropdown menu links to be white on mobile regardless of page-specific top-nav overrides */
+    #main-header .nav-links.active a {
+        color: var(--white) !important;
+    }
+    
+    /* Ensure the hamburger icon is visible (navy) on pages with a white hero background before scrolling */
+    .blog-page #main-header:not(.sticky) .menu-toggle span,
+    .about-page #main-header:not(.sticky) .menu-toggle span,
+    .contact-page #main-header:not(.sticky) .menu-toggle span {
+        background-color: var(--dark-navy) !important;
+    }
 }
