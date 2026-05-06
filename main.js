@@ -69,8 +69,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }, appearOptions);
 
     faders.forEach(fader => {
+        // Mobile-only: Intercept core service rows and swap their animation classes for center pop-up
+        if (window.innerWidth < 768 && fader.closest('.service-row')) {
+            fader.classList.remove('fade-in-left', 'fade-in-right', 'fade-in', 'fade-in-up');
+            fader.classList.add('mobile-pop-standby');
+            return; // Skip standard observer
+        }
         appearOnScroll.observe(fader);
     });
+
+    // --- Mobile-only Center Pop-up Observer ---
+    if (window.innerWidth < 768) {
+        const mobilePopObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('mobile-pop-active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: "-40% 0px -40% 0px" // Triggers when element crosses the middle 20% of viewport
+        });
+
+        // Small delay to ensure classes are added before observing
+        setTimeout(() => {
+            const mobileFaders = document.querySelectorAll('.mobile-pop-standby');
+            mobileFaders.forEach(fader => mobilePopObserver.observe(fader));
+        }, 100);
+    }
 
     // --- Projects Carousel ---
     const carousel = document.getElementById('projects-carousel');

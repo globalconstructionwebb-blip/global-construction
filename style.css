@@ -7923,6 +7923,8 @@ body.blog-post-page {
     .mission-redesign-container {
         grid-template-columns: 1fr;
         gap: 5rem;
+        padding: 0 1.5rem; /* Adds required breathing room on sides */
+        box-sizing: border-box; /* Forces padding inward to prevent overflow */
     }
     .mission-features-grid {
         grid-template-columns: 1fr;
@@ -7936,6 +7938,29 @@ body.blog-post-page {
     
     .hero-title {
         font-size: clamp(2rem, 8vw, 3rem) !important; /* Shrunk hero title to prevent clipping */
+    }
+
+    /* Logo Marquee Override */
+    .mission-marquee-item {
+        height: 100px;
+        width: 110px !important;
+        min-width: 110px !important;
+        padding: 0 10px;
+    }
+    
+    .mission-marquee-item img {
+        max-height: 45px !important;
+    }
+
+    /* Mobile Service Pop-up Animation */
+    .mobile-pop-standby {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+        transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    }
+    .mobile-pop-standby.mobile-pop-active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
