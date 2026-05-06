@@ -4240,6 +4240,14 @@ footer address,
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.08em;
     font-weight: 600; /* Slightly bolder for better visibility in navy */
+    white-space: nowrap; /* Prevent breaking globally */
+}
+
+@media (max-width: 768px) {
+    .project-card-meta {
+        font-size: 0.72rem !important; /* Scale down on mobile */
+        letter-spacing: 0.04em; /* Tighter tracking to help fit single line */
+    }
 }
 
 .meta-separator {
