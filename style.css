@@ -26,8 +26,8 @@ h1, h2, h3 {
 
 /* Global Responsive Scale */
 html {
-    /* Aggressive fluid base font size: 11px on 1024px -> 16px on 1920px */
-    font-size: clamp(11px, 0.6vw + 4.5px, 16px);
+    /* Extreme fluid base font size: 9.5px on 1280px -> 16px on 1920px */
+    font-size: clamp(9.5px, 1.1vw - 5.1px, 16px);
     overflow-x: hidden; /* CRITICAL: Prevents horizontal scroll/blue edge strip on iOS Safari */
 }
 
