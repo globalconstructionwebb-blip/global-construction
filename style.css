@@ -428,13 +428,19 @@ figure {
 
 .panel-left .panel-content {
     text-align: left;
-    width: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .panel-right .panel-content {
     text-align: right;
     margin-left: auto;
-    width: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .btn-nested-pill {
@@ -524,7 +530,7 @@ figure {
 .hero-enterprise {
     height: 100vh;
     min-height: 700px;
-    padding-top: 100px;
+    padding-top: 0;
     position: relative;
     display: flex;
     align-items: center;
@@ -590,8 +596,8 @@ figure {
 .enterprise-content-wrapper {
     position: relative;
     z-index: 2;
-    padding: 0 2rem;
-    max-width: 1400px;
+    padding: 80px 0 0 0;
+    max-width: min(1400px, 94vw);
     width: 100%;
     margin: 0 auto;
 }
@@ -619,17 +625,17 @@ figure {
 }
 
 .hero-enterprise h1 {
-    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-size: clamp(2.2rem, 4.5vw, 4.5rem);
     color: var(--white);
     margin-bottom: 1.5rem;
     line-height: 1.1;
-    max-width: 800px;
+    max-width: none;
 }
 
 .hero-enterprise p {
     font-size: 1.15rem;
     color: rgba(255,255,255,0.8);
-    max-width: 600px;
+    max-width: 720px;
     line-height: 1.6;
 }
 
@@ -2146,6 +2152,7 @@ figure {
         text-align: center;
         margin: 0 auto;
         width: 100%;
+        align-items: center; /* Ensures flex elements remain centered on mobile */
     }
 
     .panel-text {
@@ -2235,12 +2242,21 @@ figure {
    ============================ */
 
 /* About Hero Redesign (Split Layout) */
+/* Global Subpage Hero Standardization */
+/* Global Subpage Hero Standardization */
+.global-subpage-hero {
+    padding-top: 220px !important;
+}
+
+@media (max-width: 768px) {
+    .global-subpage-hero {
+        padding-top: 140px !important;
+    }
+}
+
 .about-hero-redesign {
     background-color: var(--white);
-    padding: clamp(120px, 15vh, 180px) 2rem clamp(4rem, 8vh, 6rem);
-    min-height: 80vh; /* Reduced from 100vh for better initial view */
-    display: flex;
-    align-items: center;
+    padding: 0 2rem clamp(4rem, 8vh, 6rem); /* Top padding removed, handled by global class */
     position: relative;
     overflow: hidden;
 }
@@ -2251,7 +2267,7 @@ figure {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 4rem;
-    align-items: center;
+    align-items: flex-start; /* Ensures text and image are top-aligned */
 }
 
 .about-hero-text {
@@ -2271,7 +2287,7 @@ figure {
 }
 
 .about-hero-text h1 {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4.5vw, 4rem);
     line-height: 1.05;
     font-weight: 800;
     color: var(--dark-navy);
@@ -2346,7 +2362,7 @@ figure {
 
 @media (max-width: 1024px) {
     .about-hero-redesign {
-        padding-top: 140px;
+        padding-top: 0; /* Handled by global class */
     }
     .about-hero-container {
         grid-template-columns: 1fr;
@@ -3753,7 +3769,7 @@ footer address,
 }
 
 .contact-hero-section {
-    padding: 160px 2rem 10rem;
+    padding: 0 2rem 10rem; /* Top padding handled by global-subpage-hero */
     min-height: 100vh;
 }
 
@@ -4848,7 +4864,6 @@ body.blog-post-page {
 .blog-v2-header-area {
     margin-bottom: 50px;
     text-align: left;
-    padding-top: 180px; /* Matchar exactly about-hero-redesign padding-top */
 }
 
 .blog-v2-pill {
@@ -5788,10 +5803,8 @@ body.blog-post-page {
     opacity: 1 !important;
 }
 
-/* --- Kunskapsbank breadcrumb position – matchar Projekt/Om oss ---
-.blog-v2-header-area {
-    padding-top: 180px !important;
-}
+/* --- Kunskapsbank breadcrumb position - matchar Projekt/Om oss --- */
+/* padding-top handled by .global-subpage-hero */
 
 /* --- FAQ Expand / Show More --- */
 .faq-extra {
@@ -8068,3 +8081,47 @@ body.blog-post-page {
         background-color: var(--dark-navy) !important;
     }
 }
+
+/* =====================================================
+   GLOBAL CTA STRIP — FAQ-style, used on all subpages
+   ===================================================== */
+.faq-cta-strip {
+    background: var(--dark-navy);
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.faq-cta-strip h2 {
+    font-family: 'Outfit', sans-serif;
+    color: #fff;
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.faq-cta-strip p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.faq-cta-strip a {
+    display: inline-block;
+    background: #fff;
+    color: var(--dark-navy);
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-cta-strip a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
