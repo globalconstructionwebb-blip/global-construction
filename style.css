@@ -5247,9 +5247,17 @@ body.blog-post-page {
         padding-bottom: 8px;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        width: 100%;
     }
-    .blog-filter-nav-v2::-webkit-scrollbar {
-        display: none;
+    .blog-filter-nav-v2 ul {
+        display: flex !important;
+        width: 100% !important;
+        justify-content: space-between !important;
+    }
+    .blog-filter-nav-v2 button {
+        flex: 1;
+        padding: 0.6rem 0.5rem !important;
+        text-align: center;
     }
     .blog-v2-subscribe { border-top: 1px solid #e2e8f0; padding-top: 24px; min-width: unset; width: 100%; }
     .inline-subscribe-form { width: 100% !important; }
