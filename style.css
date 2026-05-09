@@ -8097,20 +8097,21 @@ body.blog-post-page {
    =================================================== */
 @media (max-width: 1024px) {
     /* Force dropdown menu links to be white on mobile regardless of page-specific top-nav overrides */
-    #main-header .nav-links.active a,
-    .blog-page .nav-links.active a,
-    .journal-page .nav-links.active a,
-    .about-page .nav-links.active a,
-    .contact-page .nav-links.active a {
-        color: var(--white) !important;
+    /* Ultra-specific override for active mobile menu links on light-themed pages */
+    body.blog-page #main-header .nav-links.active a,
+    body.journal-page #main-header .nav-links.active a,
+    body.about-page #main-header .nav-links.active a,
+    body.contact-page #main-header .nav-links.active a,
+    #main-header .nav-links.active a {
+        color: #ffffff !important;
     }
 
-    #main-header .menu-toggle.active span,
-    .blog-page .menu-toggle.active span,
-    .journal-page .menu-toggle.active span,
-    .about-page .menu-toggle.active span,
-    .contact-page .menu-toggle.active span {
-        background-color: var(--white) !important;
+    body.blog-page #main-header .menu-toggle.active span,
+    body.journal-page #main-header .menu-toggle.active span,
+    body.about-page #main-header .menu-toggle.active span,
+    body.contact-page #main-header .menu-toggle.active span,
+    #main-header .menu-toggle.active span {
+        background-color: #ffffff !important;
     }
     
     /* Ensure the hamburger icon is visible (navy) on pages with a white hero background before scrolling */
@@ -8118,7 +8119,7 @@ body.blog-post-page {
     .journal-page #main-header:not(.sticky) .menu-toggle:not(.active) span,
     .about-page #main-header:not(.sticky) .menu-toggle:not(.active) span,
     .contact-page #main-header:not(.sticky) .menu-toggle:not(.active) span {
-        background-color: var(--dark-navy) !important;
+        background-color: #1B263B !important;
     }
 }
 
