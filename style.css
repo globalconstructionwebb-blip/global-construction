@@ -2368,17 +2368,17 @@ figure {
     .about-hero-container {
         grid-template-columns: 1fr;
         gap: 3rem;
-        text-align: center;
+        text-align: left;
     }
     .about-hero-text {
         max-width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     .hero-intro, .hero-body {
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
     }
     .drop-cap {
         margin-top: 0.2rem;
@@ -2524,11 +2524,11 @@ figure {
 @media (max-width: 1024px) {
     .vision-mission-grid {
         grid-template-columns: 1fr;
-        gap: 12rem;
+        gap: 2.5rem;
     }
     .vision-item {
-        padding: 0;
-        text-align: center;
+        padding: 2.5rem 2rem;
+        text-align: left;
     }
     .vision-item:not(:last-child)::after {
         display: none;
