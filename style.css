@@ -8100,11 +8100,18 @@ body.blog-post-page {
     .mission-redesign {
         padding: 5rem 1rem !important; /* Reduced massive desktop padding for mobile */
     }
+    .mission-testimonial-col,
+    .mission-features-grid {
+        display: none !important;
+    }
     .mission-redesign-container {
         grid-template-columns: minmax(0, 1fr); /* Crucial: Prevents long words from blowing out the grid width */
-        gap: 4rem;
+        gap: 0;
         padding: 0 0.5rem; 
         box-sizing: border-box; 
+    }
+    .mission-redesign-content {
+        text-align: center;
     }
     .mission-redesign-content h2 {
         font-size: clamp(1.75rem, 6vw, 2.5rem) !important; /* Reduced from 2.5rem min */
