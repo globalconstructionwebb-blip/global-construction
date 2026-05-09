@@ -2018,6 +2018,18 @@ figure {
         display: none; /* Simplify mobile header */
     }
 
+    /* Shorten CTA buttons on mobile */
+    .split-panel .btn,
+    .faq-cta-strip .btn,
+    .btn-premium-light {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+        width: fit-content !important;
+        min-width: 200px; /* Ensure they still feel like significant buttons but not full width */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     /* Mobile Dropdown Refinements */
     .dropdown-menu {
         position: static !important;
