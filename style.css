@@ -5137,12 +5137,17 @@ body.blog-post-page {
 }
 
 @media (max-width: 900px) {
-    .blog-v2-title { font-size: 3rem; }
-    .featured-post-card { height: 350px; }
-    .glass-content-wrapper { padding: 30px; }
-    .glass-title { font-size: 1.4rem; }
+    .blog-v2-title { font-size: 2.2rem; margin-bottom: 10px; }
+    .blog-v2-dark-wrapper { padding-top: 100px !important; padding-bottom: 30px !important; }
+    .blog-v2-header-area { margin-bottom: 20px !important; }
+    .blog-v2-subtitle { font-size: 0.95rem !important; margin-bottom: 0 !important; }
+    .featured-post-card { height: 250px; border-radius: 16px; }
+    .glass-content-wrapper { padding: 20px; }
+    .glass-title { font-size: 1.2rem; }
     .glass-excerpt { display: none; }
-    .glass-meta-row { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .glass-meta-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .glass-tag { font-size: 0.7rem; padding: 3px 8px; }
+    .glass-author-name, .glass-date { font-size: 0.8rem; }
     .glass-arrow-icon { display: none; }
     .blog-v2-filter-row { flex-direction: column; align-items: stretch; gap: 20px; border-bottom: none;}
     .blog-v2-subscribe { border-top: 1px solid #e2e8f0; padding-top: 20px; min-width: unset; width: 100%; }
