@@ -2026,11 +2026,18 @@ figure {
         display: none;
         background: rgba(255, 255, 255, 0.05) !important;
         border: none !important;
-        padding: 1rem 0 1rem 1.5rem !important;
+        padding: 1.5rem !important;
+        margin-top: 1rem !important; /* Space below the underline */
         box-shadow: none !important;
         width: 100% !important;
+        border-radius: 12px !important;
         transform: none !important;
-        transition: none !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .dropdown.active > a::after {
+        width: 100% !important;
+        opacity: 1 !important;
     }
 
     .dropdown.active .dropdown-menu {
@@ -2043,13 +2050,13 @@ figure {
     }
 
     /* Enforce color rule: White background -> Navy text */
-    .blog-page .dropdown-menu,
-    .journal-page .dropdown-menu {
+    body.blog-page #main-header .nav-links.active .dropdown-menu,
+    body.journal-page #main-header .nav-links.active .dropdown-menu {
         background: #ffffff !important;
     }
 
-    .blog-page .dropdown-menu a,
-    .journal-page .dropdown-menu a {
+    body.blog-page #main-header .nav-links.active .dropdown-menu a,
+    body.journal-page #main-header .nav-links.active .dropdown-menu a {
         color: #1B263B !important;
     }
 }
