@@ -2049,15 +2049,19 @@ figure {
         padding: 0.5rem 0;
     }
 
-    /* Enforce color rule: White background -> Navy text */
+    /* Enforce color rule: Match standard mobile menu style (Navy background, White text) */
+    .blog-page .dropdown-menu,
+    .journal-page .dropdown-menu,
     body.blog-page #main-header .nav-links.active .dropdown-menu,
     body.journal-page #main-header .nav-links.active .dropdown-menu {
-        background: #ffffff !important;
+        background: rgba(255, 255, 255, 0.05) !important;
     }
 
+    .blog-page .dropdown-menu a,
+    .journal-page .dropdown-menu a,
     body.blog-page #main-header .nav-links.active .dropdown-menu a,
     body.journal-page #main-header .nav-links.active .dropdown-menu a {
-        color: #1B263B !important;
+        color: #ffffff !important;
     }
 }
 
