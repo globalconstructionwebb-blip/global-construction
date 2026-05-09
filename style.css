@@ -2251,17 +2251,19 @@ figure {
 
     /* Mobile overrides for nested pill buttons */
     .btn-nested-pill {
-        width: 100%;
-        max-width: 320px;
-        justify-content: space-between;
-        padding-right: 16px;
-        gap: 8px;
+        width: fit-content;
+        max-width: 90%;
+        margin-inline: auto; /* Ensure centering in its container */
+        justify-content: center;
+        padding: 4px;
+        gap: 12px;
     }
 
     .btn-inner-pill {
-        width: 100%;
-        padding: 10px 16px;
+        width: auto;
+        padding: 10px 20px;
         font-size: 0.8rem;
+        white-space: nowrap;
     }
 }
 
