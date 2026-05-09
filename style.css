@@ -5141,7 +5141,7 @@ body.blog-post-page {
     .blog-v2-dark-wrapper { padding-top: 100px !important; padding-bottom: 30px !important; }
     .blog-v2-header-area { margin-bottom: 20px !important; }
     .blog-v2-subtitle { font-size: 0.95rem !important; margin-bottom: 0 !important; }
-    .featured-post-card { height: 250px; border-radius: 16px; }
+    .featured-post-card { height: 220px !important; border-radius: 16px; }
     .glass-content-wrapper { padding: 20px; }
     .glass-title { font-size: 1.2rem; }
     .glass-excerpt { display: none; }
