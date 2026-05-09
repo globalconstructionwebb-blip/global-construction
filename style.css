@@ -5233,7 +5233,24 @@ body.blog-post-page {
     .glass-tag { font-size: 0.7rem; padding: 3px 8px; }
     .glass-author-name, .glass-date { font-size: 0.8rem; }
     .glass-arrow-icon { display: none; }
-    .blog-v2-filter-row { flex-direction: column; align-items: stretch; gap: 20px; border-bottom: none;}
+    .blog-v2-filter-row { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 20px; 
+        border-bottom: none;
+        padding-left: 0 !important; /* Reset to allow inner alignment */
+    }
+    .blog-filter-nav-v2 {
+        margin-left: -1.5rem; /* Offsets the button padding to align text */
+    }
+    .blog-filter-nav-v2 ul {
+        background: transparent !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    .blog-filter-nav-v2 button {
+        padding-left: 1.5rem !important; /* Keep original padding but the margin-left above handles the alignment */
+    }
     .blog-v2-subscribe { border-top: 1px solid #e2e8f0; padding-top: 20px; min-width: unset; width: 100%; }
     .inline-subscribe-form { width: 100% !important; }
     .inline-subscribe-form input { width: 100% !important; flex: 1 !important; }
@@ -5376,7 +5393,8 @@ body.blog-post-page {
 }
 
 /* --- Blog Page White Navbar (Initial State) --- */
-.blog-page #main-header:not(.sticky) .logo-link img {
+.blog-page #main-header:not(.sticky) .logo-link img,
+.journal-page #main-header:not(.sticky) .logo-link img {
     filter: brightness(0);
 }
 
