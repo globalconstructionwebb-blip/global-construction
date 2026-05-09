@@ -2768,13 +2768,13 @@ figure {
    ============================ */
 
 .about-team {
-    padding: clamp(5rem, 9vh, 9rem) 2rem clamp(6rem, 10vh, 10rem);
+    padding: clamp(5rem, 9vh, 9rem) 0 clamp(6rem, 10vh, 10rem);
     background: #fff;
 }
 
 .team-header {
     text-align: left;
-    max-width: 1200px;
+    max-width: min(1400px, 94vw);
     margin: 0 auto 4rem;
 }
 
@@ -2807,7 +2807,7 @@ figure {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem 2.5rem;
-    max-width: 1200px;
+    max-width: min(1400px, 94vw);
     margin: 0 auto;
 }
 
@@ -2868,6 +2868,7 @@ figure {
 
 /* Responsive */
 @media (max-width: 900px) {
+    .about-team { padding-left: 1rem !important; padding-right: 1rem !important; }
     .team-person-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem 2rem;
@@ -3252,9 +3253,9 @@ body.blog-page #main-header:not(.sticky) .btn-ghost {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 6rem 3.5rem;
-    max-width: 1400px;
+    max-width: min(1400px, 94vw);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0;
 }
 
 /* Premium Entrance Animation */
@@ -4867,9 +4868,10 @@ body.blog-post-page {
 
 /* 1. Header Area */
 .premium-blog-hero-v2 {
-    max-width: 1400px;
+    max-width: min(1400px, 94vw);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .blog-v2-header-area {
@@ -5137,6 +5139,7 @@ body.blog-post-page {
 }
 
 @media (max-width: 900px) {
+    .premium-blog-hero-v2, .premium-blog-grid-section { padding-left: 1rem !important; padding-right: 1rem !important; }
     .blog-v2-title { font-size: 2.2rem; margin-bottom: 10px; }
     .blog-v2-dark-wrapper { padding-top: 100px !important; padding-bottom: 30px !important; }
     .blog-v2-header-area { margin-bottom: 20px !important; }
@@ -5164,14 +5167,16 @@ body.blog-post-page {
 
 /* --- Blog V2 Width & Breadcrumb Overrides --- */
 .premium-blog-hero-v2 {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: min(1400px, 94vw) !important;
+    margin: 0 auto;
 }
 
 .premium-blog-grid-section {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-    max-width: 1400px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: min(1400px, 94vw) !important;
     margin: 0 auto;
 }
 
@@ -5198,10 +5203,10 @@ body.blog-post-page {
 }
 
 .premium-blog-hero-v2 {
-    max-width: 1400px;
+    max-width: min(1400px, 94vw) !important;
     margin: 0 auto;
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .blog-v2-header-area {
@@ -5270,15 +5275,15 @@ body.blog-post-page {
 }
 
 .blog-v2-filter-container {
-    max-width: 1400px;
+    max-width: min(1400px, 94vw);
     margin: 0 auto;
-    padding: 60px 2rem 20px 2rem;
+    padding: 60px 0 20px 0;
 }
 
 .premium-blog-grid-section {
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
-    max-width: 1400px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: min(1400px, 94vw) !important;
     margin: 0 auto;
 }
 
@@ -5323,7 +5328,8 @@ body.blog-post-page {
 .premium-blog-grid-section {
     padding-left: 0 !important;
     padding-right: 0 !important;
-    max-width: none !important;
+    max-width: min(1400px, 94vw) !important;
+    margin: 0 auto !important;
 }
 
 /* --- Premium Refinements V3 --- */
@@ -6922,13 +6928,13 @@ body.blog-post-page {
     border-bottom: 1px solid #f1f5f9;
 }
 .journal-page .logo-link img {
-    filter: none !important;
+    filter: brightness(0) !important;
 }
 .journal-page .nav-links a, .journal-page .menu-toggle span {
-    color: #1a1a1a !important;
+    color: #1b263b !important;
 }
 .journal-page .menu-toggle span {
-    background-color: #1a1a1a !important;
+    background-color: #1b263b !important;
 }
 .journal-page .header-cta .btn-ghost {
     border-color: #1a1a1a !important;
@@ -6944,8 +6950,8 @@ body.blog-post-page {
 /* Ensure logo appears as dark image (not inverted white) on journal pages */
 .journal-page .logo-link img,
 .journal-page #main-header .logo-link img {
-    filter: brightness(1) invert(0) !important;
-    -webkit-filter: brightness(1) invert(0) !important;
+    filter: brightness(0) !important;
+    -webkit-filter: brightness(0) !important;
 }
 
 .journal-hero {
@@ -6958,8 +6964,11 @@ body.blog-post-page {
     justify-content: flex-end;
     min-height: 500px;
     color: white;
-    /* Gradient mimicking the colorful Untitled UI hero */
-    background: linear-gradient(135deg, rgba(3,105,161,0.9) 0%, rgba(139,92,246,0.9) 50%, rgba(245,158,11,0.8) 100%);
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    /* Base gradient as fallback */
+    background: linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), linear-gradient(135deg, rgba(3,105,161,0.9) 0%, rgba(139,92,246,0.9) 50%, rgba(245,158,11,0.8) 100%);
 }
 
 .journal-hero::before {
