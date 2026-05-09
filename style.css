@@ -2017,6 +2017,41 @@ figure {
     .header-cta {
         display: none; /* Simplify mobile header */
     }
+
+    /* Mobile Dropdown Refinements */
+    .dropdown-menu {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: none;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: none !important;
+        padding: 1rem 0 1rem 1.5rem !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: flex;
+    }
+
+    .dropdown-menu a {
+        color: #ffffff !important;
+        padding: 0.5rem 0;
+    }
+
+    /* Enforce color rule: White background -> Navy text */
+    .blog-page .dropdown-menu,
+    .journal-page .dropdown-menu {
+        background: #ffffff !important;
+    }
+
+    .blog-page .dropdown-menu a,
+    .journal-page .dropdown-menu a {
+        color: #1B263B !important;
+    }
 }
 
 @media (max-width: 768px) {

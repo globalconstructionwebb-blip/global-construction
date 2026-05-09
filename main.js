@@ -19,8 +19,35 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
             menuToggle.setAttribute('aria-expanded', isOpen);
             menuToggle.setAttribute('aria-label', isOpen ? 'Stäng meny' : 'Öppna meny');
+            
+            // Close dropdowns when menu is closed
+            if (!isOpen) {
+                document.querySelectorAll('.dropdown.active').forEach(d => d.classList.remove('active'));
+            }
         });
     }
+
+    // Mobile Dropdown Toggle (Click-to-expand)
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('a');
+        if (link) {
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns
+                    dropdowns.forEach(other => {
+                        if (other !== dropdown) other.classList.remove('active');
+                    });
+                    
+                    const isOpen = dropdown.classList.toggle('active');
+                    link.setAttribute('aria-expanded', isOpen);
+                }
+            });
+        }
+    });
 
     // Video Play/Pause Toggle
     const video = document.getElementById('hero-video');
