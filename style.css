@@ -522,6 +522,19 @@ figure {
     height: 2px;
     background: var(--white);
     border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hamburger to Cross Animation */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* --- ENTERPRISE SUBPAGE STYLING --- */
@@ -8106,12 +8119,18 @@ body.blog-post-page {
         color: #ffffff !important;
     }
 
-    body.blog-page #main-header .menu-toggle.active span,
-    body.journal-page #main-header .menu-toggle.active span,
-    body.about-page #main-header .menu-toggle.active span,
-    body.contact-page #main-header .menu-toggle.active span,
+    /* Cross icon color logic */
+    /* Default: White (for home page and sticky nav) */
     #main-header .menu-toggle.active span {
         background-color: #ffffff !important;
+    }
+
+    /* On light pages, keep the cross dark when the header is white (non-sticky) */
+    body.blog-page #main-header:not(.sticky) .menu-toggle.active span,
+    body.journal-page #main-header:not(.sticky) .menu-toggle.active span,
+    body.about-page #main-header:not(.sticky) .menu-toggle.active span,
+    body.contact-page #main-header:not(.sticky) .menu-toggle.active span {
+        background-color: #1B263B !important;
     }
     
     /* Ensure the hamburger icon is visible (navy) on pages with a white hero background before scrolling */
