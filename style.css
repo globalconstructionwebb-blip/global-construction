@@ -8097,14 +8097,27 @@ body.blog-post-page {
    =================================================== */
 @media (max-width: 1024px) {
     /* Force dropdown menu links to be white on mobile regardless of page-specific top-nav overrides */
-    #main-header .nav-links.active a {
+    #main-header .nav-links.active a,
+    .blog-page .nav-links.active a,
+    .journal-page .nav-links.active a,
+    .about-page .nav-links.active a,
+    .contact-page .nav-links.active a {
         color: var(--white) !important;
+    }
+
+    #main-header .menu-toggle.active span,
+    .blog-page .menu-toggle.active span,
+    .journal-page .menu-toggle.active span,
+    .about-page .menu-toggle.active span,
+    .contact-page .menu-toggle.active span {
+        background-color: var(--white) !important;
     }
     
     /* Ensure the hamburger icon is visible (navy) on pages with a white hero background before scrolling */
-    .blog-page #main-header:not(.sticky) .menu-toggle span,
-    .about-page #main-header:not(.sticky) .menu-toggle span,
-    .contact-page #main-header:not(.sticky) .menu-toggle span {
+    .blog-page #main-header:not(.sticky) .menu-toggle:not(.active) span,
+    .journal-page #main-header:not(.sticky) .menu-toggle:not(.active) span,
+    .about-page #main-header:not(.sticky) .menu-toggle:not(.active) span,
+    .contact-page #main-header:not(.sticky) .menu-toggle:not(.active) span {
         background-color: var(--dark-navy) !important;
     }
 }
