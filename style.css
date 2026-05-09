@@ -4574,7 +4574,7 @@ footer address,
         flex-direction: column;
         gap: 4rem;
         text-align: center;
-        margin-bottom: 8rem;
+        margin-bottom: 5rem;
     }
     .service-row-reverse {
         flex-direction: column-reverse; /* Reverses order so image appears ABOVE text on mobile */
@@ -8149,7 +8149,7 @@ body.blog-post-page {
 .services-section {
     position: relative;
     overflow: hidden;
-    padding-bottom: 150px;
+    padding-bottom: 60px;
 }
 
 
