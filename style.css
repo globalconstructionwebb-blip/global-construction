@@ -2071,9 +2071,17 @@ figure {
 
     .blog-page .dropdown-menu a,
     .journal-page .dropdown-menu a,
-    body.blog-page #main-header .nav-links.active .dropdown-menu a,
+    .blog-page #main-header .nav-links.active .dropdown-menu a,
     body.journal-page #main-header .nav-links.active .dropdown-menu a {
         color: #ffffff !important;
+    }
+
+    .faq-list {
+        min-height: auto !important;
+    }
+
+    .faq-show-more-wrap {
+        margin-top: 1.5rem !important;
     }
 }
 
