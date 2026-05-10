@@ -2208,7 +2208,7 @@ figure {
 
     .split-screen {
         flex-direction: column;
-        height: 100vh;
+        height: 100dvh; /* Use dynamic viewport height for mobile browsers */
         width: 100%;
         overflow: hidden;
         display: flex;
