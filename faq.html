@@ -93,7 +93,8 @@
             max-width: 900px;
             margin: 0 auto;
             display: flex;
-            gap: 0;
+            justify-content: center; /* Center buttons */
+            gap: 1rem; /* Space between tabs */
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none; /* Hide scrollbar Firefox */
@@ -214,14 +215,14 @@
 
         .faq-landing-main .faq-question {
             width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             background: none;
             border: none;
             padding: 1.5rem 1.75rem;
             text-align: left;
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             gap: 1.5rem;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
@@ -232,6 +233,7 @@
 
         .faq-landing-main .faq-question svg {
             flex-shrink: 0;
+            margin-left: auto; /* Force to the far right */
             width: 18px;
             height: 18px;
             color: rgba(27, 38, 59, 0.4);
@@ -668,11 +670,12 @@
             <nav class="footer-links-col" aria-label="Tjänster">
                 <h3>Våra Tjänster</h3>
                 <ul>
-                    <li><a href="konstruktion.html">Bygglovsritningar</a></li>
-                    <li><a href="konstruktion.html">Hållfasthetsberäkningar</a></li>
-                    <li><a href="konstruktion.html">Produktionshandlingar</a></li>
-                    <li><a href="konstruktion.html">Grundläggning</a></li>
-                    <li><a href="skyddsrum.html">Skyddsrumscertifiering</a></li>
+                    <li><a href="nyproduktion.html">Nyproduktion & Renovering</a></li>
+                    <li><a href="konstruktionsberakningar.html">Konstruktionsberäkning</a></li>
+                    <li><a href="konstruktionsritningar.html">Konstruktionsritningar</a></li>
+                    <li><a href="byggnation-skyddsrum.html">Skyddsrumsbyggnation</a></li>
+                    <li><a href="iordningstallande-ritningar.html">Iordningställande ritningar</a></li>
+                    <li><a href="kvalificerad-sakkunnig.html">Kvalificerad Sakkunnig</a></li>
                 </ul>
             </nav>
 

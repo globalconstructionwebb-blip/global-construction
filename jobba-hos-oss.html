@@ -10,276 +10,85 @@
     <link rel="stylesheet" href="style.css?v=4">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ===================================================
-           PREMIUM CAREERS PAGE – TECH-PREMIUM OVERHAUL
-           =================================================== */
-        
-        body.premium-careers-page {
-            background-color: #fff !important;
-            color: var(--dark-navy) !important;
+        /* Jobba hos oss specific styles */
+        .premium-careers-page .about-hero-redesign {
+            background-color: var(--white);
         }
 
-        /* --- Hero Section --- */
-        .careers-hero-premium {
-            background: var(--dark-navy);
-            padding: 12rem 2rem 10rem;
-            position: relative;
-            overflow: hidden;
-            color: #fff;
+        .jobs-listing-enterprise {
+            padding: 8rem 2rem;
+            background: #f9fafb;
         }
 
-        .careers-hero-premium::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .careers-hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 6rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .careers-hero-content h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(3rem, 7vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 2rem;
-            background: linear-gradient(to right, #fff 60%, rgba(255,255,255,0.6));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .careers-hero-content p {
-            font-size: 1.25rem;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 3.5rem;
-            max-width: 540px;
-        }
-
-        .careers-hero-image-wrapper {
-            position: relative;
-        }
-
-        .careers-hero-img {
-            width: 100%;
-            border-radius: 24px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.4);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .careers-hero-image-wrapper:hover .careers-hero-img {
-            transform: perspective(1000px) rotateY(0) rotateX(0);
-        }
-
-        /* --- Stats Section --- */
-        .careers-stats-bar {
+        .job-card-enterprise {
             background: #fff;
-            padding: 6rem 2rem;
-            border-bottom: 1px solid rgba(27, 38, 59, 0.05);
-        }
-
-        .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 4rem;
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--dark-navy);
-            margin-bottom: 0.5rem;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        .stat-item p {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        /* --- Values Section --- */
-        .careers-values {
-            padding: 10rem 2rem;
-            background: #f8fafc;
-        }
-
-        .section-header-center {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 6rem;
-        }
-
-        .section-header-center h2 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            color: var(--dark-navy);
-            margin-bottom: 1.5rem;
-        }
-
-        .values-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-        }
-
-        .value-card {
-            background: #fff;
-            padding: 4rem 3rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(27, 38, 59, 0.03);
-            border: 1px solid rgba(27, 38, 59, 0.05);
-            transition: all 0.4s ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 40px 80px rgba(27, 38, 59, 0.08);
-            border-color: rgba(59, 130, 246, 0.2);
-        }
-
-        .value-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(59, 130, 246, 0.06);
+            border: 1px solid rgba(27, 38, 59, 0.08);
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-            color: var(--primary-blue);
-        }
-
-        .value-card h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1.25rem;
-            color: var(--dark-navy);
-        }
-
-        .value-card p {
-            color: #475569;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        /* --- Job Listings --- */
-        .jobs-section {
-            padding: 10rem 2rem;
-        }
-
-        .jobs-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .job-card-premium {
-            background: #fff;
-            border: 1px solid rgba(27, 38, 59, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem 3rem;
-            margin-bottom: 2rem;
+            padding: 2.5rem;
+            margin-bottom: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
             text-decoration: none;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .job-card-premium:hover {
+        .job-card-enterprise:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(27, 38, 59, 0.08);
             border-color: var(--primary-blue);
-            background: #f8fafc;
-            transform: scale(1.01);
         }
 
-        .job-main-info h3 {
+        .job-title-group h3 {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--dark-navy);
             margin-bottom: 0.5rem;
         }
 
-        .job-meta {
+        .job-meta-enterprise {
             display: flex;
             gap: 1.5rem;
-            color: #64748b;
-            font-size: 0.95rem;
-            font-weight: 500;
+            color: rgba(27, 38, 59, 0.5);
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .job-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-apply-job {
+        .btn-apply-enterprise {
             padding: 0.8rem 2rem;
             background: var(--dark-navy);
             color: #fff;
-            border-radius: 50px;
+            border-radius: 100px;
             font-weight: 700;
             font-size: 0.85rem;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
+            transition: background 0.3s ease;
         }
 
-        .job-card-premium:hover .btn-apply-job {
+        .job-card-enterprise:hover .btn-apply-enterprise {
             background: var(--primary-blue);
-            transform: translateX(5px);
         }
 
-        @media (max-width: 1024px) {
-            .careers-hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 4rem;
-            }
-            .careers-hero-content p {
-                margin: 0 auto 3rem;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 3rem;
-            }
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-            .job-card-premium {
+        /* Value items spacing fix */
+        .careers-values-grid .vision-item h3 {
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .job-card-enterprise {
                 flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-                padding: 3rem 2rem;
+                align-items: flex-start;
+                gap: 1.5rem;
             }
         }
-
     </style>
 </head>
-<body class="premium-careers-page">
+<body class="about-page premium-careers-page">
     <a href="#main-content" class="sr-only sr-only-focusable">Hoppa till huvudinnehåll</a>
 
     <header id="main-header" role="banner">
@@ -313,152 +122,123 @@
     </header>
 
     <main id="main-content">
-        <!-- Premium Hero -->
-        <section class="careers-hero-premium">
-            <div class="careers-hero-container">
-                <div class="careers-hero-content fade-in-left">
-                    <h1>Var med och rita framtidens säkraste miljöer</h1>
-                    <p>Vi söker passionerade ingenjörer, visionära projektledare och kreativa hjärnor som vill vara med och revolutionera hur vi bygger för en tryggare värld.</p>
-                    <div class="hero-actions">
-                        <a href="#lediga-tjanster" class="btn-nested-pill">
-                            <span class="btn-inner-pill">SE LEDIGA TJÄNSTER</span>
-                            <span class="btn-pill-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                        </a>
+        <!-- Subpage Hero (Split Layout) -->
+        <section class="about-hero-redesign global-subpage-hero" aria-label="Hero">
+            <div class="about-hero-container">
+                <div class="about-hero-text fade-in-left">
+                    <nav class="breadcrumbs" aria-label="Breadcrumbs">
+                        <a href="index.html">Hem</a>
+                        <span class="separator">/</span>
+                        <span aria-current="page">Jobba hos oss</span>
+                    </nav>
+                    <h1>Designa framtidens mest säkra miljöer</h1>
+                    <p class="hero-intro">Vi söker passionerade ingenjörer, visionära projektledare och kreativa hjärnor som vill vara med och revolutionera hur vi bygger för en tryggare värld.</p>
+                    <div class="hero-body" style="margin-bottom: 3rem;">
+                        <p>Hos Global Construction blir du en del av ett expertteam som kombinerar djup teknisk kunskap med en passion för innovation. Vi tror på frihet under ansvar och att de bästa lösningarna föds i en miljö präglad av samarbete och teknisk stolthet.</p>
                     </div>
+                    <a href="#lediga-tjanster" class="btn-nested-pill">
+                        <span class="btn-inner-pill">SE LEDIGA TJÄNSTER</span>
+                        <span class="btn-pill-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M7 17L17 7M17 7H7M17 7V17" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </a>
                 </div>
-                <div class="careers-hero-image-wrapper fade-in-right">
-                    <img src="img/careers_hero_joyful.png" alt="Global Construction Team collaborating happily" class="careers-hero-img">
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats Bar -->
-        <section class="careers-stats-bar">
-            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="stat-item fade-in">
-                    <h3 class="counter" data-target="100" data-suffix="+">0</h3>
-                    <p>Genomförda projekt</p>
-                </div>
-                <div class="stat-item fade-in" style="animation-delay: 0.1s;">
-                    <h3 class="counter" data-target="100" data-suffix="%">0</h3>
-                    <p>Säkerhetsfokus</p>
-                </div>
-                <div class="stat-item fade-in" style="animation-delay: 0.2s;">
-                    <h3 class="counter" data-target="25" data-suffix="+">0</h3>
-                    <p>Specialister</p>
+                <div class="about-hero-illustration fade-in-right">
+                    <img src="jobba-hos-oss-hero.png" 
+                         alt="Illustration av ett team ingenjörer som arbetar med modern teknik" 
+                         width="800" height="533"
+                         class="iso-floating"
+                         loading="eager"
+                         fetchpriority="high">
                 </div>
             </div>
         </section>
 
-        <!-- Culture Highlight Section -->
-        <section class="notion-story-section" style="padding: 10rem 2rem; background: #fff;">
-            <div class="careers-hero-container" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 6rem; align-items: center;">
-                <div class="fade-in-left">
-                    <img src="img/careers_team_culture.png" alt="Our Team Culture" style="width: 100%; border-radius: 24px; box-shadow: 0 40px 80px rgba(0,0,0,0.1);">
-                </div>
-                <div class="fade-in-right">
-                    <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 2rem; color: var(--dark-navy);">En kultur som bygger framgång</h2>
-                    <p style="font-size: 1.15rem; line-height: 1.8; color: #475569; margin-bottom: 1.5rem;">Vi tror på att gemenskap och personlig utveckling är grundstenarna för att kunna leverera teknisk excellens. Hos oss får du inte bara kollegor, utan en familj av experter som brinner för att lösa komplexa problem.</p>
-                    <p style="font-size: 1.15rem; line-height: 1.8; color: #475569;">Vårt kontor i Stockholm är hjärtat i vår verksamhet, där vi kombinerar modern teknik med en avslappnad och inbjudande arbetsmiljö.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Values Section -->
-        <section class="careers-values">
-            <div class="section-header-center fade-in">
-                <h2>Varför välja oss?</h2>
-                <p>Vi tror på att om våra medarbetare mår bra och har rätt verktyg, så bygger vi de bästa lösningarna. Hos oss är innovation och personlig utveckling en självklarhet.</p>
-            </div>
-            <div class="values-grid">
-                <article class="value-card fade-in">
-                    <div class="value-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                    </div>
+        <!-- Values Section (Varför välja oss?) -->
+        <section class="about-vision-mission careers-values-grid" aria-labelledby="values-heading">
+            <header class="vision-header fade-in">
+                <h2 id="values-heading">Varför välja oss?</h2>
+            </header>
+            <div class="vision-mission-grid">
+                <article class="vision-item fade-in">
                     <h3>Teknisk Spets</h3>
-                    <p>Vi ligger i framkant när det gäller modern byggteknik och avancerad mjukvara för konstruktion och simulering.</p>
+                    <p>Vi ligger i framkant när det gäller modern byggteknik och avancerad mjukvara för konstruktion och simulering. Hos oss får du jobba med de mest spännande projekten.</p>
                 </article>
-                <article class="value-card fade-in" style="animation-delay: 0.1s;">
-                    <div class="value-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    </div>
+                <article class="vision-item fade-in" style="transition-delay: 0.1s;">
                     <h3>Gemenskap</h3>
-                    <p>Vårt team är vår största tillgång. Vi stöttar varandra, delar kunskap och har roligt på vägen mot målet.</p>
+                    <p>Vårt team är vår största tillgång. Vi stöttar varandra, delar kunskap och har roligt på vägen. Vi tror på att växa tillsammans som ett team.</p>
                 </article>
-                <article class="value-card fade-in" style="animation-delay: 0.2s;">
-                    <div class="value-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                    </div>
-                    <h3>Work-Life Balance</h3>
-                    <p>Vi förstår att livet händer. Flexibla arbetstider och ett hållbart arbetstempo är nyckeln till vår gemensamma framgång.</p>
+                <article class="vision-item fade-in" style="transition-delay: 0.2s;">
+                    <h3>Hållbar balans</h3>
+                    <p>Vi förstår att livet händer. Flexibla arbetstider och ett hållbart arbetstempo är självklart för oss. Vi satsar på långsiktigt välmående och balans.</p>
                 </article>
             </div>
         </section>
 
-        <!-- Current Openings -->
-        <section id="lediga-tjanster" class="jobs-section">
-            <div class="section-header-center fade-in">
-                <h2>Lediga tjänster</h2>
-                <p>Hitta din nästa utmaning och bli en del av Stockholms mest spännande ingenjörsteam.</p>
-            </div>
-            <div class="jobs-container">
-                <a href="kontakt.html" class="job-card-premium fade-in">
-                    <div class="job-main-info">
-                        <h3>Senior Konstruktionsingenjör</h3>
-                        <div class="job-meta">
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Stockholm</span>
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Heltid</span>
+        <!-- Current Openings (Lediga tjänster) -->
+        <section id="lediga-tjanster" class="jobs-listing-enterprise">
+            <div class="container">
+                <div class="section-header-center fade-in">
+                    <h2 style="font-size: 3rem; font-weight: 800; color: var(--dark-navy); margin-bottom: 4rem;">Lediga tjänster</h2>
+                </div>
+                <div class="jobs-list">
+                    <a href="kontakt.html" class="job-card-enterprise fade-in">
+                        <div class="job-title-group">
+                            <h3>Senior Konstruktionsingenjör</h3>
+                            <div class="job-meta-enterprise">
+                                <span>Stockholm</span>
+                                <span>Fulltid</span>
+                                <span>BIM / Revit</span>
+                            </div>
                         </div>
-                    </div>
-                    <span class="btn-apply-job">ANSÖK NU</span>
-                </a>
+                        <span class="btn-apply-enterprise">ANSÖK NU</span>
+                    </a>
 
-                <a href="kontakt.html" class="job-card-premium fade-in">
-                    <div class="job-main-info">
-                        <h3>BIM-specialist / Konstruktör</h3>
-                        <div class="job-meta">
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Stockholm</span>
-                            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Heltid</span>
+                    <a href="kontakt.html" class="job-card-enterprise fade-in">
+                        <div class="job-title-group">
+                            <h3>BIM-specialist / Konstruktör</h3>
+                            <div class="job-meta-enterprise">
+                                <span>Stockholm</span>
+                                <span>Fulltid</span>
+                                <span>MSB-expertis</span>
+                            </div>
                         </div>
-                    </div>
-                    <span class="btn-apply-job">ANSÖK NU</span>
-                </a>
+                        <span class="btn-apply-enterprise">ANSÖK NU</span>
+                    </a>
 
-                <a href="kontakt.html" class="job-card-premium fade-in" style="background: #f1f5f9; border-style: dashed; border-color: #cbd5e1;">
-                    <div class="job-main-info">
-                        <h3>Spontanansökan</h3>
-                        <p style="color: #64748b; margin-top: 0.25rem;">Vi är alltid intresserade av att träffa drivna talanger.</p>
-                    </div>
-                    <span class="btn-apply-job" style="background: #64748b;">SKICKA ANSÖKAN</span>
-                </a>
+                    <a href="kontakt.html" class="job-card-enterprise fade-in" style="border-style: dashed; opacity: 0.8;">
+                        <div class="job-title-group">
+                            <h3>Spontanansökan</h3>
+                            <div class="job-meta-enterprise">
+                                <span>Öppen position</span>
+                                <span>Låt oss höras</span>
+                            </div>
+                        </div>
+                        <span class="btn-apply-enterprise" style="background: rgba(27,38,59,0.6);">KONTAKTA OSS</span>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Final CTA -->
-        <section class="premium-final-cta fade-in-up">
-            <div class="cta-overlay-patterns"></div>
-            <div class="premium-cta-content">
-                <h2>Nyfiken på att veta mer?</h2>
-                <p>Vi berättar gärna mer om vår vision och hur vi arbetar. Hör av dig för en förutsättningslös kaffe!</p>
-                <div class="premium-cta-actions">
-                    <a href="kontakt.html" class="btn-premium-light">KOM I KONTAKT</a>
-                </div>
+        <section class="faq-cta-strip" style="background: var(--dark-navy); padding: 8rem 2rem;">
+            <div class="container fade-in">
+                <h2 style="color: #fff; font-size: 3rem; font-weight: 800; margin-bottom: 1.5rem;">Redo för nästa steg?</h2>
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: 3rem;">Vi berättar gärna mer om vår vision och hur vi arbetar. Hör av dig för en förutsättningslös kaffe!</p>
+                <a href="kontakt.html" class="btn btn-premium-light">KOM I KONTAKT</a>
             </div>
         </section>
     </main>
 
-        <footer class="complex-footer" role="contentinfo">
+    <footer class="complex-footer" role="contentinfo">
         <div class="footer-grid container">
             <div class="footer-brand">
                 <a href="index.html" aria-label="Global Construction – Till startsidan">
                     <img src="logo.png" alt="Global Construction logotyp" width="165" style="height: auto;" loading="lazy">
                 </a>
                 <p>Global Construction bygger säkra och optimerade lösningar för framtidens samhällen. Sveriges ledande partner inom certifierad totalentreprenad sedan starten.</p>
-
             </div>
 
             <nav class="footer-links-col" aria-label="Snabblänkar">
@@ -479,11 +259,12 @@
             <nav class="footer-links-col" aria-label="Tjänster">
                 <h3>Våra Tjänster</h3>
                 <ul>
-                    <li><a href="konstruktion.html">Bygglovsritningar</a></li>
-                    <li><a href="konstruktion.html">Hållfasthetsberäkningar</a></li>
-                    <li><a href="konstruktion.html">Produktionshandlingar</a></li>
-                    <li><a href="konstruktion.html">Grundläggning</a></li>
-                    <li><a href="skyddsrum.html">Skyddsrumscertifiering</a></li>
+                    <li><a href="nyproduktion.html">Nyproduktion & Renovering</a></li>
+                    <li><a href="konstruktionsberakningar.html">Konstruktionsberäkning</a></li>
+                    <li><a href="konstruktionsritningar.html">Konstruktionsritningar</a></li>
+                    <li><a href="byggnation-skyddsrum.html">Skyddsrumsbyggnation</a></li>
+                    <li><a href="iordningstallande-ritningar.html">Iordningställande ritningar</a></li>
+                    <li><a href="kvalificerad-sakkunnig.html">Kvalificerad Sakkunnig</a></li>
                 </ul>
             </nav>
 
@@ -511,55 +292,10 @@
             <div class="footer-socials">
                 <a href="#" aria-label="Besök oss på Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg></a>
                 <a href="#" aria-label="Besök oss på LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                <a href="#" aria-label="Besök oss på Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
             </div>
         </div>
     </footer>
 
     <script src="main.js" defer></script>
-    <script>
-        // --- Counter Animation Script ---
-        const animateCounters = () => {
-            const counters = document.querySelectorAll('.counter');
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const suffix = counter.getAttribute('data-suffix') || '';
-                let count = 0;
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); 
-
-                const updateCount = () => {
-                    count += increment;
-                    if (count < target) {
-                        counter.innerText = Math.floor(count);
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = target + suffix;
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        // Trigger animation when section is visible
-        const observerOptions = {
-            threshold: 0.2
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        animateCounters();
-                    }, 400); // Small delay for visual effect
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        const statsSection = document.querySelector('.careers-stats-bar');
-        if (statsSection) observer.observe(statsSection);
-    </script>
 </body>
 </html>
