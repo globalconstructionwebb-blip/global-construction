@@ -3008,47 +3008,46 @@ figure {
 
 .project-filter-bar {
     display: flex;
-    gap: 1rem;
-    background: #edf2f7;
-    padding: 0.5rem;
-    border-radius: 50px;
+    gap: 0.5rem;
+    background: #f1f5f9;
+    padding: 0.35rem;
+    border-radius: 100px;
 }
 
 .filter-btn {
     border: none;
     background: transparent;
-    padding: 0.8rem 2rem;
+    padding: 0.7rem 1.8rem;
     font-size: 0.9rem;
-    font-weight: 600;
-    color: #4a5568;
+    font-weight: 700;
+    color: #475569;
     cursor: pointer;
-    border-radius: 40px;
-    transition: all 0.3s ease;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-btn.active {
     background: var(--dark-navy);
     color: var(--white);
-    box-shadow: 0 4px 15px rgba(27, 38, 59, 0.2);
+    box-shadow: 0 4px 12px rgba(27, 38, 59, 0.25);
 }
 
 @media (max-width: 768px) {
     .project-filter-bar {
-        overflow-x: auto;
-        white-space: nowrap;
-        padding: 0.75rem 1.5rem;
-        border-radius: 12px;
         width: 100%;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        justify-content: flex-start;
-    }
-    .project-filter-bar::-webkit-scrollbar {
-        display: none;
+        display: flex !important;
+        justify-content: space-between !important;
+        padding: 0.35rem !important;
+        background: #f1f5f9 !important;
+        border-radius: 100px !important;
+        overflow: hidden;
     }
     .filter-btn {
-        padding: 0.6rem 1.5rem;
-        flex-shrink: 0;
+        flex: 1;
+        padding: 0.6rem 0.5rem !important;
+        text-align: center;
+        white-space: nowrap;
+        font-size: 0.85rem !important;
     }
 }
 
@@ -3166,14 +3165,14 @@ figure {
     .projects-grid {
         grid-template-columns: 1fr;
     }
+    /* Ensure consistent container alignment */
+    .projects-container {
+        padding-left: var(--spacing-sm);
+        padding-right: var(--spacing-sm);
+    }
     .project-filter-bar {
         width: 100%;
-        overflow-x: auto;
-        padding: 0.25rem;
-    }
-    .filter-btn {
-        flex: 1;
-        white-space: nowrap;
+        margin-bottom: 2rem;
     }
 }
 
