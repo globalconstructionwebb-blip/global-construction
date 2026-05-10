@@ -2209,22 +2209,33 @@ figure {
     .split-screen {
         flex-direction: column;
         height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
     }
 
     .split-panel {
-        flex: 1;
-        min-height: auto;
-        height: 50%;
-        width: 100%;
-        padding: 1.5rem 1rem 1rem !important; /* Reduced padding drastically to fit both panels on 100vh */
+        flex: 1 1 50% !important;
+        height: 50% !important;
+        min-height: 50% !important;
+        max-height: 50% !important;
+        width: 100% !important;
+        padding: 1.5rem 1rem !important;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .panel-left {
         border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-        padding-top: 4.5rem !important; /* Give top panel room to clear the fixed header */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .panel-right {
+        border-left: none;
     }
 
     .panel-left .panel-content, .panel-right .panel-content {
