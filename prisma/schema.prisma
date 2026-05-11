@@ -1,0 +1,94 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ADMIN USER
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String?
+  role          Role      @default(ADMIN)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+// KUNSKAPSBANKEN (BLOGG)
+model BlogPost {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String
+  seoTitle        String?
+  metaDescription String?
+  featuredImage   String?
+  content         String    @db.Text
+  author          String?
+  tags            String[]
+  categories      String[]
+  published       Boolean   @default(false)
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+// PROJEKT
+model Project {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  name            String
+  description     String    @db.Text
+  images          String[]  
+  client          String?
+  category        String?
+  result          String?   @db.Text
+  ctaText         String?
+  ctaLink         String?
+  published       Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+// FAQ
+model FAQ {
+  id          String    @id @default(cuid())
+  question    String
+  answer      String    @db.Text
+  category    String?
+  order       Int       @default(0)
+  published   Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// JOBBA HOS OSS (JOBS)
+model JobOpening {
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String
+  location        String
+  type            String    
+  description     String    @db.Text
+  requirements    String    @db.Text
+  applyLink       String?
+  deadline        DateTime?
+  published       Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([slug])
+}
