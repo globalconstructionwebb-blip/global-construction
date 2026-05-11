@@ -7405,13 +7405,14 @@ body.blog-post-page {
     background: #1B263B;
     border: none;
     border-radius: 16px;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     color: white;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .journal-newsletter-box h4 {
     color: white !important;
+    margin-top: 0 !important;
     margin-bottom: 0.75rem;
 }
 
