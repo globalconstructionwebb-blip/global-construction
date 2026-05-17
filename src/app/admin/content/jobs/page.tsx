@@ -6,7 +6,7 @@ import { Plus, Edit2, Trash2, Briefcase, MapPin } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function JobListPage() {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import { Plus, Edit2, Trash2, HelpCircle } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function FaqListPage() {
-  const [faqs, setFaqs] = useState([]);
+  const [faqs, setFaqs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

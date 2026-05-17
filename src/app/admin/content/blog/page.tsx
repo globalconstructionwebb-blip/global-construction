@@ -6,7 +6,7 @@ import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function BlogListPage() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

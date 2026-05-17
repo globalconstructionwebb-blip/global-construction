@@ -6,7 +6,7 @@ import { Plus, Edit2, Trash2, Eye, FolderKanban } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function ProjectListPage() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
