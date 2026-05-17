@@ -11,5 +11,5 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 // Denna används BARA på serversidan (t.ex. i Next.js API-routes eller Server Actions) för att bypassa RLS och få admin-rättigheter
 // Denna används BARA på serversidan. Vi säkerställer att den inte kraschar klientsidan om den råkar importeras.
 export const supabaseAdmin = typeof window === 'undefined'
-  ? createClient(supabaseUrl, process.env.SUPABASE_SERVICE_ROLE_KEY as string)
+  ? createClient(supabaseUrl, (process.env.SUPABASE_SERVICE_ROLE_KEY || "sb_publishable_dummy_key_for_build") as string)
   : null as any;
