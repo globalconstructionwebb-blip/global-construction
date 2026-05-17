@@ -1,7 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import prisma from "./prisma";
-import bcrypt from "bcryptjs";
+import { supabase } from "./supabase";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -19,28 +18,22 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email }
+        // Verifiera inloggningen mot Supabase Auth
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: credentials.email,
+          password: credentials.password,
         });
 
-        if (!user) {
-          return null;
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.passwordHash
-        );
-
-        if (!isPasswordValid) {
+        if (error || !data.user) {
+          console.error("Login error:", error?.message);
           return null;
         }
 
         return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          role: user.role,
+          id: data.user.id,
+          email: data.user.email,
+          name: data.user.user_metadata?.name || "Admin",
+          role: "ADMIN",
         };
       }
     })

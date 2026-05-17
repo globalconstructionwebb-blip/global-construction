@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledig tjänst – Global Construction</title>
+    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8fafc;
+            margin: 0;
+            color: #1B263B;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Header matching Projekt page */
+        #main-header:not(.sticky) {
+            background: #ffffff !important;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        #main-header:not(.sticky) .nav-links a {
+            color: #1B263B !important;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        #main-header:not(.sticky) .btn-ghost {
+            color: #1B263B !important;
+            border-color: #1B263B !important;
+        }
+        #main-header:not(.sticky) #logo-img {
+            filter: brightness(0) !important;
+        }
+
+        /* Hero with Outfit font as requested */
+        .job-hero {
+            background: #1B263B;
+            padding: 12rem 2rem 10rem;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+
+        .job-hero h1 {
+            font-family: 'Outfit', sans-serif; /* Back to Outfit but tuned */
+            font-size: clamp(3.2rem, 8vw, 5rem);
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        /* Widened Content Box */
+        .job-container {
+            max-width: 1050px;
+            margin: -6rem auto 8rem;
+            background: #fff;
+            padding: 5.5rem;
+            border-radius: 24px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Premium Job Meta (moved to content box) */
+        .premium-job-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .meta-tag {
+            background: #f1f5f9;
+            color: #1B263B;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .job-content {
+            line-height: 1.9;
+            font-size: 1.2rem;
+            color: #475569;
+        }
+
+        .job-content h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #1B263B;
+            margin: 4rem 0 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        /* CTA Section - Blue Theme */
+        .apply-cta-box {
+            margin-top: 6rem;
+            padding: 5rem;
+            background: #1B263B;
+            border-radius: 20px;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 20px 60px rgba(27, 38, 59, 0.2);
+        }
+
+        .apply-cta-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .apply-cta-box p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+            font-size: 1.15rem;
+        }
+
+        .btn-apply-hero {
+            display: inline-block;
+            background: #ffffff;
+            color: #1B263B;
+            padding: 1.3rem 4rem;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-apply-hero:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: #f8fafc;
+        }
+
+        /* Modal */
+        .apply-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(27, 38, 59, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .apply-modal-overlay.active { display: flex; }
+
+        .apply-modal-content {
+            background: #fff;
+            width: 100%;
+            max-width: 900px;
+            max-height: 92vh;
+            overflow-y: auto;
+            border-radius: 32px;
+            padding: 5rem;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .job-container { margin: -3rem 1rem 5rem; padding: 3rem 1.5rem; }
+            .apply-cta-box { padding: 4rem 1.5rem; }
+            .premium-job-meta { flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body class="about-page">
+    <header id="main-header" role="banner">
+        <nav class="navbar">
+            <a href="index.html" class="logo-link"><img src="logo.png" alt="Global Construction" id="logo-img" width="165"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">HEM</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#">TJÄNSTER</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="konstruktion.html">Konstruktion</a></li>
+                        <li><a href="skyddsrum.html">Skyddsrum</a></li>
+                    </ul>
+                </li>
+                <li><a href="projekt.html">PROJEKT</a></li>
+                <li><a href="blogg.html">KUNSKAPSBANK</a></li>
+                <li><a href="om-oss.html">OM OSS</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+            <a href="kontakt.html" class="btn btn-ghost">KONTAKT</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="job-hero">
+            <h1 id="hero-title">Laddar tjänst...</h1>
+        </section>
+
+        <div class="job-container">
+            <div class="premium-job-meta" id="job-meta-root">
+                <!-- Tags will be moved here -->
+            </div>
+            
+            <div class="job-content" id="job-content">
+                <!-- Content injected -->
+            </div>
+
+            <div class="apply-cta-box">
+                <h3>Är du vår nästa kollega?</h3>
+                <p>Skicka din ansökan direkt här via hemsidan så hör vi av oss så snart som möjligt.</p>
+                <button id="trigger-apply" class="btn-apply-hero">SÖK TJÄNSTEN</button>
+            </div>
+        </div>
+
+        <!-- Modal Overlay -->
+        <div class="apply-modal-overlay" id="apply-modal">
+            <div class="apply-modal-content">
+                <button id="close-modal" style="position: absolute; top: 2rem; right: 2rem; background: #f1f5f9; border: none; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; font-size: 1.2rem;">✕</button>
+                <form id="application-form">
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem;">Skicka ansökan</h2>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <textarea placeholder="Varför är du rätt för denna roll?" rows="4" style="width: 100%; padding: 1.5rem; border: 1px solid #e2e8f0; border-radius: 16px; font-family: inherit; font-size: 1.1rem;" required></textarea>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <input type="text" placeholder="Förnamn *" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 1rem;" required>
+                            <input type="text" placeholder="Efternamn *" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 1rem;" required>
+                        </div>
+                        <input type="email" placeholder="E-post *" style="padding: 1.25rem; border: 1px solid #e2e8f0; border-radius: 12px; font-size: 1rem;" required>
+                        <div style="padding: 1.5rem; border: 2px dashed #e2e8f0; border-radius: 16px; text-align: center; background: #f8fafc;">
+                            <p style="margin-bottom: 0.5rem; font-weight: 700; font-size: 0.9rem;">Ladda upp CV *</p>
+                            <input type="file" style="font-size: 0.85rem;" required>
+                        </div>
+                        <div style="padding: 1.5rem; border: 2px dashed #e2e8f0; border-radius: 16px; text-align: center; background: #f8fafc;">
+                            <p style="margin-bottom: 0.5rem; font-weight: 700; font-size: 0.9rem;">Ladda upp personligt brev</p>
+                            <input type="file" style="font-size: 0.85rem;">
+                        </div>
+                        <button type="submit" class="btn-apply-hero" style="width: 100%; background: #1B263B; color: #fff;">SKICKA ANSÖKAN</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="complex-footer" role="contentinfo">
+        <div class="footer-grid container">
+            <div class="footer-brand">
+                <a href="index.html" aria-label="Global Construction – Till startsidan">
+                    <img src="logo.png" alt="Global Construction logotyp" width="165" style="height: auto;" loading="lazy">
+                </a>
+                <p>Global Construction bygger säkra och optimerade lösningar för framtidens samhällen. Sveriges ledande partner inom certifierad totalentreprenad sedan starten.</p>
+            </div>
+
+            <nav class="footer-links-col" aria-label="Snabblänkar">
+                <h3>Snabblänkar</h3>
+                <ul>
+                    <li><a href="index.html">Hem</a></li>
+                    <li><a href="konstruktion.html">Konstruktion</a></li>
+                    <li><a href="skyddsrum.html">Skyddsrum</a></li>
+                    <li><a href="projekt.html">Projekt</a></li>
+                    <li><a href="blogg.html">Kunskapsbank</a></li>
+                    <li><a href="om-oss.html">Om Oss</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="jobba-hos-oss.html">Jobba hos oss</a></li>
+                </ul>
+            </nav>
+
+            <nav class="footer-links-col" aria-label="Tjänster">
+                <h3>Våra Tjänster</h3>
+                <ul>
+                    <li><a href="konstruktion.html">Bygglovsritningar</a></li>
+                    <li><a href="konstruktion.html">Hållfasthetsberäkningar</a></li>
+                    <li><a href="konstruktion.html">Produktionshandlingar</a></li>
+                    <li><a href="konstruktion.html">Grundläggning</a></li>
+                    <li><a href="skyddsrum.html">Skyddsrumscertifiering</a></li>
+                </ul>
+            </nav>
+
+            <address class="footer-contact-col">
+                <h3>Kontakta Oss</h3>
+                <ul class="contact-info">
+                    <li>Hemvärnsgatan 8, 171 54 Solna</li>
+                    <li><a href="mailto:info@globalconstruction.se">info@globalconstruction.se</a></li>
+                    <li><a href="tel:+46721826784">072 - 182 67 84</a></li>
+                </ul>
+            </address>
+        </div>
+
+        <div class="footer-bottom-bar container">
+            <div class="footer-bottom-left">
+                <p class="copyright">© 2026 Global Construction. Alla rättigheter reserverade.</p>
+                <nav class="footer-legal" aria-label="Juridisk information">
+                    <a href="kopvillkor.html">Köpvillkor</a>
+                    <span class="sep">|</span>
+                    <a href="integritetspolicy.html">Integritetspolicy</a>
+                    <span class="sep">|</span>
+                    <a href="cookies.html">Cookies</a>
+                </nav>
+            </div>
+            <div class="footer-socials">
+                <a href="#" aria-label="Besök oss på Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.325v21.351C0 23.403.597 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.31h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.325-.597 1.325-1.324V1.325C24 .597 23.403 0 22.675 0z"/></svg></a>
+                <a href="#" aria-label="Besök oss på LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                <a href="#" aria-label="Besök oss på Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = "https://ubaolkuyccfyurphdmgf.supabase.co";
+        const SUPABASE_KEY = "sb_publishable_CfltW1c2YJf0V9jC3poE9Q_FmaBjxCI";
+        const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function loadJob() {
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+            if (!slug) return;
+
+            const { data: job, error } = await _supabase.from('jobs').select('*').eq('slug', slug).single();
+            if (error || !job) return;
+
+            document.title = job.title + " - Global Construction";
+            document.getElementById('hero-title').textContent = job.title;
+            
+            // Premium tags inside content box
+            document.getElementById('job-meta-root').innerHTML = `
+                <div class="meta-tag">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    ${job.location}
+                </div>
+                <div class="meta-tag">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    ${job.job_type}
+                </div>
+            `;
+            document.getElementById('job-content').innerHTML = job.content;
+        }
+
+        const modal = document.getElementById('apply-modal');
+        document.getElementById('trigger-apply').onclick = () => modal.classList.add('active');
+        document.getElementById('close-modal').onclick = () => modal.classList.remove('active');
+        
+        loadJob();
+    </script>
+</body>
+</html>

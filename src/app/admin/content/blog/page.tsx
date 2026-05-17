@@ -3,18 +3,28 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Plus, Edit2, Trash2, Eye } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 export default function BlogListPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/blog")
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(Array.isArray(data) ? data : []);
-        setLoading(false);
-      });
+    async function fetchPosts() {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .order('created_at', { ascending: false });
+        
+      if (error) {
+        console.error("Kunde inte hämta inlägg:", error);
+      } else {
+        setPosts(data || []);
+      }
+      setLoading(false);
+    }
+    
+    fetchPosts();
   }, []);
 
   return (
@@ -76,13 +86,18 @@ export default function BlogListPage() {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex justify-end gap-2">
-                      <Link href={`/blogg/${post.slug}`} target="_blank" className="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                      <Link href={`/artikel.html?slug=${post.slug}`} target="_blank" className="p-2 text-slate-400 hover:text-blue-600 transition-colors">
                         <Eye className="w-5 h-5" />
                       </Link>
                       <Link href={`/admin/content/blog/edit/${post.id}`} className="p-2 text-slate-400 hover:text-amber-600 transition-colors">
                         <Edit2 className="w-5 h-5" />
                       </Link>
-                      <button className="p-2 text-slate-400 hover:text-red-600 transition-colors">
+                      <button onClick={async () => {
+                        if(confirm('Ta bort detta inlägg?')) {
+                          await supabase.from('posts').delete().eq('id', post.id);
+                          window.location.reload();
+                        }
+                      }} className="p-2 text-slate-400 hover:text-red-600 transition-colors">
                         <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
