@@ -403,8 +403,20 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
             <div className="space-y-3 pt-2 relative">
               <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kategori & Stad</label>
               <div className="grid grid-cols-2 gap-2">
-                <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} onFocus={() => setActiveSeoField('category')} onBlur={() => setActiveSeoField(null)} className="px-3 py-2 rounded-md border border-gray-200 text-sm bg-white shadow-sm" placeholder="Kategori" />
+                <div className="relative">
+                  <select value={category} onChange={(e) => setCategory(e.target.value)} onFocus={() => setActiveSeoField('category')} onBlur={() => setActiveSeoField(null)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm bg-white shadow-sm appearance-none cursor-pointer font-medium">
+                    <option value="">— Välj —</option>
+                    <option value="konstruktion">Konstruktion</option>
+                    <option value="skyddsrum">Skyddsrum</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                  </div>
+                </div>
                 <input type="text" value={city} onChange={(e) => setCity(e.target.value)} onFocus={() => setActiveSeoField('city')} onBlur={() => setActiveSeoField(null)} className="px-3 py-2 rounded-md border border-gray-200 text-sm bg-white shadow-sm" placeholder="Stad" />
+              </div>
+              <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-lg">
+                <p className="text-[10px] text-amber-800 font-semibold leading-relaxed">⚠️ VIKTIGT: Vald kategori styr automatiskt vilken landningssida detta projekt visas under (de 5 senaste under Konstruktion respektive Skyddsrum). Välj noggrant!</p>
               </div>
               <SeoTip field="category" /><SeoTip field="city" />
             </div>

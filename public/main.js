@@ -127,15 +127,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Projects Carousel ---
-    const carousel = document.getElementById('projects-carousel');
-    if (carousel) {
+    window.initProjectsCarousel = function() {
+        const carousel = document.getElementById('projects-carousel');
+        if (!carousel) return;
+
         const track = carousel.querySelector('.carousel-track');
         const dots = carousel.querySelectorAll('.carousel-dot');
         const prevBtn = document.getElementById('carousel-prev');
         const nextBtn = document.getElementById('carousel-next');
+        if (!track || !prevBtn || !nextBtn) return;
         const totalSlides = track.children.length;
+        if (totalSlides === 0) return;
         let currentSlide = 0;
-        let autoPlayInterval = null;
+
+        // Clear any previous auto-play
+        if (window._carouselAutoPlay) {
+            clearInterval(window._carouselAutoPlay);
+            window._carouselAutoPlay = null;
+        }
+
+        // Remove old listeners by cloning buttons
+        const newPrev = prevBtn.cloneNode(true);
+        const newNext = nextBtn.cloneNode(true);
+        prevBtn.parentNode.replaceChild(newPrev, prevBtn);
+        nextBtn.parentNode.replaceChild(newNext, nextBtn);
 
         function goToSlide(index) {
             currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
@@ -152,24 +167,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function startAutoPlay() {
             stopAutoPlay();
-            autoPlayInterval = setInterval(() => {
+            window._carouselAutoPlay = setInterval(() => {
                 goToSlide(currentSlide + 1);
             }, 5000);
         }
 
         function stopAutoPlay() {
-            if (autoPlayInterval) {
-                clearInterval(autoPlayInterval);
-                autoPlayInterval = null;
+            if (window._carouselAutoPlay) {
+                clearInterval(window._carouselAutoPlay);
+                window._carouselAutoPlay = null;
             }
         }
 
-        nextBtn.addEventListener('click', () => {
+        newNext.addEventListener('click', () => {
             goToSlide(currentSlide + 1);
-            startAutoPlay(); // Reset timer on manual interaction
+            startAutoPlay();
         });
 
-        prevBtn.addEventListener('click', () => {
+        newPrev.addEventListener('click', () => {
             goToSlide(currentSlide - 1);
             startAutoPlay();
         });
@@ -181,8 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Start auto-play
+        // Reset to first slide and start
+        goToSlide(0);
         startAutoPlay();
+    };
+
+    // Auto-initialize only if carousel is NOT marked as dynamic
+    const carousel = document.getElementById('projects-carousel');
+    if (carousel && !carousel.hasAttribute('data-dynamic')) {
+        window.initProjectsCarousel();
     }
 
     // Animated Stat Counters
@@ -692,4 +714,33 @@ const updateScrollLineFixed = () => {
 window.addEventListener('scroll', updateScrollLineFixed);
 window.addEventListener('resize', updateScrollLineFixed);
 document.addEventListener('DOMContentLoaded', updateScrollLineFixed);
+
+
+// --- Partners Grid Staggered Domino Animation ---
+document.addEventListener('DOMContentLoaded', () => {
+    const partnersGrids = document.querySelectorAll('.partners-grid');
+    if (partnersGrids.length > 0) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const partnersObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const logoItems = entry.target.querySelectorAll('.partners-grid-item');
+                    logoItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, index * 120); // 120ms staggered delay
+                    });
+                    partnersObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        partnersGrids.forEach(grid => partnersObserver.observe(grid));
+    }
+});
+
 

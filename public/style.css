@@ -328,7 +328,10 @@ figure {
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: scale(1.08); /* Prevent fuzzy edge bleed under blur */
+    filter: blur(25px); /* Completely blurred by default */
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1),
+                filter 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .panel-left {
@@ -349,8 +352,11 @@ figure {
     z-index: 10;
 }
 
-.split-panel:hover .panel-media {
+.split-panel:hover .panel-media,
+.split-panel:focus-within .panel-media,
+.split-panel:active .panel-media {
     transform: scale(1.25);
+    filter: blur(0); /* Fully sharp on hover/focus */
 }
 
 /* Overlays */
@@ -381,7 +387,10 @@ figure {
     text-align: center;
     opacity: 0.9;
     transform: translateY(20px);
-    transition: all 0.6s ease;
+    filter: blur(15px); /* Completely blurred text by default */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 0.6s ease,
+                filter 0.6s ease;
 }
 
 .fade-in-up.visible {
@@ -421,9 +430,12 @@ figure {
     filter: drop-shadow(0 25px 35px rgba(0,0,0,0.1));
 }
 
-.split-panel:hover .panel-content {
+.split-panel:hover .panel-content,
+.split-panel:focus-within .panel-content,
+.split-panel:active .panel-content {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0); /* Fully sharp text on hover/focus */
 }
 
 .accent-title {
@@ -1613,6 +1625,7 @@ figure {
 .project-item {
     flex: 0 0 100%;
     max-width: 100%;
+    max-height: 420px;
     background: #f8f9fa;
     border-radius: 8px;
     overflow: hidden;
@@ -1627,6 +1640,7 @@ figure {
     width: 100%;
     height: 100%;
     min-height: 350px;
+    max-height: 420px;
     object-fit: cover;
 }
 
@@ -8279,5 +8293,152 @@ body.blog-post-page {
     margin-top: 0.75rem;
     font-style: italic;
 }
+
+
+/* ===================================================
+   PARTNERS GRID REDESIGN (6 LOGOS Symmetrical 3x2)
+   =================================================== */
+.partners-grid-section {
+    margin-top: 8rem;
+    padding-top: 6rem;
+    border-top: 1px solid #f1f5f9;
+    text-align: center;
+    width: 100%;
+    max-width: min(1400px, 94vw); /* Align perfectly with navbar */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partners-grid-header {
+    margin-bottom: 4.5rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem;
+}
+
+.partners-grid-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+    color: var(--dark-navy, #0f172a);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.partners-grid-subtitle {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    color: #64748b;
+    line-height: 1.6;
+}
+
+@media (min-width: 769px) {
+    .partners-grid-subtitle {
+        white-space: nowrap;
+    }
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for 3x2 grid */
+    gap: 3rem;
+    width: 100%;
+    padding: 0; /* Clear grid padding to align with navbar logo/CTA edges */
+    justify-items: center;
+    align-items: center;
+}
+
+.partners-grid-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 160px; /* Made cards significantly larger */
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* Stagger domino animation base state */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.partners-grid-item img {
+    max-width: 90%;
+    max-height: 80px; /* Increased max-height of logo images */
+    object-fit: contain;
+    filter: none; /* Display logos in full color */
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Premium Hover Animations */
+.partners-grid-item:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 16px 28px -8px rgba(15, 23, 42, 0.08), 0 6px 12px -2px rgba(15, 23, 42, 0.04);
+    border-color: #e2e8f0;
+}
+
+.partners-grid-item:hover img {
+    transform: scale(1.08); /* Double zoom: Card translates and logo scales up internally */
+}
+
+/* Active state added by scroll IntersectionObserver */
+.partners-grid-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Logo-specific sizing adjustments to ensure perfect visual weights at larger size */
+.partners-grid-item img[alt="A.K.Egge"] { transform: scale(1.9); }
+.partners-grid-item:hover img[alt="A.K.Egge"] { transform: scale(1.98); }
+
+.partners-grid-item img[alt="HSB"] { transform: scale(2.6); }
+.partners-grid-item:hover img[alt="HSB"] { transform: scale(2.7); }
+
+.partners-grid-item img[alt="Riksbyggen"] { transform: scale(1.35); }
+.partners-grid-item:hover img[alt="Riksbyggen"] { transform: scale(1.43); }
+
+.partners-grid-item img[alt="Stockholmshem"] { transform: scale(1.0); }
+.partners-grid-item:hover img[alt="Stockholmshem"] { transform: scale(1.08); }
+
+.partners-grid-item img[alt="Skyddsrumsspecialisten"] { transform: scale(0.95); }
+.partners-grid-item:hover img[alt="Skyddsrumsspecialisten"] { transform: scale(1.03); }
+
+.partners-grid-item img[alt*="Svenska"] { transform: scale(1.05); }
+.partners-grid-item:hover img[alt*="Svenska"] { transform: scale(1.13); }
+
+/* Responsive breakpoints for the grid */
+@media (max-width: 991px) {
+    .partners-grid {
+        gap: 2rem;
+    }
+    .partners-grid-item {
+        height: 140px;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr); /* Clean 2x3 layout on mobile/tablet */
+        gap: 1.5rem;
+    }
+    .partners-grid-item {
+        height: 120px;
+        padding: 1.25rem;
+    }
+    .partners-grid-item img {
+        max-height: 55px;
+    }
+    .partners-grid-section {
+        margin-top: 5rem;
+        padding-top: 4rem;
+    }
+}
+
 
 

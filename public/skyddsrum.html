@@ -250,27 +250,19 @@
                 </div>
             </div>
 
-            <!-- Partner Marquee (Restored) -->
-            <div class="mission-partners-sub container fade-in-up">
-                <span class="partners-sub-label">KOMPLETT TRYGGHET FÖR ERA SKYDDSRUM</span>
-                <div class="mission-marquee-container">
-                    <div class="mission-marquee-track">
-                        <!-- Sequence 1 -->
-                        <div class="mission-marquee-item"><img src="riksbyggen.png" alt="Riksbyggen"></div>
-                        <div class="mission-marquee-item"><img src="infinite-logos/stockholmshem.svg" alt="Stockholmshem"></div>
-                        <div class="mission-marquee-item"><img src="skyddsrumsspecialisten.png" alt="Skyddsrumsspecialisten"></div>
-                        <div class="mission-marquee-item"><img src="hsb.png" alt="HSB"></div>
-                        <div class="mission-marquee-item"><img src="infinite-logos/svenska-bostader.svg" alt="Svenska Bostäder"></div>
-                        <div class="mission-marquee-item"><img src="a.k.egge.png" alt="A.K.Egge"></div>
-                        
-                        <!-- Sequence 2 -->
-                        <div class="mission-marquee-item"><img src="riksbyggen.png" alt="Riksbyggen"></div>
-                        <div class="mission-marquee-item"><img src="infinite-logos/stockholmshem.svg" alt="Stockholmshem"></div>
-                        <div class="mission-marquee-item"><img src="skyddsrumsspecialisten.png" alt="Skyddsrumsspecialisten"></div>
-                        <div class="mission-marquee-item"><img src="hsb.png" alt="HSB"></div>
-                        <div class="mission-marquee-item"><img src="infinite-logos/svenska-bostader.svg" alt="Svenska Bostäder"></div>
-                        <div class="mission-marquee-item"><img src="a.k.egge.png" alt="A.K.Egge"></div>
-                    </div>
+            <!-- Partner Grid Section -->
+            <div class="partners-grid-section container">
+                <div class="partners-grid-header">
+                    <h2 class="partners-grid-title">Några av våra samarbetspartners</h2>
+                    <p class="partners-grid-subtitle">Komplett trygghet för era skyddsrum i samarbete med branschens ledande aktörer.</p>
+                </div>
+                <div class="partners-grid" id="partners-grid">
+                    <div class="partners-grid-item"><img src="riksbyggen.png" alt="Riksbyggen"></div>
+                    <div class="partners-grid-item"><img src="infinite-logos/stockholmshem.svg" alt="Stockholmshem"></div>
+                    <div class="partners-grid-item"><img src="skyddsrumsspecialisten.png" alt="Skyddsrumsspecialisten"></div>
+                    <div class="partners-grid-item"><img src="hsb.png" alt="HSB"></div>
+                    <div class="partners-grid-item"><img src="infinite-logos/svenska-bostader.svg" alt="Svenska Bostäder"></div>
+                    <div class="partners-grid-item"><img src="a.k.egge.png" alt="A.K.Egge"></div>
                 </div>
             </div>
         </section>
@@ -392,7 +384,7 @@
             <header class="projects-header fade-in">
                 <h2 id="projects-heading">Några av våra projekt</h2>
             </header>
-            <div class="carousel-viewport" id="projects-carousel" role="region" aria-label="Projektkarusell"
+            <div class="carousel-viewport" id="projects-carousel" data-dynamic="true" role="region" aria-label="Projektkarusell"
                 aria-roledescription="karusell">
                 <div class="carousel-track" aria-live="off">
                     <article class="project-item" role="group" aria-roledescription="bild" aria-label="Projekt 1 av 3">
@@ -666,9 +658,18 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="main.js" defer></script>
     <script src="rebar-animation.js" defer></script>
     <script src="dynamic-logic.js" defer></script>
+    <script src="dynamic-projects.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.loadDynamicProjects) {
+                window.loadDynamicProjects('skyddsrum');
+            }
+        });
+    </script>
 </body>
 
 </html>
