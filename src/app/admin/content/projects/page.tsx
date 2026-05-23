@@ -76,7 +76,20 @@ export default function ProjectListPage() {
                 <tr key={project.id} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="font-bold text-slate-900">{project.title}</div>
-                    <div className="text-xs text-slate-400 mt-0.5">{project.client || "Ingen kund angiven"}</div>
+                    <div className="text-xs text-slate-400 mt-0.5">
+                      {(() => {
+                        if (!project.client) return "Ingen kund angiven";
+                        if (project.client.startsWith('{')) {
+                          try {
+                            const parsed = JSON.parse(project.client);
+                            return parsed.name || "Ingen kund angiven";
+                          } catch(e) {
+                            return project.client;
+                          }
+                        }
+                        return project.client;
+                      })()}
+                    </div>
                   </td>
                   <td className="px-6 py-4">
                     <span className="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-bold uppercase tracking-wider">

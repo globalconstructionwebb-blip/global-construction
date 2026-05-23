@@ -150,6 +150,7 @@ export default function NewProjectPage() {
   const [slug, setSlug] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [client, setClient] = useState("");
+  const [clientLogo, setClientLogo] = useState("");
   const [category, setCategory] = useState("");
   const [city, setCity] = useState("");
   const [projectLeader, setProjectLeader] = useState("");
@@ -263,12 +264,14 @@ export default function NewProjectPage() {
     try {
       const htmlContent = generateHTML();
 
+      const combinedClient = (client || clientLogo) ? JSON.stringify({ name: client, logo: clientLogo }) : "";
+
       const { error } = await supabase.from("projects").insert([{
         title, 
         slug, 
         category: category, 
         city,
-        client,
+        client: combinedClient,
         excerpt,
         content: htmlContent, 
         description: excerpt, // Fallback for legacy
@@ -398,6 +401,10 @@ export default function NewProjectPage() {
             <div className="space-y-1.5">
               <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kund / Beställare</label>
               <input type="text" value={client} onChange={(e) => setClient(e.target.value)} className="w-full px-3 py-2.5 rounded-md border border-gray-200 focus:border-gray-800 focus:ring-1 focus:ring-gray-800 outline-none transition-all text-sm bg-white shadow-sm" placeholder="T.ex. HSB / Riksbyggen" />
+              <div className="pt-2">
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 block">Logotyp (Frivilligt)</label>
+                <ImageUploader value={clientLogo} onChange={setClientLogo} placeholder="Ladda upp logotyp" />
+              </div>
             </div>
 
             <div className="space-y-1.5 relative">
@@ -412,7 +419,7 @@ export default function NewProjectPage() {
                 <div>
                   <label className="text-[9px] font-bold text-gray-400 uppercase tracking-tighter mb-1 block">Huvudkategori <span className="text-red-500">*</span></label>
                   <div className="relative">
-                    <select value={category} onChange={(e) => setCategory(e.target.value)} onFocus={() => setActiveSeoField('category')} onBlur={() => setActiveSeoField(null)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm outline-none focus:border-gray-800 bg-white shadow-sm appearance-none cursor-pointer font-medium">
+                    <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm outline-none focus:border-gray-800 bg-white shadow-sm appearance-none cursor-pointer font-medium">
                       <option value="">— Välj kategori —</option>
                       <option value="konstruktion">Konstruktion</option>
                       <option value="skyddsrum">Skyddsrum</option>
@@ -430,7 +437,6 @@ export default function NewProjectPage() {
                   <input type="text" value={city} onChange={(e) => setCity(e.target.value)} onFocus={() => setActiveSeoField('city')} onBlur={() => setActiveSeoField(null)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm outline-none focus:border-gray-800 bg-white shadow-sm" placeholder="Solna" />
                 </div>
               </div>
-              <SeoTip field="category" />
               <SeoTip field="city" />
             </div>
 
@@ -522,11 +528,11 @@ export default function NewProjectPage() {
                          {client && <span className="px-5 py-1.5 rounded-full border border-white/10 text-white/60 text-[12px] font-medium bg-white/5 backdrop-blur-md italic">{client}</span>}
                       </div>
                       
-                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight font-outfit max-w-4xl drop-shadow-sm">
+                      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight font-outfit drop-shadow-sm break-words line-clamp-2 w-full">
                         {title || 'Projekttitel'}
                       </h1>
                       
-                      <p className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed font-outfit">
+                      <p className="text-lg md:text-xl text-white/80 leading-relaxed font-outfit break-words w-full line-clamp-2">
                         {excerpt || 'Beskriv projektet kort här...'}
                       </p>
                     </div>
@@ -552,10 +558,10 @@ export default function NewProjectPage() {
                           <div className="w-px h-3 bg-gray-200"></div>
                           <span className="text-gray-900/60">{city || 'Stad'}</span>
                        </div>
-                       <h3 className="text-2xl font-extrabold text-[#1B263B] font-outfit leading-tight line-clamp-2">
+                       <h3 className="text-2xl font-extrabold text-[#1B263B] font-outfit leading-tight line-clamp-2 break-words">
                           {title || 'Projekttitel'}
                        </h3>
-                       <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 font-outfit">
+                       <p className="text-sm text-gray-500 leading-relaxed line-clamp-3 font-outfit break-words">
                           {excerpt || 'Kort sammanfattning av projektet som visas på landningssidan...'}
                        </p>
                        <div className="pt-4">

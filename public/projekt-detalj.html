@@ -92,7 +92,15 @@
             </article>
 
             <aside class="journal-sidebar">
-                <div class="journal-sidebar-inner">
+                <div class="journal-sidebar-inner" style="display: flex; flex-direction: column; gap: 2rem; margin-top: 5rem;">
+                    <div id="project-client-container" style="display: none;">
+                        <h4 style="margin-top: 0;">Beställare</h4>
+                        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                            <img src="" alt="Beställare logotyp" id="project-client-logo" style="display: none; max-width: 250px; max-height: 150px; width: auto; height: auto; margin: 0; padding: 0; object-fit: contain; object-position: left center;">
+                            <span class="journal-author-name" id="project-client-name" style="display: none; font-weight: 700; color: #111827; font-size: 1.125rem;"></span>
+                        </div>
+                    </div>
+
                     <nav class="journal-toc" aria-label="Innehållsförteckning" id="project-toc">
                         <h4>Innehåll</h4>
                         <ul id="toc-list">
@@ -153,6 +161,34 @@
                 }
                 if (project.author_image) {
                     document.getElementById('project-author-img').src = project.author_image;
+                }
+
+                let clientName = "";
+                let clientLogo = "";
+                if (project.client) {
+                    if (project.client.startsWith('{')) {
+                        try {
+                            const parsed = JSON.parse(project.client);
+                            clientName = parsed.name || "";
+                            clientLogo = parsed.logo || "";
+                        } catch(e) {
+                            clientName = project.client;
+                        }
+                    } else {
+                        clientName = project.client;
+                    }
+                }
+
+                if (clientName || clientLogo) {
+                    document.getElementById('project-client-container').style.display = 'block';
+                    if (clientLogo) {
+                        document.getElementById('project-client-logo').src = clientLogo;
+                        document.getElementById('project-client-logo').style.display = 'block';
+                    }
+                    if (clientName) {
+                        document.getElementById('project-client-name').innerText = clientName;
+                        document.getElementById('project-client-name').style.display = 'block';
+                    }
                 }
 
                 if (project.images && project.images.length > 0 && project.images[0]) {

@@ -395,7 +395,16 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
 
             <div className="space-y-3 pt-2">
               <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kategori</label>
-              <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm bg-white shadow-sm mb-2" placeholder="T.ex. Konstruktion" />
+              <div className="relative">
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm outline-none focus:border-gray-800 bg-white shadow-sm appearance-none cursor-pointer font-medium mb-2">
+                  <option value="">— Välj kategori —</option>
+                  <option value="konstruktion">Konstruktion</option>
+                  <option value="skyddsrum">Skyddsrum</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 pb-2">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-1.5 pt-2">

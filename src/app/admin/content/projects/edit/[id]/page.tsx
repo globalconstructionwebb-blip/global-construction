@@ -153,6 +153,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
   const [slug, setSlug] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [client, setClient] = useState("");
+  const [clientLogo, setClientLogo] = useState("");
   const [category, setCategory] = useState("");
   const [city, setCity] = useState("");
   const [projectLeader, setProjectLeader] = useState("");
@@ -185,7 +186,17 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
       setTitle(data.title || "");
       setSlug(data.slug || "");
       setExcerpt(data.excerpt || "");
-      setClient(data.client || "");
+      let fetchedClientName = data.client || "";
+      let fetchedClientLogo = "";
+      if (data.client && data.client.startsWith('{')) {
+        try {
+          const parsed = JSON.parse(data.client);
+          fetchedClientName = parsed.name || "";
+          fetchedClientLogo = parsed.logo || "";
+        } catch(e) {}
+      }
+      setClient(fetchedClientName);
+      setClientLogo(fetchedClientLogo);
       setCategory(data.category || "");
       setCity(data.city || "");
       setProjectLeader(data.author || "");
@@ -283,12 +294,13 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
 
     try {
       const htmlContent = generateHTML();
+      const combinedClient = (client || clientLogo) ? JSON.stringify({ name: client, logo: clientLogo }) : "";
       const { error } = await supabase.from("projects").update({
         title, 
         slug, 
         category, 
         city,
-        client,
+        client: combinedClient,
         excerpt,
         content: htmlContent, 
         description: excerpt,
@@ -390,8 +402,12 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kund</label>
-              <input type="text" value={client} onChange={(e) => setClient(e.target.value)} className="w-full px-3 py-2.5 rounded-md border border-gray-200 text-sm bg-white shadow-sm" />
+              <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kund / Beställare</label>
+              <input type="text" value={client} onChange={(e) => setClient(e.target.value)} className="w-full px-3 py-2.5 rounded-md border border-gray-200 text-sm bg-white shadow-sm" placeholder="T.ex. HSB / Riksbyggen" />
+              <div className="pt-2">
+                <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 block">Logotyp (Frivilligt)</label>
+                <ImageUploader value={clientLogo} onChange={setClientLogo} placeholder="Ladda upp logotyp" />
+              </div>
             </div>
 
             <div className="space-y-1.5 relative">
@@ -404,7 +420,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
               <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kategori & Stad</label>
               <div className="grid grid-cols-2 gap-2">
                 <div className="relative">
-                  <select value={category} onChange={(e) => setCategory(e.target.value)} onFocus={() => setActiveSeoField('category')} onBlur={() => setActiveSeoField(null)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm bg-white shadow-sm appearance-none cursor-pointer font-medium">
+                  <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm bg-white shadow-sm appearance-none cursor-pointer font-medium">
                     <option value="">— Välj —</option>
                     <option value="konstruktion">Konstruktion</option>
                     <option value="skyddsrum">Skyddsrum</option>
@@ -418,7 +434,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
               <div className="p-2.5 bg-amber-50 border border-amber-200 rounded-lg">
                 <p className="text-[10px] text-amber-800 font-semibold leading-relaxed">⚠️ VIKTIGT: Vald kategori styr automatiskt vilken landningssida detta projekt visas under (de 5 senaste under Konstruktion respektive Skyddsrum). Välj noggrant!</p>
               </div>
-              <SeoTip field="category" /><SeoTip field="city" />
+              <SeoTip field="city" />
             </div>
 
             <div className="space-y-1.5 pt-2">
@@ -459,13 +475,13 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
                   <div className="relative w-full rounded-[32px] overflow-hidden aspect-[16/9] md:aspect-[21/9] flex flex-col justify-end p-10 lg:p-16 bg-[#1B263B] shadow-2xl">
                     {mainImage && <img src={mainImage} className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Hero" />}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1B263B] via-[#1B263B]/40 to-transparent"></div>
-                    <div className="relative z-10">
+                    <div className="relative z-10 w-full">
                       <div className="flex gap-2 mb-6">
                          <span className="px-4 py-1 rounded-full border border-white/20 text-white text-[10px] font-bold bg-white/10 uppercase tracking-wider">{category || 'Kategori'}</span>
                          <span className="px-4 py-1 rounded-full border border-blue-400/30 text-blue-300 text-[10px] font-bold bg-blue-400/10 uppercase tracking-wider">{city || 'Stad'}</span>
                       </div>
-                      <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 font-outfit">{title || 'Projekttitel'}</h1>
-                      <p className="text-white/80 max-w-2xl font-outfit">{excerpt || 'Ingress...'}</p>
+                      <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-6 font-outfit break-words line-clamp-2 w-full">{title || 'Projekttitel'}</h1>
+                      <p className="text-white/80 font-outfit break-words w-full line-clamp-2">{excerpt || 'Ingress...'}</p>
                     </div>
                   </div>
                </div>
@@ -476,8 +492,8 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
                     <div className="aspect-[4/3] bg-gray-100">{mainImage && <img src={mainImage} className="w-full h-full object-cover" alt="Card" />}</div>
                     <div className="p-6 space-y-3">
                        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex gap-2"><span>{publishDate}</span> <span>|</span> <span>{category}</span></div>
-                       <h3 className="text-xl font-extrabold text-[#1B263B] font-outfit">{title}</h3>
-                       <p className="text-xs text-gray-500 line-clamp-2">{excerpt}</p>
+                       <h3 className="text-xl font-extrabold text-[#1B263B] font-outfit break-words">{title}</h3>
+                       <p className="text-xs text-gray-500 line-clamp-2 break-words">{excerpt}</p>
                     </div>
                   </div>
                </div>

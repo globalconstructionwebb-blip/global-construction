@@ -409,8 +409,16 @@ export default function NewBlogPostPage() {
 
             <div className="space-y-3 pt-2 relative">
               <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Kategori (Visas på kortet)</label>
-              <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} onFocus={() => setActiveSeoField('category')} onBlur={() => setActiveSeoField(null)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm outline-none focus:border-gray-800 bg-white shadow-sm" placeholder="T.ex. Konstruktion" />
-              <SeoTip field="category" />
+              <div className="relative">
+                <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-3 py-2 rounded-md border border-gray-200 text-sm outline-none focus:border-gray-800 bg-white shadow-sm appearance-none cursor-pointer font-medium">
+                  <option value="">— Välj kategori —</option>
+                  <option value="konstruktion">Konstruktion</option>
+                  <option value="skyddsrum">Skyddsrum</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+                </div>
+              </div>
             </div>
           </div>
 

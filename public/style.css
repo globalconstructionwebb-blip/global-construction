@@ -387,10 +387,15 @@ figure {
     text-align: center;
     opacity: 0.9;
     transform: translateY(20px);
-    filter: blur(15px); /* Completely blurred text by default */
     transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-                opacity 0.6s ease,
-                filter 0.6s ease;
+                opacity 0.6s ease;
+}
+
+/* Blur only text and button, NOT the title */
+.split-panel .panel-text,
+.split-panel .btn-nested-pill {
+    filter: blur(15px);
+    transition: filter 0.6s ease;
 }
 
 .fade-in-up.visible {
@@ -435,6 +440,14 @@ figure {
 .split-panel:active .panel-content {
     opacity: 1;
     transform: translateY(0);
+}
+
+.split-panel:hover .panel-text,
+.split-panel:hover .btn-nested-pill,
+.split-panel:focus-within .panel-text,
+.split-panel:focus-within .btn-nested-pill,
+.split-panel:active .panel-text,
+.split-panel:active .btn-nested-pill {
     filter: blur(0); /* Fully sharp text on hover/focus */
 }
 
@@ -7070,7 +7083,7 @@ body.blog-post-page {
 .journal-hero-content {
     position: relative;
     z-index: 2;
-    max-width: 800px;
+    width: 100%;
 }
 
 .journal-hero-title {
@@ -7080,6 +7093,12 @@ body.blog-post-page {
     margin-bottom: 1.5rem;
     letter-spacing: -0.02em;
     font-family: var(--font-heading);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .journal-hero-excerpt {
@@ -7088,6 +7107,12 @@ body.blog-post-page {
     margin-bottom: 2rem;
     opacity: 0.9;
     font-family: var(--font-body);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .journal-hero-meta {
