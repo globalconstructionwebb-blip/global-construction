@@ -489,7 +489,7 @@ figure {
 }
 
 .panel-title {
-    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
+    font-size: clamp(3rem, 6vw, 6rem);
     line-height: 1;
     margin-bottom: 2rem;
     font-weight: 800;
@@ -498,7 +498,7 @@ figure {
 }
 
 .panel-text {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     line-height: 1.6;
     color: var(--primary-light);
     margin-bottom: 2rem;
@@ -740,19 +740,19 @@ figure {
         padding-top: 80px; /* Offset for navbar */
     }
     .hero-enterprise .enterprise-content-wrapper {
-        text-align: center;
+        text-align: left;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
         padding: 0 1rem;
         box-sizing: border-box;
     }
     .hero-enterprise p {
-        margin: 0 auto 2rem auto;
+        margin: 0 0 2rem 0;
     }
     .hero-enterprise .breadcrumbs {
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
 
@@ -2350,7 +2350,7 @@ figure {
 
     .panel-text {
         white-space: normal;
-        font-size: 1.05rem !important; /* Smaller body text */
+        font-size: 0.85rem !important; /* Smaller body text */
         margin-bottom: 0.5rem !important;
         line-height: 1.4 !important;
     }
@@ -2360,7 +2360,7 @@ figure {
     }
 
     .panel-title {
-        font-size: clamp(1.75rem, 7vw, 2.5rem) !important; /* Smaller headings */
+        font-size: clamp(1.5rem, 6vw, 2.25rem) !important; /* Smaller headings */
         margin-bottom: 0.25rem !important;
     }
     
@@ -5007,11 +5007,11 @@ body.blog-post-page {
 .blog-v2-title {
     font-family: 'Outfit', sans-serif;
     color: var(--dark-navy);
-    font-size: 4rem;
+    font-size: clamp(2rem, 4.5vw, 4rem);
     font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 20px;
-    letter-spacing: -1.5px;
+    line-height: 1.05;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.03em;
 }
 
 .blog-v2-subtitle {
@@ -5252,7 +5252,6 @@ body.blog-post-page {
 
 @media (max-width: 900px) {
     .premium-blog-hero-v2, .premium-blog-grid-section { padding-left: 1rem !important; padding-right: 1rem !important; }
-    .blog-v2-title { font-size: 2.2rem; margin-bottom: 10px; }
     .blog-v2-dark-wrapper { padding-top: 100px !important; padding-bottom: 30px !important; }
     .blog-v2-header-area { margin-bottom: 20px !important; }
     .blog-v2-subtitle { font-size: 0.95rem !important; margin-bottom: 0 !important; }
