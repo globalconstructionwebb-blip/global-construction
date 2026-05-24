@@ -372,11 +372,11 @@ figure {
 }
 
 .panel-left::after {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.25));
 }
 
 .panel-right::after {
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.25));
 }
 
 .panel-content {
@@ -451,6 +451,27 @@ figure {
     filter: blur(0); /* Fully sharp text on hover/focus */
 }
 
+/* Custom blur logic for landing page */
+.panel-left .panel-media {
+    filter: blur(0);
+}
+.panel-left .panel-text,
+.panel-left .btn-nested-pill {
+    filter: blur(0);
+}
+
+.split-screen:has(.panel-right:hover) .panel-left .panel-media,
+.split-screen:has(.panel-right:focus-within) .panel-left .panel-media {
+    filter: blur(25px);
+}
+
+.split-screen:has(.panel-right:hover) .panel-left .panel-text,
+.split-screen:has(.panel-right:hover) .panel-left .btn-nested-pill,
+.split-screen:has(.panel-right:focus-within) .panel-left .panel-text,
+.split-screen:has(.panel-right:focus-within) .panel-left .btn-nested-pill {
+    filter: blur(15px);
+}
+
 .accent-title {
     display: block;
     font-size: 0.85rem;
@@ -462,7 +483,7 @@ figure {
 }
 
 .panel-title {
-    font-size: clamp(3rem, 6vw, 6rem);
+    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
     line-height: 1;
     margin-bottom: 2rem;
     font-weight: 800;
@@ -471,7 +492,7 @@ figure {
 }
 
 .panel-text {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     line-height: 1.6;
     color: var(--primary-light);
     margin-bottom: 2rem;
@@ -614,7 +635,7 @@ figure {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(90deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.15) 100%);
     z-index: 1;
 }
 
@@ -731,7 +752,7 @@ figure {
 
 /* 2-Column Mission Section */
 .mission-section {
-    padding: 12rem 0;
+    padding: 12rem 4rem;
     background-color: var(--white);
     color: var(--dark-navy);
     position: relative;
@@ -994,7 +1015,7 @@ figure {
 
 @media (max-width: 1024px) {
     .mission-section {
-        padding: 8rem 0;
+        padding: 8rem 2rem;
     }
     .mission-grid {
         grid-template-columns: 1fr;
@@ -2297,7 +2318,7 @@ figure {
 
     .panel-text {
         white-space: normal;
-        font-size: 0.85rem !important; /* Smaller body text */
+        font-size: 1.05rem !important; /* Smaller body text */
         margin-bottom: 0.5rem !important;
         line-height: 1.4 !important;
     }
@@ -2307,7 +2328,7 @@ figure {
     }
 
     .panel-title {
-        font-size: clamp(1.5rem, 6vw, 2.25rem) !important; /* Smaller headings */
+        font-size: clamp(1.75rem, 7vw, 2.5rem) !important; /* Smaller headings */
         margin-bottom: 0.25rem !important;
     }
     
@@ -4977,7 +4998,7 @@ body.blog-post-page {
     box-shadow: 0 30px 60px rgba(0,0,0,0.12);
     /* Set a locked height or aspect ratio */
     height: 600px;
-    background-color: var(--dark-navy);
+    background-color: transparent;
 }
 
 .featured-card-link {
@@ -5346,7 +5367,7 @@ body.blog-post-page {
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0,0,0,0.4);
     height: 600px;
-    background-color: var(--dark-navy);
+    background-color: transparent;
 }
 
 .glass-title {
@@ -5422,7 +5443,7 @@ body.blog-post-page {
 /* Remove drop shadow from featured post */
 .featured-post-card {
     box-shadow: none !important;
-    border: 1px solid rgba(0,0,0,0.06); 
+    border: none !important; 
 }
 
 /* Move the grid closer to the filter row */

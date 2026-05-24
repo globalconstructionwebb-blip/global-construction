@@ -5,10 +5,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, HelpCircle, ChevronDown } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
 export default function NewFaqPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+  useLeaveConfirmation(isDirty && !loading);
   
   // FAQ Metadata
   const [question, setQuestion] = useState("");

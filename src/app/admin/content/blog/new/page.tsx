@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
 type BlockType = 'h1' | 'h2' | 'h3' | 'p' | 'image';
 
@@ -145,6 +146,8 @@ function RichTextEditor({ value, onChange, placeholder, editorClassName }: { val
 export default function NewBlogPostPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+  useLeaveConfirmation(isDirty && !loading);
   
   // Metadata state
   const [title, setTitle] = useState("");
@@ -374,7 +377,7 @@ export default function NewBlogPostPage() {
         </div>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-0 mt-0">
+      <div className="flex flex-col xl:flex-row gap-0 mt-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         
         {/* Vänster kolumn: Metadata (Sidofält) - Clean & Minimal */}
         <div className="xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 min-h-screen p-8 space-y-8">

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sv">
 
 <head>
@@ -135,12 +135,13 @@
 
                 <div class="blog-v2-subscribe">
                     <form class="inline-subscribe-form" action="#" id="newsletterForm" method="POST">
-                        <input type="email" placeholder="Prenumerera på vårt nyhetsbrev..."
+                        <input type="email" id="newsletterEmail" placeholder="Prenumerera på vårt nyhetsbrev..."
                             aria-label="Din e-postadress" required>
-                        <button type="submit" aria-label="Prenumerera">
+                        <button type="submit" aria-label="Prenumerera" id="newsletterSubmitBtn">
                             Prenumerera
                         </button>
                     </form>
+                    <div id="newsletterMessage" style="display: none; margin-top: 10px; font-size: 0.9rem; color: #10b981; font-weight: 500;"></div>
                 </div>
             </div>
         </section>
@@ -489,6 +490,56 @@
         }
 
         fetchPosts();
+
+        // Newsletter subscription handler
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const emailInput = document.getElementById('newsletterEmail');
+                const submitBtn = document.getElementById('newsletterSubmitBtn');
+                const messageDiv = document.getElementById('newsletterMessage');
+                
+                if (!emailInput || !emailInput.value) return;
+
+                const email = emailInput.value;
+                const originalBtnText = submitBtn.textContent;
+                
+                submitBtn.textContent = 'Sparar...';
+                submitBtn.disabled = true;
+                messageDiv.style.display = 'none';
+
+                try {
+                    const response = await fetch('/api/newsletter/subscribe', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email }),
+                    });
+                    
+                    const data = await response.json();
+                    
+                    messageDiv.style.display = 'block';
+                    if (response.ok) {
+                        messageDiv.textContent = data.message || 'Tack för din prenumeration!';
+                        messageDiv.style.color = '#10b981';
+                        emailInput.value = '';
+                    } else {
+                        messageDiv.textContent = data.error || 'Något gick fel. Försök igen.';
+                        messageDiv.style.color = '#ef4444';
+                    }
+                } catch (error) {
+                    console.error('Subscription error:', error);
+                    messageDiv.style.display = 'block';
+                    messageDiv.textContent = 'Ett nätverksfel uppstod. Försök igen.';
+                    messageDiv.style.color = '#ef4444';
+                } finally {
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
     </script>
     <script src="main.js" defer></script>
 </body>

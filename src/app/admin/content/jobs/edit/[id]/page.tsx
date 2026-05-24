@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info, MapPin, Briefcase } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
 type BlockType = 'h1' | 'h2' | 'h3' | 'p' | 'image';
 
@@ -124,6 +125,8 @@ export default function EditJobPage({ params }: { params: Promise<{ id: string }
   
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+  useLeaveConfirmation(isDirty && !saving);
   
   // Job Metadata
   const [title, setTitle] = useState("");
@@ -249,7 +252,7 @@ export default function EditJobPage({ params }: { params: Promise<{ id: string }
         </button>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-0">
+      <div className="flex flex-col xl:flex-row gap-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         <div className="xl:w-[380px] border-r border-gray-200 bg-gray-50/50 p-8 space-y-8">
           <div className="space-y-6">
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest border-b pb-2">Information</h3>

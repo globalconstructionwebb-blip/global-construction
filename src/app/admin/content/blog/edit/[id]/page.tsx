@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
 type BlockType = 'h1' | 'h2' | 'h3' | 'p' | 'image';
 
@@ -147,6 +148,8 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
   
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+  useLeaveConfirmation(isDirty && !saving);
   
   // Metadata state
   const [title, setTitle] = useState("");
@@ -372,7 +375,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
         </div>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-0 mt-0">
+      <div className="flex flex-col xl:flex-row gap-0 mt-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         
         {/* Vänster kolumn: Metadata */}
         <div className="xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 min-h-screen p-8 space-y-8">

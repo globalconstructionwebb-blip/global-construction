@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Save, HelpCircle, ChevronDown } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
 export default function EditFaqPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -13,6 +14,8 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
   
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
+  useLeaveConfirmation(isDirty && !saving);
   
   // FAQ Metadata
   const [question, setQuestion] = useState("");
