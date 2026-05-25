@@ -8565,5 +8565,21 @@ body.blog-post-page {
     }
 }
 
+/* Mobile Left Align Overrides */
+@media (max-width: 768px) {
+    .service-row,
+    .mission-redesign-content,
+    .service-row .service-text,
+    .mission-redesign-content p,
+    .mission-redesign-content h2 {
+        text-align: left !important;
+    }
+    
+    .service-features {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 
 
