@@ -8440,14 +8440,16 @@ body.blog-post-page {
     border-radius: 16px;
     box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
     border: 1px solid #f1f5f9;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    
-    /* Stagger domino animation base state */
-    opacity: 0;
-    transform: translateY(30px);
+    transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Stagger fade-in-up delays */
+.partners-grid-item:nth-child(1) { transition-delay: 0s; }
+.partners-grid-item:nth-child(2) { transition-delay: 0.1s; }
+.partners-grid-item:nth-child(3) { transition-delay: 0.2s; }
+.partners-grid-item:nth-child(4) { transition-delay: 0.3s; }
+.partners-grid-item:nth-child(5) { transition-delay: 0.4s; }
+.partners-grid-item:nth-child(6) { transition-delay: 0.5s; }
 
 .partners-grid-item img {
     max-width: 90%;
@@ -8468,11 +8470,7 @@ body.blog-post-page {
     transform: scale(1.08); /* Double zoom: Card translates and logo scales up internally */
 }
 
-/* Active state added by scroll IntersectionObserver */
-.partners-grid-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+
 
 /* Logo-specific sizing adjustments to ensure perfect visual weights at larger size */
 .partners-grid-item img[alt="A.K.Egge"] { transform: scale(1.9); }

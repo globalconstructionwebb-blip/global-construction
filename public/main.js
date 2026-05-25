@@ -718,31 +718,6 @@ window.addEventListener('resize', updateScrollLineFixed);
 document.addEventListener('DOMContentLoaded', updateScrollLineFixed);
 
 
-// --- Partners Grid Staggered Domino Animation ---
-document.addEventListener('DOMContentLoaded', () => {
-    const partnersGrids = document.querySelectorAll('.partners-grid');
-    if (partnersGrids.length > 0) {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
 
-        const partnersObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const logoItems = entry.target.querySelectorAll('.partners-grid-item');
-                    logoItems.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.classList.add('visible');
-                        }, index * 120); // 120ms staggered delay
-                    });
-                    partnersObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        partnersGrids.forEach(grid => partnersObserver.observe(grid));
-    }
-});
 
 

@@ -276,7 +276,7 @@
                 posts.forEach(post => {
                     const date = new Date(post.publish_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' });
                     const card = `
-                    <article class="premium-blog-card fade-in visible" style="opacity: 1 !important; transform: translateY(0) !important; visibility: visible !important;" data-category="${post.category?.toLowerCase() || 'övrigt'}">
+                    <article class="premium-blog-card fade-in" data-category="${post.category?.toLowerCase() || 'övrigt'}">
                         <a href="artikel.html?slug=${post.slug}" class="card-link">
                             <div class="project-card-media">
                                 <img src="${post.image_url || 'blog-hero.png'}" alt="${post.title}">
@@ -307,6 +307,18 @@
             });
             const allBadge = document.querySelector(`[data-filter="all"] .tab-count`);
             if (allBadge) allBadge.textContent = posts.length;
+
+            // Applicera mjuk animering på de nya korten
+            const newCards = document.querySelectorAll('.premium-blog-card.fade-in');
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            newCards.forEach(c => observer.observe(c));
         }
 
         fetchPosts();

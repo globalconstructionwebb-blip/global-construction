@@ -221,7 +221,7 @@
                 const date = new Date(project.publish_date).toLocaleDateString('sv-SE');
                 const category = (project.category || 'konstruktion').toLowerCase();
                 const card = `
-                <article class="project-card fade-in visible" style="opacity: 1 !important; transform: translateY(0) !important; visibility: visible !important;" data-category="${category}">
+                <article class="project-card fade-in" data-category="${category}">
                     <div class="project-card-media">
                         <img src="${project.image_url || (project.images && project.images[0]) || 'project-1.jpg'}" alt="${project.title}" loading="lazy" width="600" height="400">
                     </div>
@@ -253,6 +253,20 @@
             if (allBadge) allBadge.textContent = projects.length;
 
             console.log("Projekt injicerade och räknare uppdaterade.");
+
+            // Applicera mjuk animering på de nya korten
+            const newCards = grid.querySelectorAll('.project-card.fade-in');
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+            newCards.forEach(c => observer.observe(c));
+
+            if (window.applyFilters) window.applyFilters();
         }
 
         fetchProjects();
