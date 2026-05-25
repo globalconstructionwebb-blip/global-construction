@@ -8582,17 +8582,17 @@ body.blog-post-page {
     
     /* Keep the original pill design for the video pause button but smaller and in the corner */
     .video-control-btn {
-        width: 90px !important;
-        height: 38px !important;
-        right: 1.5rem !important;
-        bottom: 1.5rem !important;
+        width: 64px !important;
+        height: 32px !important;
+        right: 0.75rem !important;
+        bottom: 0.75rem !important;
         border-radius: 60px !important;
     }
     
     .video-control-btn svg {
         margin: 0;
-        width: 18px !important;
-        height: 18px !important;
+        width: 16px !important;
+        height: 16px !important;
     }
     
     /* Make service headings smaller on mobile and prevent long words from breaking container */
