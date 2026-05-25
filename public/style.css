@@ -5358,7 +5358,7 @@ body.blog-post-page {
 .blog-v2-title {
     font-family: 'Outfit', sans-serif;
     color: var(--white);
-    font-size: 4.5rem;
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 20px;
@@ -8584,8 +8584,8 @@ body.blog-post-page {
     .video-control-btn {
         width: 64px !important;
         height: 32px !important;
-        right: 0.75rem !important;
-        bottom: 0.75rem !important;
+        right: 0.25rem !important;
+        bottom: 0.25rem !important;
         border-radius: 60px !important;
     }
     
