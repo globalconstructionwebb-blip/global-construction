@@ -241,9 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Project Filtering ---
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
 
-    if (filterBtns.length > 0 && projectCards.length > 0) {
+    if (filterBtns.length > 0) {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 filterBtns.forEach(b => {
@@ -253,7 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('active');
                 btn.setAttribute('aria-selected', 'true');
                 const filterValue = btn.dataset.filter;
-                projectCards.forEach(card => {
+                // Fetch dynamically loaded cards
+                const currentProjectCards = document.querySelectorAll('.project-card');
+                currentProjectCards.forEach(card => {
                     if (filterValue === 'all' || card.dataset.category === filterValue) {
                         card.classList.remove('is-hidden');
                         setTimeout(() => {
@@ -288,9 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Premium Blog Filtering ---
     const blogFilterBtns = document.querySelectorAll('.blog-filter-nav-v2 button, .blog-filter-nav button');
-    const blogCardsList = document.querySelectorAll('.premium-blog-card');
 
-    if (blogFilterBtns.length > 0 && blogCardsList.length > 0) {
+    if (blogFilterBtns.length > 0) {
         blogFilterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 blogFilterBtns.forEach(b => {
@@ -300,7 +300,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('active');
                 btn.setAttribute('aria-selected', 'true');
                 const filterValue = btn.dataset.filter;
-                blogCardsList.forEach(card => {
+                // Fetch dynamically loaded blog cards
+                const currentBlogCardsList = document.querySelectorAll('.premium-blog-card');
+                currentBlogCardsList.forEach(card => {
                     if (filterValue === 'all' || card.dataset.category === filterValue) {
                         card.classList.remove('is-hidden');
                         setTimeout(() => {
