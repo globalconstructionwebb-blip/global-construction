@@ -8615,6 +8615,13 @@ body.blog-post-page {
     .service-row:last-of-type .service-text {
         margin-top: -1.5rem !important;
     }
+    
+    /* Center "Några av våra projekt" on landing pages and reduce distance to cards */
+    .projects-section .projects-header {
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 1.25rem !important;
+    }
 }
 
 
