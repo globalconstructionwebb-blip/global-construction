@@ -8567,11 +8567,11 @@ body.blog-post-page {
 
 /* Mobile Left Align Overrides */
 @media (max-width: 768px) {
-    .service-row,
     .mission-redesign-content,
-    .service-row .service-text,
     .mission-redesign-content p,
-    .mission-redesign-content h2 {
+    .mission-redesign-content h2,
+    .service-row .service-text p,
+    .service-features {
         text-align: left !important;
     }
     
