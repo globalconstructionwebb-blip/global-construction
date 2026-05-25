@@ -8608,7 +8608,12 @@ body.blog-post-page {
     
     /* Push the last service row down slightly to fix visual spacing issue */
     .service-row:last-of-type {
-        margin-top: 3.5rem !important;
+        margin-top: 2rem !important;
+    }
+
+    /* Pull the text up for the last service row to compensate for image whitespace */
+    .service-row:last-of-type .service-text {
+        margin-top: -3.5rem !important;
     }
 }
 
