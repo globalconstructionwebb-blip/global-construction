@@ -8579,6 +8579,27 @@ body.blog-post-page {
         margin-left: 0;
         margin-right: 0;
     }
+    
+    /* Make video pause button more discreet on mobile */
+    .video-control-btn {
+        width: 44px !important;
+        height: 44px !important;
+        right: 1.5rem !important;
+        bottom: 1.5rem !important;
+        padding: 0;
+        border-radius: 50% !important;
+    }
+    
+    .video-control-btn svg {
+        margin: 0;
+    }
+    
+    /* Make service headings smaller on mobile and prevent long words from breaking container */
+    .service-row .service-text h3 {
+        font-size: clamp(1.75rem, 3.5vw, 2.25rem) !important;
+        word-break: break-word;
+        hyphens: auto;
+    }
 }
 
 
