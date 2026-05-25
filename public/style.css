@@ -8605,6 +8605,11 @@ body.blog-post-page {
     .service-row {
         gap: 2.7rem !important;
     }
+    
+    /* Push the last service row down slightly to fix visual spacing issue */
+    .service-row:last-of-type {
+        margin-top: 3.5rem !important;
+    }
 }
 
 
