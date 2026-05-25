@@ -8600,6 +8600,11 @@ body.blog-post-page {
         word-break: break-word;
         hyphens: auto;
     }
+    
+    /* Reduce gap between core service heading and element above by ~1/3 */
+    .service-row {
+        gap: 2.7rem !important;
+    }
 }
 
 
