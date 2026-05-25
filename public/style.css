@@ -8580,18 +8580,19 @@ body.blog-post-page {
         margin-right: 0;
     }
     
-    /* Make video pause button more discreet on mobile */
+    /* Keep the original pill design for the video pause button but smaller and in the corner */
     .video-control-btn {
-        width: 44px !important;
-        height: 44px !important;
+        width: 90px !important;
+        height: 38px !important;
         right: 1.5rem !important;
         bottom: 1.5rem !important;
-        padding: 0;
-        border-radius: 50% !important;
+        border-radius: 60px !important;
     }
     
     .video-control-btn svg {
         margin: 0;
+        width: 18px !important;
+        height: 18px !important;
     }
     
     /* Make service headings smaller on mobile and prevent long words from breaking container */
@@ -8616,11 +8617,11 @@ body.blog-post-page {
         margin-top: -1.5rem !important;
     }
     
-    /* Center "Några av våra projekt" on landing pages and reduce distance to cards */
+    /* Center "Några av våra projekt" on landing pages and match distance to other standard headings */
     .projects-section .projects-header {
         align-items: center !important;
         text-align: center !important;
-        margin-bottom: 1.25rem !important;
+        margin-bottom: 3rem !important;
     }
 }
 
