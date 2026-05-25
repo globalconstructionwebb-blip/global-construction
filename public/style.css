@@ -2387,6 +2387,11 @@ figure {
         font-size: 0.8rem;
         white-space: nowrap;
     }
+    .split-screen .panel-media,
+    .split-screen .panel-text,
+    .split-screen .btn-nested-pill {
+        filter: none !important;
+    }
 }
 
 /* Animations Core */
