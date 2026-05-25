@@ -8613,7 +8613,7 @@ body.blog-post-page {
 
     /* Pull the text up for the last service row to compensate for image whitespace */
     .service-row:last-of-type .service-text {
-        margin-top: -3.5rem !important;
+        margin-top: -1.5rem !important;
     }
 }
 
