@@ -153,8 +153,7 @@ figure {
 }
 
 @media (min-width: 1025px) {
-    .landing-text-container,
-    .enterprise-content-wrapper {
+    .landing-text-container {
         width: 75vw;
     }
 }
