@@ -2379,12 +2379,13 @@ figure {
 
     /* Mobile overrides for nested pill buttons */
     .btn-nested-pill {
-        width: fit-content;
-        max-width: 90%;
-        margin-inline: auto; /* Ensure centering in its container */
-        justify-content: center;
-        padding: 4px;
-        gap: 12px;
+        display: inline-flex !important;
+        width: auto !important;
+        max-width: 95%;
+        margin-inline: auto;
+        justify-content: flex-start !important;
+        padding: 6px !important;
+        gap: 0 !important;
     }
 
     .btn-inner-pill {
