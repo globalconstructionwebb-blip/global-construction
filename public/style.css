@@ -2168,14 +2168,20 @@ figure {
     .blog-page .dropdown-menu,
     .journal-page .dropdown-menu,
     body.blog-page #main-header .nav-links.active .dropdown-menu,
-    body.journal-page #main-header .nav-links.active .dropdown-menu {
+    body.journal-page #main-header .nav-links.active .dropdown-menu,
+    #main-header .dropdown-menu,
+    #main-header.sticky .dropdown-menu {
         background: rgba(255, 255, 255, 0.05) !important;
+        box-shadow: none !important;
+        border: none !important;
     }
 
     .blog-page .dropdown-menu a,
     .journal-page .dropdown-menu a,
     .blog-page #main-header .nav-links.active .dropdown-menu a,
-    body.journal-page #main-header .nav-links.active .dropdown-menu a {
+    body.journal-page #main-header .nav-links.active .dropdown-menu a,
+    #main-header .dropdown-menu a,
+    #main-header.sticky .dropdown-menu a {
         color: #ffffff !important;
     }
 
@@ -8268,6 +8274,11 @@ body.blog-post-page {
     /* Default: White (for home page and sticky nav) */
     #main-header .menu-toggle.active span {
         background-color: #ffffff !important;
+    }
+
+    /* Ensure the cross is dark navy when the header is sticky */
+    #main-header.sticky .menu-toggle.active span {
+        background-color: #1B263B !important;
     }
 
     /* On light pages, keep the cross dark when the header is white (non-sticky) */
