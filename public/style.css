@@ -145,6 +145,19 @@ figure {
     color: var(--primary-blue) !important;
 }
 
+/* Layout Containers */
+.landing-text-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 94vw;
+}
+
+@media (min-width: 1025px) {
+    .landing-text-container {
+        width: 75vw;
+    }
+}
+
 .navbar {
     max-width: min(1400px, 94vw);
     margin: 0 auto;
