@@ -19,12 +19,16 @@ BEGIN
         -- 3. Aktivera RLS igen
         EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY', t);
 
-        -- 4. Skapa en helt öppen policy för alla (SELECT, INSERT, UPDATE, DELETE)
-        -- Vi sätter denna till 'anon' och 'authenticated' för att vara 100% säkra
-        EXECUTE format('CREATE POLICY "Full access for everyone" ON public.%I FOR ALL USING (true) WITH CHECK (true)', t);
+        -- 4. Skapa säkra policies för läsning och skrivning
+        -- Anonyma besökare (och alla andra) får läsa
+        EXECUTE format('CREATE POLICY "Public kan läsa" ON public.%I FOR SELECT USING (true)', t);
+        -- Endast inloggade administratörer får skapa, ändra och ta bort
+        EXECUTE format('CREATE POLICY "Endast authenticated kan ändra" ON public.%I FOR ALL TO authenticated USING (true) WITH CHECK (true)', t);
         
         -- 5. Ge rättigheter till relevanta roller
-        EXECUTE format('GRANT ALL ON TABLE public.%I TO anon, authenticated, postgres, service_role', t);
+        -- Viktigt: anon får endast SELECT, inte ALL
+        EXECUTE format('GRANT SELECT ON TABLE public.%I TO anon', t);
+        EXECUTE format('GRANT ALL ON TABLE public.%I TO authenticated, postgres, service_role', t);
     END LOOP;
 END $$;
 

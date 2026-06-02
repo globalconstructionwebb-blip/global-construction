@@ -1,32 +1,29 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { supabaseAdmin } from "@/lib/supabase-server";
+import { z } from "zod";
+
+// Stark input-validering med Zod
+const subscribeSchema = z.object({
+  email: z.string().email("Ogiltig e-postadress"),
+});
 
 export async function POST(req: Request) {
   try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (!supabaseUrl || !supabaseKey) {
-      console.error("Saknar Supabase-miljövariabler");
+    const body = await req.json();
+    
+    // Validera input säkert
+    const parsed = subscribeSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: "Serverkonfigurationsfel" },
-        { status: 500 }
-      );
-    }
-
-    const supabase = createClient(supabaseUrl, supabaseKey);
-
-    const { email } = await req.json();
-
-    if (!email || !email.includes("@")) {
-      return NextResponse.json(
-        { error: "Ogiltig e-postadress" },
+        { error: parsed.error.errors[0].message },
         { status: 400 }
       );
     }
 
+    const { email } = parsed.data;
+
     // Save to Supabase
-    const { data, error } = await supabase
+    const { error } = await supabaseAdmin
       .from("subscribers")
       .upsert({ email, active: true }, { onConflict: "email" });
 
