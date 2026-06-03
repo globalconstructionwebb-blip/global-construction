@@ -544,7 +544,7 @@ window.addEventListener('DOMContentLoaded', () => {
         banner.innerHTML = `
             <div class="cookie-banner-inner">
                 <div class="cookie-text">
-                    <strong>Vi respekterar din integritet 🔒</strong>
+                    <strong>Vi respekterar din integritet</strong>
                     <p>Vi använder cookies för att förbättra din upplevelse och analysera trafik. Läs mer i vår <a href="#">Integritetspolicy</a> och <a href="#">Cookiepolicy</a>.</p>
                 </div>
                 <div class="cookie-actions">
