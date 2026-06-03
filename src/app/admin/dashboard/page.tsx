@@ -7,14 +7,23 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const stats = [
-  { name: "Blogginlägg", value: "0", icon: BookOpen, href: "/admin/content/blog", color: "bg-blue-500" },
-  { name: "Projekt", value: "0", icon: FolderKanban, href: "/admin/content/projects", color: "bg-emerald-500" },
-  { name: "FAQ", value: "0", icon: HelpCircle, href: "/admin/content/faq", color: "bg-amber-500" },
-  { name: "Lediga Tjänster", value: "0", icon: Briefcase, href: "/admin/content/jobs", color: "bg-purple-500" },
-];
+import prisma from "@/lib/prisma";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+  const [blogCount, projectCount, faqCount, jobCount] = await Promise.all([
+    prisma.blogPost.count(),
+    prisma.project.count(),
+    prisma.fAQ.count(),
+    prisma.jobOpening.count(),
+  ]);
+
+  const stats = [
+    { name: "Blogginlägg", value: blogCount.toString(), icon: BookOpen, href: "/admin/content/blog", color: "bg-blue-500" },
+    { name: "Projekt", value: projectCount.toString(), icon: FolderKanban, href: "/admin/content/projects", color: "bg-emerald-500" },
+    { name: "FAQ", value: faqCount.toString(), icon: HelpCircle, href: "/admin/content/faq", color: "bg-amber-500" },
+    { name: "Lediga Tjänster", value: jobCount.toString(), icon: Briefcase, href: "/admin/content/jobs", color: "bg-purple-500" },
+  ];
+
   return (
     <div className="space-y-10">
       <div>

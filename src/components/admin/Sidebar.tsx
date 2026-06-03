@@ -27,16 +27,16 @@ export function Sidebar() {
 
   return (
     <aside className="w-64 bg-[#1B263B] text-white flex flex-col h-screen fixed left-0 top-0 z-40 shadow-xl">
-      <div className="p-6 border-b border-white/10">
-        <Link href="/admin/dashboard" className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-            <span className="text-[#1B263B] font-bold text-xl">G</span>
-          </div>
-          <span className="font-outfit font-bold text-lg tracking-tight">Admin CMS</span>
+      <div className="p-6 border-b border-white/10 flex flex-col gap-4">
+        <Link href="/admin/dashboard">
+          <img src="/logo.png" alt="Global Construction" className="h-8 w-auto" />
         </Link>
       </div>
 
-      <nav className="flex-1 p-4 space-y-2 mt-4">
+      <div className="px-6 pt-6">
+        <span className="font-outfit font-bold text-sm tracking-widest text-white/50 uppercase">Admin CMS</span>
+      </div>
+      <nav className="flex-1 p-4 space-y-2 mt-2">
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
@@ -63,13 +63,6 @@ export function Sidebar() {
       </nav>
 
       <div className="p-4 border-t border-white/10 space-y-2">
-        <Link 
-          href="/admin/settings"
-          className="flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:bg-white/5 hover:text-white transition-all"
-        >
-          <Settings className="w-5 h-5 opacity-40" />
-          <span className="font-medium">Inställningar</span>
-        </Link>
         <button
           onClick={() => signOut()}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-all"
