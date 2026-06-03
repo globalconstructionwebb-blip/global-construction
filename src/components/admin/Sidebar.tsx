@@ -28,7 +28,7 @@ export function Sidebar() {
   return (
     <aside className="w-64 bg-[#1B263B] text-white flex flex-col h-screen fixed left-0 top-0 z-40 shadow-xl">
       <div className="p-6 border-b border-white/10 flex flex-col gap-4">
-        <Link href="/admin/dashboard">
+        <Link href="/">
           <img src="/logo.png" alt="Global Construction" className="h-8 w-auto" />
         </Link>
       </div>
