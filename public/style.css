@@ -8637,6 +8637,29 @@ body.blog-post-page {
         margin-left: 0;
         margin-right: 0;
     }
+
+    /* Mobile Newsletter Fix - One Row */
+    .inline-subscribe-form {
+        flex-direction: row !important;
+        border-radius: 100px !important;
+        padding: 0.25rem 0.25rem 0.25rem 0.75rem !important;
+        height: auto !important;
+        gap: 0 !important;
+    }
+    .inline-subscribe-form input {
+        width: 100% !important;
+        text-align: left !important;
+        padding: 0 !important;
+        font-size: 0.75rem !important; /* Smaller text on mobile */
+        text-overflow: ellipsis;
+    }
+    .inline-subscribe-form button {
+        width: auto !important;
+        border-radius: 100px !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.75rem !important;
+        flex-shrink: 0; /* Ensure button does not get crushed */
+    }
     
     /* Keep the original pill design for the video pause button but smaller and in the corner */
     .video-control-btn {
