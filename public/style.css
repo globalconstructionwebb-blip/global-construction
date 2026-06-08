@@ -147,9 +147,9 @@ figure {
 
 /* Layout Containers */
 .landing-text-container {
-    max-width: 1400px;
+    max-width: min(1400px, 94vw);
     margin: 0 auto;
-    width: 94vw;
+    width: 100%;
 }
 
 @media (min-width: 1025px) {
