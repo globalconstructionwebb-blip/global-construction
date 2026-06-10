@@ -8709,7 +8709,16 @@ body.blog-post-page {
     body, h1, h2, h3, h4, h5, h6, p, .landing-text-container, .enterprise-content-wrapper {
         word-wrap: break-word;
         overflow-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
+        -webkit-hyphens: auto;
         box-sizing: border-box;
+    }
+
+    /* Fix flex item min-width preventing text wrapping */
+    h1, h2, h3, h4, h5, h6, p {
+        min-width: 0;
+        max-width: 100%;
     }
     
     .hero-enterprise .enterprise-content-wrapper {
