@@ -8704,6 +8704,23 @@ body.blog-post-page {
         text-align: center !important;
         margin-bottom: 3rem !important;
     }
+
+    /* Fix global mobile overflow issues for text */
+    body, h1, h2, h3, h4, h5, h6, p, .landing-text-container, .enterprise-content-wrapper {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+    }
+    
+    .hero-enterprise .enterprise-content-wrapper {
+        padding: 0 1.5rem !important;
+        width: 100% !important;
+    }
+    
+    .landing-text-container {
+        padding: 0 1.5rem !important;
+        width: 100% !important;
+    }
 }
 
 
