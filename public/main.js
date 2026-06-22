@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
+    // Global intercept for placeholder links
+    document.querySelectorAll('a[href="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+        });
+    });
+
     // Sticky Header on Scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -33,6 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = dropdown.querySelector('a');
         if (link) {
             link.addEventListener('click', (e) => {
+                // Unconditionally prevent default so href="#" doesn't append to URL
+                if (link.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                
                 if (window.innerWidth <= 1024) {
                     e.preventDefault();
                     e.stopPropagation();
