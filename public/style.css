@@ -8730,6 +8730,10 @@ body.blog-post-page {
         padding: 0 1.5rem !important;
         width: 100% !important;
     }
+
+    .hide-on-mobile {
+        display: none !important;
+    }
 }
 
 
