@@ -8754,7 +8754,9 @@ body.blog-post-page {
     .blog-v2-header-area,
     .blog-v2-filter-row,
     .hero-enterprise .enterprise-content-wrapper,
-    .landing-text-container {
+    .landing-text-container,
+    .premium-blog-hero-v2,
+    .premium-blog-grid-section {
         margin-left: 0 !important;
         margin-right: 0 !important;
         width: 100% !important;
@@ -8775,6 +8777,26 @@ body.blog-post-page {
         padding-left: 2rem !important;
         padding-right: 2rem !important;
         box-sizing: border-box !important;
+    }
+
+    /* 3. Fix filter pill squishing on mobile */
+    .project-filter-bar,
+    .blog-filter-nav-v2 ul {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .project-filter-bar::-webkit-scrollbar,
+    .blog-filter-nav-v2 ul::-webkit-scrollbar {
+        display: none;
+    }
+    .project-filter-bar .filter-btn,
+    .blog-filter-nav-v2 button {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
     }
 
     /* For projects section, we pad the headers/CTA but let the carousel bleed */
