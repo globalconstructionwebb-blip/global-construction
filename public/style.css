@@ -5276,7 +5276,7 @@ body.blog-post-page {
 }
 
 @media (max-width: 900px) {
-    .premium-blog-hero-v2, .premium-blog-grid-section { padding-left: 1rem !important; padding-right: 1rem !important; }
+    .premium-blog-hero-v2, .premium-blog-grid-section { padding-left: 2rem !important; padding-right: 2rem !important; }
     .blog-v2-dark-wrapper { padding-top: 100px !important; padding-bottom: 30px !important; }
     .blog-v2-header-area { margin-bottom: 20px !important; }
     .blog-v2-subtitle { font-size: 0.95rem !important; margin-bottom: 0 !important; }
@@ -8722,12 +8722,12 @@ body.blog-post-page {
     }
     
     .hero-enterprise .enterprise-content-wrapper {
-        padding: 0 1.5rem !important;
+        padding: 0 2rem !important;
         width: 100% !important;
     }
     
     .landing-text-container {
-        padding: 0 1.5rem !important;
+        padding: 0 2rem !important;
         width: 100% !important;
     }
 
