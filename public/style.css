@@ -8771,8 +8771,7 @@ body.blog-post-page {
     .premium-blog-hero-v2,
     .premium-blog-grid-section,
     .about-team,
-    .hero-enterprise .enterprise-content-wrapper,
-    .landing-text-container {
+    .hero-enterprise .enterprise-content-wrapper {
         padding-left: 2rem !important;
         padding-right: 2rem !important;
         box-sizing: border-box !important;
