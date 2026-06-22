@@ -8736,5 +8736,60 @@ body.blog-post-page {
     }
 }
 
+/* ==========================================================================
+   MOBILE PADDING CONSISTENCY OVERRIDE
+   Forces a strict 2rem left/right padding across all landing page sections
+   to exactly match the om-oss.html layout padding.
+   ========================================================================== */
+@media (max-width: 900px) {
+    /* 1. Force outer sections to have EXACTLY 2rem left/right padding */
+    .mission-redesign,
+    .services-section,
+    .faq-section,
+    .premium-blog-hero-v2,
+    .premium-blog-grid-section,
+    .about-team,
+    .hero-enterprise .enterprise-content-wrapper {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        box-sizing: border-box !important;
+    }
 
+    /* Target specific projects elements to align text but let carousel bleed */
+    .projects-header,
+    .project-cta-wrapper {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        box-sizing: border-box !important;
+    }
 
+    /* 2. Reset any inner container paddings/margins that cause double-padding or misalignment */
+    .mission-redesign-container,
+    .partners-grid-section,
+    .partners-grid-header,
+    .service-row,
+    .service-row-reverse,
+    .service-text,
+    .faq-container,
+    .premium-blog-grid,
+    .blog-v2-container,
+    .blog-v2-header-area,
+    .blog-v2-filter-row {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Extra safety for kunskapsbanken: ensure the grid section respects the padding */
+    section.premium-blog-grid-section {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
