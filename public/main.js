@@ -402,26 +402,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Google reCAPTCHA v3 Implementation ---
+    // --- Contact Form Submission Logic ---
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Pause submission
-
-            // Replace 'YOUR_SITE_KEY' with your actual public site key
-            if (typeof grecaptcha !== 'undefined') {
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('YOUR_SITE_KEY', {action: 'submit'}).then(function(token) {
-                        // Inject token into hidden input
-                        document.getElementById('recaptchaToken').value = token;
-                        
-                        // Now truly submit the form
-                        contactForm.submit();
-                    });
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault(); 
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'SKICKAR...';
+            
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    body: formData
                 });
-            } else {
-                // Fallback if script failed to load
-                contactForm.submit();
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Tack för ditt meddelande! Vi återkommer så snart som möjligt.');
+                    contactForm.reset();
+                    const fileLabel = document.getElementById('file-label-text');
+                    if(fileLabel) fileLabel.textContent = 'Ingen fil vald';
+                } else {
+                    alert('Ett fel uppstod: ' + (result.error || 'Försök igen senare.'));
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Något gick snett. Kontrollera din uppkoppling och försök igen.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
             }
         });
     }
