@@ -559,7 +559,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="cookie-banner-inner">
                 <div class="cookie-text">
                     <strong>Vi respekterar din integritet</strong>
-                    <p>Vi använder cookies för att förbättra din upplevelse och analysera trafik. Läs mer i vår <a href="#">Integritetspolicy</a> och <a href="#">Cookiepolicy</a>.</p>
+                    <p>Vi använder cookies för att förbättra din upplevelse och analysera trafik. Läs mer i vår <a href="integritetspolicy">Integritetspolicy</a> och <a href="cookies">Cookiepolicy</a>.</p>
                 </div>
                 <div class="cookie-actions">
                     <button class="btn-cookie-accept" id="cookie-accept-all">Acceptera alla</button>
