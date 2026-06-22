@@ -211,6 +211,39 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset to first slide and start
         goToSlide(0);
         startAutoPlay();
+
+        // --- Touch Swipe Support for Mobile ---
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+            stopAutoPlay();
+        }, {passive: true});
+
+        track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+            startAutoPlay();
+        }, {passive: true});
+
+        function handleSwipe() {
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+            
+            // Only trigger if horizontal movement is larger than vertical (not scrolling) and exceeds threshold
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+                if (deltaX < 0) {
+                    goToSlide(currentSlide + 1);
+                } else {
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        }
     };
 
     // Auto-initialize only if carousel is NOT marked as dynamic
