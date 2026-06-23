@@ -330,7 +330,28 @@
             if (!slug) return;
 
             const { data: job, error } = await _supabase.from('JobOpening').select('*').eq('slug', slug).single();
-            if (error || !job) return;
+            
+            if (error || !job) {
+                if (slug === 'spontanansokan') {
+                    document.title = "Spontanansökan - Global Construction";
+                    document.getElementById('hero-title').textContent = "Spontanansökan";
+                    document.getElementById('job-meta-root').innerHTML = `
+                        <div class="meta-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            Sverige
+                        </div>
+                        <div class="meta-tag">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                            Öppen
+                        </div>
+                    `;
+                    document.getElementById('job-content').innerHTML = `<h2>Låt oss höra från dig</h2><p>Hittade du ingen specifik tjänst som passade dig? Vi är alltid på jakt efter talanger och passionerade personer som vill bygga framtiden med oss. Skicka in din ansökan så ser vi över ifall vi har någon passande roll just nu eller framöver.</p>`;
+                    return;
+                }
+                
+                document.getElementById('hero-title').textContent = "Tjänsten hittades inte";
+                return;
+            }
 
             document.title = job.title + " - Global Construction";
             document.getElementById('hero-title').textContent = job.title;
