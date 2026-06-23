@@ -94,6 +94,11 @@
             <div class="projects-container">
                 <div class="projects-header fade-in">
                     <h2 id="grid-heading">Valda uppdrag</h2>
+                    <select class="mobile-filter-dropdown" aria-label="Filtrera projekt">
+                        <option value="all">Alla</option>
+                        <option value="konstruktion">Konstruktion</option>
+                        <option value="skyddsrum">Skyddsrum</option>
+                    </select>
                     <div class="project-filter-bar" role="tablist" aria-label="Filtrera projekt">
                         <button class="filter-btn active" role="tab" aria-selected="true" data-filter="all">Alla <span class="filter-count">6</span></button>
                         <button class="filter-btn" role="tab" aria-selected="false" data-filter="konstruktion">Konstruktion <span class="filter-count">4</span></button>
@@ -249,9 +254,15 @@
                 const count = projects.filter(p => (p.category || 'konstruktion').toLowerCase() === cat).length;
                 const badge = document.querySelector(`[data-filter="${cat}"] .filter-count`);
                 if (badge) badge.textContent = count;
+                
+                const option = document.querySelector(`.mobile-filter-dropdown option[value="${cat}"]`);
+                if (option) option.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${count})`;
             });
             const allBadge = document.querySelector(`[data-filter="all"] .filter-count`);
             if (allBadge) allBadge.textContent = projects.length;
+            
+            const allOption = document.querySelector(`.mobile-filter-dropdown option[value="all"]`);
+            if (allOption) allOption.textContent = `Alla (${projects.length})`;
 
             console.log("Projekt injicerade och räknare uppdaterade.");
 

@@ -93,6 +93,11 @@
             <!-- 3. Filter Navigation & Subscription Row -->
             <div class="blog-v2-filter-row fade-in-up">
                 <nav class="blog-filter-nav-v2" aria-label="Kunskapsbankskategorier">
+                    <select class="mobile-filter-dropdown" aria-label="Filtrera kunskapsbank">
+                        <option value="all">Alla</option>
+                        <option value="konstruktion">Konstruktion</option>
+                        <option value="skyddsrum">Skyddsrum</option>
+                    </select>
                     <ul role="tablist">
                         <li role="presentation"><button role="tab" aria-selected="true" class="active"
                                 data-filter="all">Alla <span class="tab-count">6</span></button></li>
@@ -305,9 +310,15 @@
                 const count = posts.filter(p => p.category?.toLowerCase() === cat).length;
                 const badge = document.querySelector(`[data-filter="${cat}"] .tab-count`);
                 if (badge) badge.textContent = count;
+                
+                const option = document.querySelector(`.mobile-filter-dropdown option[value="${cat}"]`);
+                if (option) option.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${count})`;
             });
             const allBadge = document.querySelector(`[data-filter="all"] .tab-count`);
             if (allBadge) allBadge.textContent = posts.length;
+            
+            const allOption = document.querySelector(`.mobile-filter-dropdown option[value="all"]`);
+            if (allOption) allOption.textContent = `Alla (${posts.length})`;
 
             // Applicera mjuk animering på de nya korten
             const newCards = document.querySelectorAll('.premium-blog-card.fade-in');

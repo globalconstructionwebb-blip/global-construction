@@ -776,6 +776,33 @@ window.addEventListener('scroll', updateScrollLineFixed);
 window.addEventListener('resize', updateScrollLineFixed);
 document.addEventListener('DOMContentLoaded', updateScrollLineFixed);
 
+// --- Mobile Dropdown Sync ---
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileDropdowns = document.querySelectorAll('.mobile-filter-dropdown');
+    
+    // When dropdown changes, trigger click on the corresponding pill button
+    mobileDropdowns.forEach(dropdown => {
+        dropdown.addEventListener('change', (e) => {
+            const filterValue = e.target.value;
+            const matchingBtn = document.querySelector(`button[data-filter="${filterValue}"]`);
+            if (matchingBtn) {
+                matchingBtn.click();
+            }
+        });
+    });
+
+    // When a pill button is clicked (e.g. desktop), sync the dropdown's value
+    const allFilterBtns = document.querySelectorAll('.filter-btn, .blog-filter-nav-v2 button, .blog-filter-nav button');
+    allFilterBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const filterValue = e.currentTarget.dataset.filter;
+            mobileDropdowns.forEach(dropdown => {
+                dropdown.value = filterValue;
+            });
+        });
+    });
+});
+
 
 
 
