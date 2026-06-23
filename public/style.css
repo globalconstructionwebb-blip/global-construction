@@ -8826,5 +8826,5 @@ body.blog-post-page {
 
 /* Hide mobile dropdown by default (Desktop) */
 .mobile-filter-dropdown {
-    display: none !important;
+    display: none;
 }
