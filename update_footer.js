@@ -13,7 +13,7 @@ const replacement = `<nav class="footer-links-col" aria-label="Tjänster">
                     <li><a href="nyproduktion">Nyproduktion</a></li>
                     <li><a href="kvalificerad-sakkunnig">Kvalificerad Sakkunnig</a></li>
                     <li><a href="byggnation-skyddsrum">Skyddsrumsbyggnation</a></li>
-                    <li><a href="iordningstallande-ritningar">Iordningställande</a></li>
+                    <li><a href="iordningstallanderitningar">Iordningställande</a></li>
                 </ul>
             </nav>`;
 
