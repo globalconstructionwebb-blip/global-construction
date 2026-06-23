@@ -12,9 +12,9 @@ export default function BlogListPage() {
   useEffect(() => {
     async function fetchPosts() {
       const { data, error } = await supabase
-        .from('posts')
+        .from('BlogPost')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('createdAt', { ascending: false });
         
       if (error) {
         console.error("Kunde inte hämta inlägg:", error);
@@ -94,7 +94,7 @@ export default function BlogListPage() {
                       </Link>
                       <button onClick={async () => {
                         if(confirm('Ta bort detta inlägg?')) {
-                          await supabase.from('posts').delete().eq('id', post.id);
+                          await supabase.from('BlogPost').delete().eq('id', post.id);
                           window.location.reload();
                         }
                       }} className="p-2 text-slate-400 hover:text-red-600 transition-colors">

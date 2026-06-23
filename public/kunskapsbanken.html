@@ -244,6 +244,22 @@
                 return;
             }
 
+            // Uppdatera räknare
+            const categories = ['konstruktion', 'skyddsrum'];
+            categories.forEach(cat => {
+                const count = posts.filter(p => (p.categories && p.categories[0])?.toLowerCase() === cat).length;
+                const badge = document.querySelector(`[data-filter="${cat}"] .tab-count`);
+                if (badge) badge.textContent = count;
+                
+                const option = document.querySelector(`.mobile-filter-dropdown option[value="${cat}"]`);
+                if (option) option.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${count})`;
+            });
+            const allBadge = document.querySelector(`[data-filter="all"] .tab-count`);
+            if (allBadge) allBadge.textContent = posts.length;
+            
+            const allOption = document.querySelector(`.mobile-filter-dropdown option[value="all"]`);
+            if (allOption) allOption.textContent = `Alla (${posts.length})`;
+
             if (!posts.length) return;
 
             // 1. Render Featured Post
@@ -304,21 +320,7 @@
                 });
             }
 
-            // 3. Update Counts
-            const categories = ['konstruktion', 'skyddsrum'];
-            categories.forEach(cat => {
-                const count = posts.filter(p => (p.categories && p.categories[0])?.toLowerCase() === cat).length;
-                const badge = document.querySelector(`[data-filter="${cat}"] .tab-count`);
-                if (badge) badge.textContent = count;
-                
-                const option = document.querySelector(`.mobile-filter-dropdown option[value="${cat}"]`);
-                if (option) option.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${count})`;
-            });
-            const allBadge = document.querySelector(`[data-filter="all"] .tab-count`);
-            if (allBadge) allBadge.textContent = posts.length;
-            
-            const allOption = document.querySelector(`.mobile-filter-dropdown option[value="all"]`);
-            if (allOption) allOption.textContent = `Alla (${posts.length})`;
+
 
             // Applicera mjuk animering på de nya korten
             const newCards = document.querySelectorAll('.premium-blog-card.fade-in');

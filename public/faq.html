@@ -568,6 +568,11 @@
             const root = document.getElementById('faq-dynamic-root');
             root.innerHTML = '';
 
+            if (allFaqs.length === 0) {
+                root.innerHTML = '<div style="text-align: center; padding: 4rem; color: #cbd5e0; font-weight: 600;">Inga frågor hittades.</div>';
+                return;
+            }
+
             const categories = filter === 'alla' ? ['konstruktion', 'skyddsrum'] : [filter];
 
             categories.forEach(cat => {

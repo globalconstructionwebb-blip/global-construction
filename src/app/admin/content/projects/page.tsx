@@ -12,9 +12,9 @@ export default function ProjectListPage() {
   useEffect(() => {
     async function fetchProjects() {
       const { data, error } = await supabase
-        .from('projects')
+        .from('Project')
         .select('*')
-        .order('publish_date', { ascending: false });
+        .order('createdAt', { ascending: false });
         
       if (error) {
         console.error("Kunde inte hämta projekt:", error);
@@ -29,7 +29,7 @@ export default function ProjectListPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Är du säker på att du vill ta bort detta projekt?")) return;
-    const { error } = await supabase.from('projects').delete().eq('id', id);
+    const { error } = await supabase.from('Project').delete().eq('id', id);
     if (error) alert("Kunde inte ta bort projektet.");
     else setProjects(projects.filter((p: any) => p.id !== id));
   };

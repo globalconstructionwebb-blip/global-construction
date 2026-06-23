@@ -8,10 +8,16 @@ async function test() {
     const client = await pool.connect();
     
     const res = await client.query(`SELECT COUNT(*) FROM posts;`);
-    console.log("Posts count:", res.rows[0].count);
+    console.log("posts count:", res.rows[0].count);
     
     const res2 = await client.query(`SELECT COUNT(*) FROM projects;`);
-    console.log("Projects count:", res2.rows[0].count);
+    console.log("projects count:", res2.rows[0].count);
+    
+    const res3 = await client.query(`SELECT COUNT(*) FROM faqs;`);
+    console.log("faqs count:", res3.rows[0].count);
+    
+    const res4 = await client.query(`SELECT COUNT(*) FROM jobs;`);
+    console.log("jobs count:", res4.rows[0].count);
 
     client.release();
   } catch (e) {

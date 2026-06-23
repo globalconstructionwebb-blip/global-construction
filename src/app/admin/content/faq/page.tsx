@@ -12,9 +12,9 @@ export default function FaqListPage() {
   useEffect(() => {
     async function fetchFaqs() {
       const { data, error } = await supabase
-        .from('faqs')
+        .from('FAQ')
         .select('*')
-        .order('sort_order', { ascending: true });
+        .order('sortOrder', { ascending: true });
         
       if (error) {
         console.error("Kunde inte hämta FAQ:", error);
@@ -29,7 +29,7 @@ export default function FaqListPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Är du säker på att du vill ta bort denna fråga?")) return;
-    const { error } = await supabase.from('faqs').delete().eq('id', id);
+    const { error } = await supabase.from('FAQ').delete().eq('id', id);
     if (error) alert("Kunde inte ta bort frågan.");
     else setFaqs(faqs.filter((f: any) => f.id !== id));
   };
@@ -76,7 +76,7 @@ export default function FaqListPage() {
                 <tr key={faq.id} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="font-bold text-slate-900">{faq.question}</div>
-                    <div className="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">Ordning: {faq.sort_order}</div>
+                    <div className="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">Ordning: {faq.sortOrder}</div>
                   </td>
                   <td className="px-6 py-4">
                     <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest ${faq.category === 'skyddsrum' ? 'bg-teal-50 text-teal-600' : 'bg-gray-100 text-gray-600'}`}>

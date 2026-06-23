@@ -217,6 +217,22 @@
             // Rensa grid från hårdkodade projekt
             grid.innerHTML = '';
 
+            // Uppdatera räknare i filter-knapparna
+            const categories = ['konstruktion', 'skyddsrum'];
+            categories.forEach(cat => {
+                const count = projects.filter(p => (p.category || 'konstruktion').toLowerCase() === cat).length;
+                const badge = document.querySelector(`[data-filter="${cat}"] .filter-count`);
+                if (badge) badge.textContent = count;
+                
+                const option = document.querySelector(`.mobile-filter-dropdown option[value="${cat}"]`);
+                if (option) option.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${count})`;
+            });
+            const allBadge = document.querySelector(`[data-filter="all"] .filter-count`);
+            if (allBadge) allBadge.textContent = projects.length;
+            
+            const allOption = document.querySelector(`.mobile-filter-dropdown option[value="all"]`);
+            if (allOption) allOption.textContent = `Alla (${projects.length})`;
+
             if (!projects.length) {
                 grid.innerHTML = '<div style="text-align: center; padding: 4rem; grid-column: 1/-1; color: #cbd5e0; font-weight: 600;">Inga projekt hittades i databasen.</div>';
                 return;
@@ -247,22 +263,6 @@
                 `;
                 grid.insertAdjacentHTML('beforeend', card);
             });
-
-            // Uppdatera räknare i filter-knapparna
-            const categories = ['konstruktion', 'skyddsrum'];
-            categories.forEach(cat => {
-                const count = projects.filter(p => (p.category || 'konstruktion').toLowerCase() === cat).length;
-                const badge = document.querySelector(`[data-filter="${cat}"] .filter-count`);
-                if (badge) badge.textContent = count;
-                
-                const option = document.querySelector(`.mobile-filter-dropdown option[value="${cat}"]`);
-                if (option) option.textContent = `${cat.charAt(0).toUpperCase() + cat.slice(1)} (${count})`;
-            });
-            const allBadge = document.querySelector(`[data-filter="all"] .filter-count`);
-            if (allBadge) allBadge.textContent = projects.length;
-            
-            const allOption = document.querySelector(`.mobile-filter-dropdown option[value="all"]`);
-            if (allOption) allOption.textContent = `Alla (${projects.length})`;
 
             console.log("Projekt injicerade och räknare uppdaterade.");
 

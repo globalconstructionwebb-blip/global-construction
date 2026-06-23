@@ -12,9 +12,9 @@ export default function JobListPage() {
   useEffect(() => {
     async function fetchJobs() {
       const { data, error } = await supabase
-        .from('jobs')
+        .from('JobOpening')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('createdAt', { ascending: false });
         
       if (error) {
         console.error("Kunde inte hämta jobb:", error);
@@ -29,7 +29,7 @@ export default function JobListPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Är du säker på att du vill ta bort denna tjänst?")) return;
-    const { error } = await supabase.from('jobs').delete().eq('id', id);
+    const { error } = await supabase.from('JobOpening').delete().eq('id', id);
     if (error) alert("Kunde inte ta bort jobbet.");
     else setJobs(jobs.filter((j: any) => j.id !== id));
   };
@@ -83,7 +83,7 @@ export default function JobListPage() {
                       <MapPin className="w-3 h-3 text-slate-400" />
                       {job.location}
                     </div>
-                    <div className="text-xs text-slate-400 mt-1 uppercase font-bold tracking-tighter">{job.job_type}</div>
+                    <div className="text-xs text-slate-400 mt-1 uppercase font-bold tracking-tighter">{job.jobType}</div>
                   </td>
                   <td className="px-6 py-4">
                     {job.published ? (
