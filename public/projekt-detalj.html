@@ -135,7 +135,7 @@
 
                 console.log("Hämtar projektdetaljer för:", slug);
                 const { data: project, error } = await _supabase
-                    .from('projects')
+                    .from('Project')
                     .select('*')
                     .eq('slug', slug)
                     .single();
@@ -150,18 +150,13 @@
 
                 document.title = project.title + " | Global Construction";
                 document.getElementById('project-title').innerText = project.title;
-                document.getElementById('project-excerpt').innerText = project.excerpt || '';
+                document.getElementById('project-excerpt').innerText = project.metaDescription || '';
                 document.getElementById('project-category').innerText = project.category || 'Konstruktion';
                 document.getElementById('project-city').innerText = project.city || 'Sverige';
-                document.getElementById('project-date').innerText = new Date(project.publish_date).toLocaleDateString('sv-SE');
+                document.getElementById('project-date').innerText = new Date(project.createdAt).toLocaleDateString('sv-SE');
                 document.getElementById('project-content').innerHTML = project.content || '';
                 
-                if (project.author) {
-                    document.getElementById('project-author-name').innerText = project.author;
-                }
-                if (project.author_image) {
-                    document.getElementById('project-author-img').src = project.author_image;
-                }
+                document.getElementById('project-author-name').innerText = 'Global Construction';
 
                 let clientName = "";
                 let clientLogo = "";
@@ -191,10 +186,10 @@
                     }
                 }
 
-                if (project.images && project.images.length > 0 && project.images[0]) {
-                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.images[0]}')`;
-                } else if (project.image_url) {
-                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.image_url}')`;
+                if (project.gallery && project.gallery.length > 0 && project.gallery[0]) {
+                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.gallery[0]}')`;
+                } else if (project.featuredImage) {
+                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.featuredImage}')`;
                 }
 
                 // Generera TOC från H2/H3 taggar i innehållet

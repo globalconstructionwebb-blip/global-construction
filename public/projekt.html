@@ -197,9 +197,9 @@
         async function fetchProjects() {
             console.log("Hämtar projekt...");
             const { data: projects, error } = await _supabase
-                .from('projects')
+                .from('Project')
                 .select('*')
-                .order('publish_date', { ascending: false });
+                .order('createdAt', { ascending: false });
 
             if (error) {
                 console.error("Fel vid hämtning av projekt:", error);
@@ -224,12 +224,12 @@
 
             // Injektera projekt
             projects.forEach(project => {
-                const date = new Date(project.publish_date).toLocaleDateString('sv-SE');
+                const date = new Date(project.createdAt).toLocaleDateString('sv-SE');
                 const category = (project.category || 'konstruktion').toLowerCase();
                 const card = `
                 <article class="project-card fade-in" data-category="${category}">
                     <div class="project-card-media">
-                        <img src="${project.image_url || (project.images && project.images[0]) || 'project-1.jpg'}" alt="${project.title}" loading="lazy" width="600" height="400">
+                        <img src="${project.featuredImage || (project.gallery && project.gallery[0]) || 'project-1.jpg'}" alt="${project.title}" loading="lazy" width="600" height="400">
                     </div>
                     <div class="project-card-content">
                         <div class="project-card-meta">
@@ -240,7 +240,7 @@
                             <span>${project.city || 'Sverige'}</span>
                         </div>
                         <h3>${project.title}</h3>
-                        <p>${project.excerpt || ''}</p>
+                        <p>${project.metaDescription || ''}</p>
                         <a href="projekt-detalj.html?slug=${project.slug}" class="btn-read-more">Läs mer</a>
                     </div>
                 </article>

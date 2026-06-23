@@ -310,10 +310,10 @@
 
         async function fetchJobs() {
             const { data: jobs, error } = await _supabase
-                .from('jobs')
+                .from('JobOpening')
                 .select('*')
                 .eq('published', true)
-                .order('created_at', { ascending: false });
+                .order('createdAt', { ascending: false });
 
             if (error) {
                 console.error("Fel vid hämtning av jobb:", error);
@@ -334,8 +334,7 @@
                             <h3>${job.title}</h3>
                             <div class="job-meta-enterprise">
                                 <span>${job.location}</span>
-                                <span>${job.job_type}</span>
-                                <span style="color: var(--primary-blue)">${job.excerpt || ''}</span>
+                                <span>${job.type}</span>
                             </div>
                         </div>
                         <span class="btn-apply-enterprise">VISA TJÄNST</span>

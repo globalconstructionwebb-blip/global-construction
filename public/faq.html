@@ -516,9 +516,9 @@
 
         async function fetchFaqs() {
             const { data: faqs, error } = await _supabase
-                .from('faqs')
+                .from('FAQ')
                 .select('*')
-                .order('sort_order', { ascending: true });
+                .order('sortOrder', { ascending: true });
 
             if (error) {
                 console.error("Fel vid hämtning av FAQ:", error);

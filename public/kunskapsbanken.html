@@ -234,10 +234,10 @@
 
         async function fetchPosts() {
             const { data: posts, error } = await _supabase
-                .from('posts')
+                .from('BlogPost')
                 .select('*')
                 .eq('published', true)
-                .order('publish_date', { ascending: false });
+                .order('createdAt', { ascending: false });
 
             if (error) {
                 console.error("Fel vid hämtning av inlägg:", error);
@@ -248,17 +248,17 @@
 
             // 1. Render Featured Post
             const featured = posts[0];
-            const featuredDate = new Date(featured.publish_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' });
+            const featuredDate = new Date(featured.createdAt).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' });
             const featuredContainer = document.querySelector('.featured-post-card');
             
             if (featuredContainer) {
                 featuredContainer.innerHTML = `
                     <a href="artikel.html?slug=${featured.slug}" class="featured-card-link">
-                        <img src="${featured.image_url || 'blog-hero.png'}" alt="${featured.title}" class="featured-post-img">
+                        <img src="${featured.featuredImage || 'blog-hero.png'}" alt="${featured.title}" class="featured-post-img">
                         <div class="featured-post-glass-overlay">
                             <div class="glass-content-wrapper">
                                 <h2 class="glass-title">${featured.title}</h2>
-                                <p class="glass-excerpt">${featured.excerpt || ''}</p>
+                                <p class="glass-excerpt">${featured.metaDescription || ''}</p>
                                 <div class="glass-meta-row">
                                     <div class="glass-author-info">
                                         <span class="glass-author-name">${featured.author || 'Global Construction'}</span>
@@ -266,7 +266,7 @@
                                         <span class="glass-date">${featuredDate}</span>
                                     </div>
                                     <div class="glass-tags">
-                                        <span class="glass-tag">${featured.category || 'Kunskap'}</span>
+                                        <span class="glass-tag">${(featured.categories && featured.categories[0]) || 'Kunskap'}</span>
                                     </div>
                                 </div>
                             </div>
@@ -280,21 +280,21 @@
             if (grid) {
                 grid.innerHTML = '';
                 posts.forEach(post => {
-                    const date = new Date(post.publish_date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' });
+                    const date = new Date(post.createdAt).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' });
                     const card = `
-                    <article class="premium-blog-card fade-in" data-category="${post.category?.toLowerCase() || 'övrigt'}">
+                    <article class="premium-blog-card fade-in" data-category="${(post.categories && post.categories[0])?.toLowerCase() || 'övrigt'}">
                         <a href="artikel.html?slug=${post.slug}" class="card-link">
                             <div class="project-card-media">
-                                <img src="${post.image_url || 'blog-hero.png'}" alt="${post.title}">
+                                <img src="${post.featuredImage || 'blog-hero.png'}" alt="${post.title}">
                             </div>
                             <div class="project-card-content">
                                 <div class="project-card-meta">
                                     <span>${date}</span>
                                     <span class="meta-separator">|</span>
-                                    <span>${post.category || 'Nyhet'}</span>
+                                    <span>${(post.categories && post.categories[0]) || 'Nyhet'}</span>
                                 </div>
                                 <h3>${post.title}</h3>
-                                <p>${post.excerpt || ''}</p>
+                                <p>${post.metaDescription || ''}</p>
                                 <span class="btn-read-more" style="margin-top: auto;">Läs inlägg</span>
                             </div>
                         </a>
@@ -307,7 +307,7 @@
             // 3. Update Counts
             const categories = ['konstruktion', 'skyddsrum'];
             categories.forEach(cat => {
-                const count = posts.filter(p => p.category?.toLowerCase() === cat).length;
+                const count = posts.filter(p => (p.categories && p.categories[0])?.toLowerCase() === cat).length;
                 const badge = document.querySelector(`[data-filter="${cat}"] .tab-count`);
                 if (badge) badge.textContent = count;
                 

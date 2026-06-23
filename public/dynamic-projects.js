@@ -23,11 +23,11 @@
 
             // Fetch 5 latest published projects for this category
             const { data: projects, error } = await _supabase
-                .from('projects')
+                .from('Project')
                 .select('*')
                 .eq('category', category)
                 .eq('published', true)
-                .order('publish_date', { ascending: false })
+                .order('createdAt', { ascending: false })
                 .limit(5);
 
             if (error) {
@@ -48,9 +48,9 @@
             const total = projects.length;
             let trackHTML = '';
             projects.forEach((project, index) => {
-                const imgSrc = (project.images && project.images[0]) || project.image_url || 'construction.jpg';
+                const imgSrc = (project.gallery && project.gallery[0]) || project.featuredImage || 'construction.jpg';
                 const title = project.title || 'Projekt';
-                const description = project.excerpt || project.description || '';
+                const description = project.metaDescription || '';
                 const slug = project.slug || '';
 
                 trackHTML += `
