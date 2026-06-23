@@ -1884,7 +1884,6 @@ figure {
 .faq-list {
     max-width: 800px;
     margin: 0 auto;
-    min-height: 600px; /* Absorbs expansion to prevent jumping of sections below */
 }
 
 .faq-item {
