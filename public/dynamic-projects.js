@@ -61,12 +61,10 @@
                         </article>
                     `;
                 } else {
-                    // Placeholder card
+                    // Placeholder card (empty image side)
                     trackHTML += `
                         <article class="project-item" role="group" aria-roledescription="bild" aria-label="Projekt ${i + 1} av ${TOTAL_SLIDES}">
-                            <img src="construction.jpg" 
-                                 alt="Kommande projekt" 
-                                 width="700" height="420" loading="lazy" style="filter: grayscale(100%) opacity(0.7);">
+                            <div style="background: #e2e8f0; width: 100%; height: 100%; min-height: 350px;"></div>
                             <div class="project-content">
                                 <h3>Information uppdateras snart</h3>
                                 <p>Här kommer vi inom kort att presentera fler spännande projekt. Håll utkik för framtida uppdateringar från oss på Global Construction.</p>
@@ -101,9 +99,7 @@
             for (let i = 0; i < TOTAL_SLIDES; i++) {
                 trackHTML += `
                     <article class="project-item" role="group" aria-roledescription="bild" aria-label="Projekt ${i + 1} av ${TOTAL_SLIDES}">
-                        <img src="construction.jpg" 
-                             alt="Kommande projekt" 
-                             width="700" height="420" loading="lazy" style="filter: grayscale(100%) opacity(0.7);">
+                        <div style="background: #e2e8f0; width: 100%; height: 100%; min-height: 350px;"></div>
                         <div class="project-content">
                             <h3>Information uppdateras snart</h3>
                             <p>Här kommer vi inom kort att presentera fler spännande projekt. Håll utkik för framtida uppdateringar från oss på Global Construction.</p>
