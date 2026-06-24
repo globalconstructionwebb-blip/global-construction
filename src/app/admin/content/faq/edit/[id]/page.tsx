@@ -26,7 +26,7 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
   useEffect(() => {
     async function loadFaq() {
       const { data, error } = await supabase
-        .from('faqs')
+        .from('FAQ')
         .select('*')
         .eq('id', id)
         .single();
@@ -52,7 +52,7 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
     setSaving(true);
 
     try {
-      const { error } = await supabase.from("faqs").update({
+      const { error } = await supabase.from('FAQ').update({
         question,
         answer,
         category,

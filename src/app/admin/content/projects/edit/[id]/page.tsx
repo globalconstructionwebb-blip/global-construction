@@ -175,7 +175,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
   useEffect(() => {
     async function loadProject() {
       const { data, error } = await supabase
-        .from('projects')
+        .from('Project')
         .select('*')
         .eq('id', id)
         .single();
@@ -298,7 +298,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
     try {
       const htmlContent = generateHTML();
       const combinedClient = (client || clientLogo) ? JSON.stringify({ name: client, logo: clientLogo }) : "";
-      const { error } = await supabase.from("projects").update({
+      const { error } = await supabase.from('Project').update({
         title, 
         slug, 
         category, 

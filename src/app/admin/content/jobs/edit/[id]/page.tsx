@@ -143,7 +143,7 @@ export default function EditJobPage({ params }: { params: Promise<{ id: string }
   useEffect(() => {
     async function loadJob() {
       const { data, error } = await supabase
-        .from('jobs')
+        .from('JobOpening')
         .select('*')
         .eq('id', id)
         .single();
@@ -214,7 +214,7 @@ export default function EditJobPage({ params }: { params: Promise<{ id: string }
 
     try {
       const htmlContent = generateHTML();
-      const { error } = await supabase.from("jobs").update({
+      const { error } = await supabase.from('JobOpening').update({
         title, 
         slug, 
         location,

@@ -172,7 +172,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
   useEffect(() => {
     async function loadPost() {
       const { data, error } = await supabase
-        .from('posts')
+        .from('BlogPost')
         .select('*')
         .eq('id', id)
         .single();
@@ -288,7 +288,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
       const activeCategories = [category].filter(Boolean);
       const combinedCategory = activeCategories.join(',');
 
-      const { error } = await supabase.from("posts").update({
+      const { error } = await supabase.from('BlogPost').update({
         title, 
         slug, 
         category: combinedCategory, 

@@ -12,10 +12,10 @@ export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
   const [blogRes, projectRes, faqRes, jobRes] = await Promise.all([
-    supabase.from('posts').select('*', { count: 'exact', head: true }),
-    supabase.from('projects').select('*', { count: 'exact', head: true }),
-    supabase.from('faqs').select('*', { count: 'exact', head: true }),
-    supabase.from('jobs').select('*', { count: 'exact', head: true }),
+    supabase.from('BlogPost').select('*', { count: 'exact', head: true }),
+    supabase.from('Project').select('*', { count: 'exact', head: true }),
+    supabase.from('FAQ').select('*', { count: 'exact', head: true }),
+    supabase.from('JobOpening').select('*', { count: 'exact', head: true }),
   ]);
 
   const blogCount = blogRes.count || 0;

@@ -24,7 +24,7 @@ export default function NewFaqPage() {
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("faqs").insert([{
+      const { error } = await supabase.from('FAQ').insert([{
         question,
         answer,
         category,

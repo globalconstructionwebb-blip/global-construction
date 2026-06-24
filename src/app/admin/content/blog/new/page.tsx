@@ -269,7 +269,7 @@ export default function NewBlogPostPage() {
       const htmlContent = generateHTML();
       const combinedCategory = activeCategories.join(',');
 
-      const { error } = await supabase.from("posts").insert([{
+      const { error } = await supabase.from('BlogPost').insert([{
         title, 
         slug, 
         category: combinedCategory, 
