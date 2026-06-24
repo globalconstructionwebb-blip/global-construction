@@ -40,6 +40,13 @@ model BlogPost {
   publishedAt     DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  category        String?
+  excerpt         String?
+  description     String?
+  image_url       String?
+  author_image    String?
+  publish_date    DateTime?
+  blocks          Json?
 
   @@index([slug])
 }
@@ -59,6 +66,14 @@ model Project {
   published       Boolean   @default(true)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  title           String?
+  city            String?
+  excerpt         String?
+  content         String?   @db.Text
+  author          String?
+  author_image    String?
+  publish_date    DateTime?
+  blocks          Json?
 
   @@index([slug])
 }
@@ -73,6 +88,7 @@ model FAQ {
   published   Boolean   @default(true)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+  sort_order  Int       @default(0)
 }
 
 // JOBBA HOS OSS (JOBS)
@@ -89,6 +105,10 @@ model JobOpening {
   published       Boolean   @default(true)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
+  job_type        String?
+  excerpt         String?
+  content         String?   @db.Text
+  blocks          Json?
 
   @@index([slug])
 }
