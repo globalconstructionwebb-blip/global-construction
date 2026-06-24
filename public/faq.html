@@ -518,7 +518,7 @@
             const { data: faqs, error } = await _supabase
                 .from('FAQ')
                 .select('*')
-                .order('sortOrder', { ascending: true });
+                .order('sort_order', { ascending: true });
 
             if (error) {
                 console.error("Fel vid hämtning av FAQ:", error);

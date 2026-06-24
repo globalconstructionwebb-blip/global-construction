@@ -14,7 +14,7 @@ export default function FaqListPage() {
       const { data, error } = await supabase
         .from('FAQ')
         .select('*')
-        .order('sortOrder', { ascending: true });
+        .order('sort_order', { ascending: true });
         
       if (error) {
         console.error("Kunde inte hämta FAQ:", error);
