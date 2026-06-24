@@ -215,6 +215,8 @@ export default function EditJobPage({ params }: { params: Promise<{ id: string }
     try {
       const htmlContent = generateHTML();
       const { error } = await supabase.from('JobOpening').update({
+        type: jobType,
+        updatedAt: new Date().toISOString(),
         title, 
         slug, 
         location,

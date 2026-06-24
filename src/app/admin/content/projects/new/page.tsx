@@ -270,6 +270,8 @@ export default function NewProjectPage() {
       const combinedClient = (client || clientLogo) ? JSON.stringify({ name: client, logo: clientLogo }) : "";
 
       const { error } = await supabase.from('Project').insert([{ id: crypto.randomUUID(), 
+        name: title, 
+        updatedAt: new Date().toISOString(),
         title, 
         slug, 
         category: category, 

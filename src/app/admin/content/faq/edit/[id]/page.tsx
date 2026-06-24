@@ -53,6 +53,7 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
 
     try {
       const { error } = await supabase.from('FAQ').update({
+        updatedAt: new Date().toISOString(),
         question,
         answer,
         category,

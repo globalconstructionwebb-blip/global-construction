@@ -299,6 +299,8 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
       const htmlContent = generateHTML();
       const combinedClient = (client || clientLogo) ? JSON.stringify({ name: client, logo: clientLogo }) : "";
       const { error } = await supabase.from('Project').update({
+        name: title, 
+        updatedAt: new Date().toISOString(),
         title, 
         slug, 
         category, 

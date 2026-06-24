@@ -289,6 +289,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
       const combinedCategory = activeCategories.join(',');
 
       const { error } = await supabase.from('BlogPost').update({
+        updatedAt: new Date().toISOString(),
         title, 
         slug, 
         category: combinedCategory, 

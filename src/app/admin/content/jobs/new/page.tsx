@@ -224,6 +224,8 @@ export default function NewJobPage() {
     try {
       const htmlContent = generateHTML();
       const { error } = await supabase.from('JobOpening').insert([{ id: crypto.randomUUID(), 
+        type: jobType,
+        updatedAt: new Date().toISOString(),
         title, 
         slug, 
         location,
