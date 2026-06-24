@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info } from "lucide-react";
+import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info , List, ListOrdered } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
@@ -119,6 +119,9 @@ function RichTextEditor({ value, onChange, placeholder, editorClassName }: { val
       <div className="flex flex-wrap items-center gap-1 p-1.5 bg-gray-50/80 border-b border-gray-200">
         <button type="button" onClick={() => executeCommand('bold')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Fetstilt"><Bold className="w-3.5 h-3.5" /></button>
         <button type="button" onClick={() => executeCommand('italic')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Kursiv"><Italic className="w-3.5 h-3.5" /></button>
+        <div className="w-px h-4 bg-gray-300 mx-1" />
+        <button type="button" onClick={() => executeCommand('insertUnorderedList')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Punktlista"><List className="w-3.5 h-3.5" /></button>
+        <button type="button" onClick={() => executeCommand('insertOrderedList')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Numrerad lista"><ListOrdered className="w-3.5 h-3.5" /></button>
         <div className="w-px h-4 bg-gray-300 mx-1" />
         <button type="button" onClick={() => executeCommand('justifyLeft')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Vänsterjustera"><AlignLeft className="w-3.5 h-3.5" /></button>
         <button type="button" onClick={() => executeCommand('justifyCenter')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Centrera"><AlignCenter className="w-3.5 h-3.5" /></button>

@@ -1,11 +1,65 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, use , useRef} from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, HelpCircle, ChevronDown } from "lucide-react";
+import { ArrowLeft, Save, HelpCircle, ChevronDown , Bold, Italic, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, List, ListOrdered } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
+
+
+// --- Premium Rich Text Editor ---
+function RichTextEditor({ value, onChange, placeholder, editorClassName }: { value: string, onChange: (val: string) => void, placeholder: string, editorClassName?: string }) {
+  const editorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (editorRef.current && editorRef.current.innerHTML !== value) {
+      editorRef.current.innerHTML = value;
+    }
+  }, []);
+
+  const handleInput = () => {
+    if (editorRef.current) {
+      onChange(editorRef.current.innerHTML);
+    }
+  };
+
+  const executeCommand = (command: string, arg?: string) => {
+    document.execCommand(command, false, arg);
+    editorRef.current?.focus();
+    handleInput();
+  };
+
+  return (
+    <div className="border border-gray-200 rounded-lg overflow-hidden focus-within:border-gray-500 focus-within:ring-1 focus-within:ring-gray-500 transition-all bg-white relative shadow-sm">
+      <div className="flex flex-wrap items-center gap-1 p-1.5 bg-gray-50/80 border-b border-gray-200">
+        <button type="button" onClick={() => executeCommand('bold')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Fetstilt"><Bold className="w-3.5 h-3.5" /></button>
+        <button type="button" onClick={() => executeCommand('italic')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Kursiv"><Italic className="w-3.5 h-3.5" /></button>
+        <div className="w-px h-4 bg-gray-300 mx-1" />
+        <button type="button" onClick={() => executeCommand('insertUnorderedList')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Punktlista"><List className="w-3.5 h-3.5" /></button>
+        <button type="button" onClick={() => executeCommand('insertOrderedList')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Numrerad lista"><ListOrdered className="w-3.5 h-3.5" /></button>
+        <div className="w-px h-4 bg-gray-300 mx-1" />
+        <button type="button" onClick={() => executeCommand('justifyLeft')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Vänsterjustera"><AlignLeft className="w-3.5 h-3.5" /></button>
+        <button type="button" onClick={() => executeCommand('justifyCenter')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Centrera"><AlignCenter className="w-3.5 h-3.5" /></button>
+        <button type="button" onClick={() => executeCommand('justifyFull')} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Marginaljustera"><AlignJustify className="w-3.5 h-3.5" /></button>
+        <div className="w-px h-4 bg-gray-300 mx-1" />
+        <button type="button" onClick={() => {
+          const url = prompt('Länk URL (inklusive https://):');
+          if (url) executeCommand('createLink', url);
+        }} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Infoga länk"><LinkIcon className="w-3.5 h-3.5" /></button>
+      </div>
+      <div 
+        ref={editorRef}
+        contentEditable
+        onInput={handleInput}
+        onBlur={handleInput}
+        className={`p-4 outline-none font-outfit editor-content ${editorClassName || 'min-h-[120px] text-gray-700 leading-relaxed'}`}
+        data-placeholder={placeholder}
+      />
+    </div>
+  );
+}
+
 
 export default function EditFaqPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -99,7 +153,7 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
             </div>
             <div className="space-y-1.5">
               <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Svar</label>
-              <textarea value={answer} onChange={(e) => setAnswer(e.target.value)} rows={5} className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-gray-800 outline-none text-base bg-white leading-relaxed transition-all resize-none" />
+              <RichTextEditor value={answer} onChange={setAnswer} placeholder="Skriv det informativa svaret här..." editorClassName="text-base text-gray-600 leading-relaxed min-h-[120px]" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
@@ -125,7 +179,7 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
                <ChevronDown className="w-5 h-5 text-gray-300 transform rotate-180" />
              </div>
              <div className="px-6 pb-6 pt-2 border-t border-gray-50">
-                <p className="text-gray-600 leading-relaxed text-[15px]">{answer}</p>
+                <div className="text-gray-600 leading-relaxed text-[15px] editor-content" dangerouslySetInnerHTML={{ __html: answer || 'Här dyker det informativa svaret upp exakt som det kommer se ut när en besökare klickar på frågan på hemsidan.' }} />
              </div>
           </div>
         </div>
