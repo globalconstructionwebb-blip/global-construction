@@ -8852,6 +8852,6 @@ body.blog-post-page {
     font-weight: 700;
 }
 
-.journal-toc > ul > li > ul > li > a {
-    font-weight: 400;
+.journal-toc a.toc-h3 {
+    font-weight: 500 !important;
 }

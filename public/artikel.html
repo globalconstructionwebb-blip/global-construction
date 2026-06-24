@@ -156,12 +156,11 @@
                         const id = 'section-' + index;
                         h.id = id;
                         const li = document.createElement('li');
-                        li.innerHTML = `<a href="#${id}">${h.innerText}</a>`;
                         if (h.tagName === 'H3') {
                             li.style.paddingLeft = '1rem';
-                            li.style.fontWeight = '400';
-                        } else if (h.tagName === 'H2') {
-                            li.style.fontWeight = '700';
+                            li.innerHTML = `<a href="#${id}" class="toc-h3">${h.innerText}</a>`;
+                        } else {
+                            li.innerHTML = `<a href="#${id}">${h.innerText}</a>`;
                         }
                         tocList.appendChild(li);
                     });
