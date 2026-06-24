@@ -60,7 +60,7 @@ export default function NewFaqPage() {
         </button>
       </div>
 
-      <div className="flex flex-col lg:row gap-12 p-8 lg:p-16">
+      <div className="flex flex-col lg:row gap-12 p-8 lg:p-16" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         
         {/* Form Column */}
         <div className="flex-1 space-y-8 max-w-2xl">

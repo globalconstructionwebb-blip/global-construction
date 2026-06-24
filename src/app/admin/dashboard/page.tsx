@@ -6,17 +6,22 @@ import {
   ArrowUpRight
 } from "lucide-react";
 import Link from "next/link";
-import prisma from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
-  const [blogCount, projectCount, faqCount, jobCount] = await Promise.all([
-    prisma.blogPost.count(),
-    prisma.project.count(),
-    prisma.fAQ.count(),
-    prisma.jobOpening.count(),
+  const [blogRes, projectRes, faqRes, jobRes] = await Promise.all([
+    supabase.from('posts').select('*', { count: 'exact', head: true }),
+    supabase.from('projects').select('*', { count: 'exact', head: true }),
+    supabase.from('faqs').select('*', { count: 'exact', head: true }),
+    supabase.from('jobs').select('*', { count: 'exact', head: true }),
   ]);
+
+  const blogCount = blogRes.count || 0;
+  const projectCount = projectRes.count || 0;
+  const faqCount = faqRes.count || 0;
+  const jobCount = jobRes.count || 0;
 
   const stats = [
     { name: "Blogginlägg", value: blogCount.toString(), icon: BookOpen, href: "/admin/content/blog", color: "bg-blue-500" },

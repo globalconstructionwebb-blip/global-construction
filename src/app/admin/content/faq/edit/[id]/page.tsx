@@ -88,7 +88,7 @@ export default function EditFaqPage({ params }: { params: Promise<{ id: string }
         </button>
       </div>
 
-      <div className="flex flex-col lg:row gap-12 p-8 lg:p-16">
+      <div className="flex flex-col lg:row gap-12 p-8 lg:p-16" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         <div className="flex-1 space-y-8 max-w-2xl">
           <div className="space-y-6 bg-gray-50/50 p-8 rounded-2xl border border-gray-100">
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest border-b pb-2">Information</h3>
