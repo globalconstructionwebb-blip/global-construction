@@ -130,14 +130,19 @@
 
                 document.title = post.title + " | Global Construction";
                 document.getElementById('post-title').innerText = post.title;
-                document.getElementById('post-excerpt').innerText = post.metaDescription || '';
-                document.getElementById('post-category').innerText = (post.categories && post.categories[0]) || 'Allmänt';
+                document.getElementById('post-excerpt').innerText = post.excerpt || post.metaDescription || '';
+                document.getElementById('post-category').innerText = post.category ? post.category.split(',')[0] : ((post.categories && post.categories[0]) || 'Allmänt');
                 document.getElementById('post-readtime').innerText = "5 min läsning";
                 document.getElementById('post-content').innerHTML = post.content || '';
                 document.getElementById('post-author-name').innerText = post.author || 'Global Construction';
                 
-                if (post.featuredImage) {
-                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${post.featuredImage}')`;
+                if (post.author_image) {
+                    document.getElementById('post-author-img').src = post.author_image;
+                }
+
+                const heroImage = post.image_url || post.featuredImage;
+                if (heroImage) {
+                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${heroImage}')`;
                 }
 
                 // Dynamisk TOC (Innehållsförteckning)
