@@ -469,7 +469,7 @@ export default function EditProjectPage({ params }: { params: Promise<{ id: stri
              </div>
           </div>
 
-          <div className="p-8 lg:p-12 max-w-[1500px] mt-10 w-full">
+          <div className="p-8 lg:p-16 max-w-6xl mx-auto mt-10 cms-preview-scale">
             
             {/* Previews */}
             <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 mb-20 items-start">

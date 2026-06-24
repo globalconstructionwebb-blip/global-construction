@@ -438,7 +438,7 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
              </div>
           </div>
 
-          <div className="p-8 lg:p-12 max-w-[1500px] mt-10 w-full">
+          <div className="p-8 lg:p-12 max-w-[1500px] mt-10 w-full cms-preview-scale">
             
             {/* Live Preview Banner */}
             <div className="relative w-full rounded-[32px] overflow-hidden aspect-[16/9] md:aspect-[21/9] flex flex-col justify-end p-10 lg:p-16 bg-[#1B263B] shadow-2xl mb-16">

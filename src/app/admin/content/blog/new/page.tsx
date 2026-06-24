@@ -476,7 +476,7 @@ export default function NewBlogPostPage() {
              </div>
           </div>
 
-          <div className="p-8 lg:p-16 max-w-6xl mx-auto mt-10">
+          <div className="p-8 lg:p-16 max-w-6xl mx-auto mt-10 cms-preview-scale">
             
             {/* HERO BANNER (Visualiserad exakt som på hemsidan) */}
             <div className="relative w-full rounded-[32px] overflow-hidden mb-16 min-h-[400px] flex flex-col justify-end p-10 lg:p-16 bg-[#1B263B] shadow-2xl">

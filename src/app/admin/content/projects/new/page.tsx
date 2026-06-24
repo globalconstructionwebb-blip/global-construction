@@ -506,7 +506,7 @@ export default function NewProjectPage() {
              </div>
           </div>
 
-          <div className="p-8 lg:p-12 max-w-[1500px] ml-0 mt-10 w-full">
+          <div className="p-8 lg:p-16 max-w-6xl mx-auto mt-10 cms-preview-scale w-full">
             
             {/* PREVIEW SECTIONS SIDE-BY-SIDE */}
             <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 mb-20 items-start">
