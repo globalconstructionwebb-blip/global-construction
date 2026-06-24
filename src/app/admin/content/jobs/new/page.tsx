@@ -223,7 +223,7 @@ export default function NewJobPage() {
 
     try {
       const htmlContent = generateHTML();
-      const { error } = await supabase.from('JobOpening').insert([{
+      const { error } = await supabase.from('JobOpening').insert([{ id: crypto.randomUUID(), 
         title, 
         slug, 
         location,
