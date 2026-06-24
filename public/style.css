@@ -8846,3 +8846,12 @@ body.blog-post-page {
 .editor-content li {
     margin-bottom: 0.5rem;
 }
+
+/* Make H2 bold in TOC */
+.journal-toc > ul > li > a {
+    font-weight: 700;
+}
+
+.journal-toc > ul > li > ul > li > a {
+    font-weight: 400;
+}

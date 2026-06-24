@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info, MapPin, Briefcase , List, ListOrdered } from "lucide-react";
+import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info, MapPin, Briefcase , List, ListOrdered , ExternalLink } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 

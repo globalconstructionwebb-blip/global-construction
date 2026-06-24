@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info , List, ListOrdered } from "lucide-react";
+import { ArrowLeft, Save, GripVertical, Plus, Type, Heading1, Heading2, Heading3, Image as ImageIcon, Trash2, Calendar, User, Upload, AlignLeft, AlignCenter, AlignJustify, Link as LinkIcon, Bold, Italic, Info , List, ListOrdered , ExternalLink } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useLeaveConfirmation } from "@/hooks/useLeaveConfirmation";
 
@@ -131,6 +131,24 @@ function RichTextEditor({ value, onChange, placeholder, editorClassName }: { val
           const url = prompt('Länk URL (inklusive https://):');
           if (url) executeCommand('createLink', url);
         }} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Infoga länk"><LinkIcon className="w-3.5 h-3.5" /></button>
+        <button type="button" onClick={() => {
+          const url = prompt('Extern länk URL (inklusive https://):');
+          if (url) {
+            const id = 'ext-link-' + Date.now();
+            document.execCommand('createLink', false, id);
+            const links = editorRef.current?.querySelectorAll(`a[href="${id}"]`);
+            if (links && links.length > 0) {
+              links.forEach(link => {
+                link.setAttribute('href', url);
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+              });
+            } else {
+              document.execCommand('insertHTML', false, `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+            }
+            handleInput();
+          }
+        }} className="p-1.5 text-gray-600 hover:bg-white hover:shadow-sm rounded transition-all" title="Infoga extern länk"><ExternalLink className="w-3.5 h-3.5" /></button>
       </div>
       <div 
         ref={editorRef}
