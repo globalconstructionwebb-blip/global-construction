@@ -385,10 +385,10 @@ export default function NewProjectPage() {
         </div>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-0 mt-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
+      <div className="flex flex-col lg:flex-row gap-0 mt-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         
-        {/* Vänster kolumn: Metadata (Sidofält) */}
-        <div className="xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 min-h-screen p-8 space-y-8">
+        {/* Vänster kolumn: Metadata (Sidofält) - Clean & Minimal */}
+        <div className="lg:w-[340px] xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 min-h-screen p-8 space-y-8">
           
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
@@ -509,10 +509,10 @@ export default function NewProjectPage() {
           <div className="p-8 lg:p-16 max-w-6xl mx-auto mt-10 cms-preview-scale w-full">
             
             {/* PREVIEW SECTIONS SIDE-BY-SIDE */}
-            <div className="grid grid-cols-1 xl:grid-cols-12 gap-10 mb-20 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20 items-start">
                
                {/* Left/Main: PROJECT DETAIL HERO PREVIEW */}
-               <div className="xl:col-span-8 space-y-6">
+               <div className="lg:col-span-8 space-y-6">
                   <h3 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 font-outfit">Förhandsvisning: Projektets undersida (Hero)</h3>
                   <div className="relative w-full rounded-[32px] overflow-hidden aspect-[16/9] md:aspect-[21/9] min-h-[400px] flex flex-col justify-end p-10 lg:p-16 bg-[#1B263B] shadow-2xl border border-white/5">
                     {mainImage && <img src={mainImage} className="absolute inset-0 w-full h-full object-cover opacity-60" alt="Hero" />}
@@ -543,9 +543,9 @@ export default function NewProjectPage() {
                </div>
 
                {/* Right: PROJECT CARD PREVIEW */}
-               <div className="xl:col-span-4 space-y-6">
+               <div className="lg:col-span-4 space-y-6">
                   <h3 className="text-[11px] font-bold text-gray-400 uppercase tracking-widest border-b border-gray-100 pb-2 font-outfit">Projektkort (Landningssida)</h3>
-                  <div className="bg-white rounded-[24px] overflow-hidden shadow-2xl border border-gray-100 group max-w-[380px] mx-auto xl:mx-0">
+                  <div className="bg-white rounded-[24px] overflow-hidden shadow-2xl border border-gray-100 group max-w-[380px] mx-auto lg:mx-0">
                     <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
                        {mainImage ? (
                          <img src={mainImage} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Card Preview" />

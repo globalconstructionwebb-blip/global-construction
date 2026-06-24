@@ -252,8 +252,8 @@ export default function EditJobPage({ params }: { params: Promise<{ id: string }
         </button>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
-        <div className="xl:w-[380px] border-r border-gray-200 bg-gray-50/50 p-8 space-y-8">
+      <div className="flex flex-col lg:flex-row gap-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
+        <div className="lg:w-[340px] xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 p-8 space-y-8">
           <div className="space-y-6">
             <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest border-b pb-2">Information</h3>
             <input type="text" value={title} onChange={handleTitleChange} className="w-full px-3 py-2.5 rounded-md border border-gray-200 text-sm bg-white" placeholder="Titel" />

@@ -375,10 +375,10 @@ export default function EditBlogPostPage({ params }: { params: Promise<{ id: str
         </div>
       </div>
 
-      <div className="flex flex-col xl:flex-row gap-0 mt-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
+      <div className="flex flex-col lg:flex-row gap-0 mt-0" onChange={() => setIsDirty(true)} onInput={() => setIsDirty(true)}>
         
-        {/* Vänster kolumn: Metadata */}
-        <div className="xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 min-h-screen p-8 space-y-8">
+        {/* Vänster kolumn: Metadata (Sidofält) - Clean & Minimal */}
+        <div className="lg:w-[340px] xl:w-[380px] flex-shrink-0 border-r border-gray-200 bg-gray-50/50 min-h-screen p-8 space-y-8">
           <div className="space-y-6">
             <div className="flex items-center justify-between border-b border-gray-200 pb-2">
                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest">Metadata</h3>
