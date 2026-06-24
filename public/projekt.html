@@ -245,7 +245,7 @@
                 const card = `
                 <article class="project-card fade-in" data-category="${category}">
                     <div class="project-card-media">
-                        <img src="${project.featuredImage || (project.gallery && project.gallery[0]) || 'project-1.jpg'}" alt="${project.title}" loading="lazy" width="600" height="400">
+                        <img src="${(project.images && project.images[0]) || (project.gallery && project.gallery[0]) || project.featuredImage || 'project-1.jpg'}" alt="${project.title}" loading="lazy" width="600" height="400">
                     </div>
                     <div class="project-card-content">
                         <div class="project-card-meta">

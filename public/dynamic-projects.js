@@ -45,7 +45,7 @@
             for (let i = 0; i < TOTAL_SLIDES; i++) {
                 if (i < projects.length) {
                     const project = projects[i];
-                    const imgSrc = (project.gallery && project.gallery[0]) || project.featuredImage || 'construction.jpg';
+                    const imgSrc = (project.images && project.images[0]) || (project.gallery && project.gallery[0]) || project.featuredImage || 'construction.jpg';
                     const title = project.title || 'Projekt';
                     const description = project.metaDescription || '';
 

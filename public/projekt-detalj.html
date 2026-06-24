@@ -186,7 +186,9 @@
                     }
                 }
 
-                if (project.gallery && project.gallery.length > 0 && project.gallery[0]) {
+                if (project.images && project.images.length > 0 && project.images[0]) {
+                    document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.images[0]}')`;
+                } else if (project.gallery && project.gallery.length > 0 && project.gallery[0]) {
                     document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.gallery[0]}')`;
                 } else if (project.featuredImage) {
                     document.getElementById('dynamic-hero').style.backgroundImage = `linear-gradient(rgba(27, 38, 59, 0.4), rgba(27, 38, 59, 0.4)), url('${project.featuredImage}')`;
